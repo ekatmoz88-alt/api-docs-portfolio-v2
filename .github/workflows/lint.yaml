@@ -1,20 +1,23 @@
 name: Lint OpenAPI
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Node.js
+      
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '18'
+          
       - name: Install Redocly CLI
         run: npm install -g @redocly/cli
+        
       - name: Lint OpenAPI spec
         run: redocly lint openapi/openapi.yaml
-
-# API Style Guide
-- Используем активный залог (например, "Creates an order").
-- Описания полей начинаем с большой буквы, точка в конце обязательна.
-- Все ошибки возвращают стандарт RFC 7807
