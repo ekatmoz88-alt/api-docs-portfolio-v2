@@ -4,13 +4,29 @@
 >
 > This document presents a redacted, high-level overview for portfolio purposes. It is not a complete production API specification. Confirm that publication is authorized before sharing any project-related information publicly.
 
+## Table of Contents
+- [Overview](#overview)
+- [1. SOAP API Overview](#1-soap-api-overview)
+  - [Interface Characteristics](#interface-characteristics)
+  - [Method Catalogue](#method-catalogue)
+  - [Illustrative Data Structures](#illustrative-data-structures)
+    - [Document](#document)
+    - [Address](#address)
+    - [Reference-Book Entry](#reference-book-entry)
+  - [Example Operation: "searchPersonFile"](#example-operation-searchpersonfile)
+- [2. Client Architecture](#2-client-architecture)
+- [3. Functional Scope](#3-functional-scope)
+- [4. Technology Overview](#4-technology-overview)
+- [5. Security and Confidentiality](#5-security-and-confidentiality)
+- [6. Documentation Practices Demonstrated](#6-documentation-practices-demonstrated)
+
 ## Overview
 
 UMMS is described here as an enterprise system with a SOAP interface and Windows-based client applications. The documented functional areas include person search, document and address management, document issuance, reference data, and information exchange between stationary and mobile clients.
 
 This public sample intentionally excludes service URLs, credentials, production XML schemas, personal data, internal identifiers, and other confidential implementation details.
 
-## 1. SOAP API overview
+## 1. SOAP API Overview
 
 ### Interface characteristics
 
