@@ -151,8 +151,3 @@ This case study demonstrates how to organize a high-level interface overview int
 
 A production-ready specification would additionally require the authorized WSDL/XSD or equivalent contract, exact SOAP actions and namespaces, complete request and response examples, fault definitions, field-level validation rules, and versioning information.
 
-## Scope note
-
-This anonymized overview is separate from the repository's OpenAPI 3.1 Orders API demonstration. SOAP and OpenAPI are different interface-description approaches; this Markdown page is not an OpenAPI specification and should not be presented as one.
-
-Before publishing, confirm that you are permitted to share even this anonymized summary. If permission is unclear, use a more generic title such as **Enterprise SOAP Client System** and remove project-specific naming and details.
