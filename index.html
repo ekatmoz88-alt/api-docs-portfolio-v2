@@ -1,14 +1,89 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html lang="en">
   <head>
-    <title>Orders API Documentation</title>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>API Documentation Portfolio</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
-    <style>body { margin: 0; padding: 0; }</style>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Roboto, sans-serif;
+      }  .portfolio-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 24px;
+    padding: 16px 24px;
+    background: #172b4d;
+  }
+
+  .portfolio-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .portfolio-nav a:hover {
+    text-decoration: underline;
+  }
+
+  .portfolio-nav .brand {
+    font-family: Montserrat, sans-serif;
+    font-weight: 700;
+    margin-right: auto;
+  }
+
+  .case-study {
+    padding: 24px;
+    background: #f4f6f9;
+    border-bottom: 1px solid #dfe3e8;
+  }
+
+  .case-study h1 {
+    margin: 0 0 8px;
+    font-size: 22px;
+    color: #172b4d;
+  }
+
+  .case-study p {
+    margin: 0 0 12px;
+    line-height: 1.6;
+    color: #344563;
+  }
+
+  .case-study a {
+    color: #0747a6;
+    font-weight: 700;
+  }
+</style>
+
   </head>
   <body>
-    <redoc spec-url="./openapi/openapi.yaml"></redoc>
-    <script src="https://cdn.redoc.ly/redoc/v2.0.0/bundles/redoc.standalone.js"></script>
+    <nav class="portfolio-nav" aria-label="Portfolio navigation">
+      <a class="brand" href="./">API Documentation Portfolio</a>
+      <a href="#orders-api">Orders API</a>
+      <a href="./soap-api-review.md">SOAP API Review</a>
+      <a href="./umms-enterprise-soap-client.md">UMMS SOAP Client</a>
+    </nav><section class="case-study">
+  <h1>Technical Writing Portfolio</h1>
+  <p>
+    API documentation, specification analysis, and documentation reviews
+    covering REST and SOAP services.
+  </p>
+  <p>
+    <a href="./soap-api-review.md">Read the Legacy SOAP API Review</a>
+    &nbsp;|&nbsp;
+    <a href="./umms-enterprise-soap-client.md">Explore the UMMS SOAP Client Documentation</a>
+  </p>
+</section>
+
+<div id="orders-api">
+  <redoc spec-url="./openapi/openapi.yaml"></redoc>
+</div>
+
+<script src="https://cdn.redoc.ly/redoc/v2.0.0/bundles/redoc.standalone.js"></script>
+
   </body>
 </html>
