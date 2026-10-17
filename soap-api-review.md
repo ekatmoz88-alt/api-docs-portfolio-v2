@@ -1,7 +1,5 @@
 # Legacy SOAP API Documentation Review
 
-**Author:** devviki076 (Technical Writer / Documentation Developer)
-
 ## Overview
 
 This case study presents a documentation review of a legacy SOAP API described in a technical specification for a transport infrastructure monitoring system. The review focuses on API contract consistency, XML examples, data types, and the clarity of integration guidance.
