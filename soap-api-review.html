@@ -1,0 +1,368 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A retrospective review of legacy SOAP API documentation, including WSDL and XSD consistency, XML examples, data types, and documentation recommendations.">
+  <title>Legacy SOAP API Review | API Documentation Portfolio</title>
+  <style>
+    :root {
+      --navy: #172b4d;
+      --blue: #0747a6;
+      --text: #253858;
+      --muted: #5e6c84;
+      --bg: #f4f6f9;
+      --border: #dfe3e8;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+    }
+    .portfolio-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 24px;
+      padding: 16px 24px;
+      background: var(--navy);
+    }
+    .portfolio-nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .portfolio-nav a:hover { text-decoration: underline; }
+    .portfolio-nav .brand {
+      font-weight: 700;
+      margin-right: auto;
+    }
+    .hero {
+      padding: 52px 24px 44px;
+      color: var(--white);
+      background: var(--navy);
+      border-top: 1px solid #344563;
+    }
+    .hero-inner, main, footer {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #b3d4ff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(30px, 5vw, 44px);
+      line-height: 1.2;
+    }
+    .hero p {
+      max-width: 720px;
+      margin: 0;
+      color: #deebff;
+      font-size: 17px;
+    }
+    main { padding: 28px 20px 48px; }
+    .panel {
+      margin: 0 0 22px;
+      padding: 26px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    h2 {
+      margin: 0 0 14px;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.35;
+    }
+    h3 {
+      margin: 22px 0 8px;
+      color: var(--navy);
+      font-size: 18px;
+    }
+    p { margin: 0 0 14px; }
+    ul { padding-left: 22px; }
+    li { margin-bottom: 7px; }
+    .finding {
+      margin-top: 16px;
+      padding: 18px 20px;
+      background: #f8faff;
+      border-left: 4px solid var(--blue);
+      border-radius: 4px;
+    }
+    .finding h3 { margin-top: 0; }
+    .recommendation {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th {
+      color: var(--navy);
+      background: #f4f6f9;
+    }
+    code {
+      padding: 2px 5px;
+      background: #eef2f7;
+      border-radius: 4px;
+      font-family: Consolas, "Courier New", monospace;
+      overflow-wrap: anywhere;
+    }
+    a { color: var(--blue); }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .tag {
+      padding: 5px 10px;
+      color: var(--navy);
+      background: #e9f2ff;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+    .note {
+      margin-top: 18px;
+      padding: 16px;
+      color: #5e4b00;
+      background: #fff8db;
+      border: 1px solid #f5e6a8;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .page-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+    }
+    footer {
+      padding: 0 20px 30px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    @media (max-width: 600px) {
+      .portfolio-nav { padding: 14px 16px; gap: 12px 16px; }
+      .portfolio-nav .brand { width: 100%; }
+      .hero { padding: 36px 20px; }
+      main { padding: 20px 12px 32px; }
+      .panel { padding: 20px 16px; }
+      h2 { font-size: 21px; }
+      th, td { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="portfolio-nav" aria-label="Portfolio navigation">
+    <a class="brand" href="./">API Documentation Portfolio</a>
+    <a href="./#orders-api">Orders API</a>
+    <a href="./soap-api-review.html">SOAP API Review</a>
+    <a href="./umms-enterprise-soap-client.md">UMMS SOAP Client</a>
+  </nav>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Technical Writing Case Study</p>
+      <h1>Legacy SOAP API Documentation Review</h1>
+      <p>
+        A retrospective review of a legacy SOAP API specification,
+        focusing on contract consistency, XML examples, data types,
+        and actionable documentation improvements.
+      </p>
+    </div>
+  </header>
+  <main>
+    <section class="panel">
+      <h2>Overview</h2>
+      <p>
+        This case study examines technical documentation for a legacy
+        SOAP API associated with a transport infrastructure monitoring
+        system. The review focuses on the clarity and consistency of
+        the available API contract and its illustrative examples.
+      </p>
+      <p>
+        The work demonstrates a structured documentation review:
+        identifying discrepancies, describing their potential impact,
+        and recommending verification or corrective actions.
+      </p>
+    </section>
+    <section class="panel">
+      <h2>Scope of Review</h2>
+      <ul>
+        <li>SOAP operations and request/response structures.</li>
+        <li>WSDL and XML Schema (XSD) definitions.</li>
+        <li>XML request and response examples.</li>
+        <li>Field data types and optionality.</li>
+        <li>Identifier formats and collection response examples.</li>
+        <li>Consistency between the documented contract and example payloads.</li>
+      </ul>
+    </section>
+    <section class="panel">
+      <h2>API Operations</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Operation</th>
+              <th scope="col">Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>AddEvent</code></td>
+              <td>Submit an event to the service.</td>
+            </tr>
+            <tr>
+              <td><code>AddEventEx</code></td>
+              <td>Submit an extended event payload.</td>
+            </tr>
+            <tr>
+              <td><code>GetKnownCoords</code></td>
+              <td>Retrieve known coordinate data.</td>
+            </tr>
+            <tr>
+              <td><code>GetKnownStrategies</code></td>
+              <td>Retrieve known event strategy data.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="recommendation">
+        Operation purposes are summarized from the available specification.
+      </p>
+    </section>
+    <section class="panel">
+      <h2>Review Findings</h2>
+      <article class="finding">
+        <h3>1. Potential Data Type Inconsistency</h3>
+        <p>
+          The documented <code>StrategyId</code> field is declared as
+          <code>xs:dateTime</code>, while an example supplies a GUID-like
+          identifier.
+        </p>
+        <p class="recommendation">
+          <strong>Recommendation:</strong> Verify the field type against
+          the authoritative WSDL, XSD, and service implementation. Align
+          the schema and examples once the intended contract is confirmed.
+        </p>
+      </article>
+      <article class="finding">
+        <h3>2. Incomplete Collection Example</h3>
+        <p>
+          The <code>GetKnownCoords</code> response example contains an
+          empty array, so it does not demonstrate the structure of a
+          populated response.
+        </p>
+        <p class="recommendation">
+          <strong>Recommendation:</strong> Add a representative response
+          with one or more coordinate entries. Explain field names, data
+          types, and cardinality.
+        </p>
+      </article>
+      <article class="finding">
+        <h3>3. Unclear Field Optionality</h3>
+        <p>
+          Required and optional fields are not always easy to distinguish
+          between the specification's field tables and schema definitions.
+        </p>
+        <p class="recommendation">
+          <strong>Recommendation:</strong> Document requiredness consistently
+          and verify it against <code>minOccurs</code>, <code>nillable</code>,
+          and the relevant schema declarations.
+        </p>
+      </article>
+      <article class="finding">
+        <h3>4. Undocumented Return Value Semantics</h3>
+        <p>
+          The <code>AddEvent</code> and <code>AddEventEx</code> examples
+          return strings resembling resource paths or identifiers, but
+          their meaning and format need clarification.
+        </p>
+        <p class="recommendation">
+          <strong>Recommendation:</strong> Explain successful return values,
+          provide representative examples, and document SOAP faults or error
+          responses where supported by the contract.
+        </p>
+      </article>
+      <article class="finding">
+        <h3>5. Apparent Typographical Error in a Schema Type</h3>
+        <p>
+          One field table contains <code>xs:srting</code>, which appears to
+          be a misspelling of <code>xs:string</code>.
+        </p>
+        <p class="recommendation">
+          <strong>Recommendation:</strong> Correct the spelling in the
+          documentation and verify that the field table agrees with the
+          underlying schema.
+        </p>
+      </article>
+    </section>
+    <section class="panel">
+      <h2>Documentation Quality Recommendations</h2>
+      <ul>
+        <li>Use the WSDL and XSD as contract references after verifying their relationship to the implementation.</li>
+        <li>Keep field tables synchronized with schema definitions.</li>
+        <li>Provide realistic request and response examples for each operation.</li>
+        <li>Explain identifier formats, collection structures, optional fields, and error behavior.</li>
+        <li>Distinguish confirmed defects from discrepancies requiring implementation-level verification.</li>
+      </ul>
+    </section>
+    <section class="panel">
+      <h2>Skills Demonstrated</h2>
+      <ul>
+        <li>SOAP API documentation review.</li>
+        <li>WSDL and XSD analysis.</li>
+        <li>XML request and response analysis.</li>
+        <li>Data contract consistency checks.</li>
+        <li>Technical editing and issue identification.</li>
+        <li>Actionable documentation recommendations.</li>
+      </ul>
+      <div class="tags" aria-label="Technologies">
+        <span class="tag">SOAP</span>
+        <span class="tag">WSDL</span>
+        <span class="tag">XML</span>
+        <span class="tag">XSD</span>
+        <span class="tag">C#</span>
+        <span class="tag">.NET</span>
+        <span class="tag">API Documentation</span>
+      </div>
+      <div class="note">
+        <strong>Scope note:</strong> This is a retrospective analysis of an
+        available historical specification, not a claim of authorship of
+        the original specification or implementation. Implementation
+        behavior and unresolved schema discrepancies require independent
+        verification.
+      </div>
+    </section>
+    <section class="panel">
+      <h2>Explore the Portfolio</h2>
+      <div class="page-links">
+        <a href="./">Portfolio home</a>
+        <a href="./#orders-api">Orders API documentation</a>
+        <a href="./soap-api-review.md">View Markdown source</a>
+        <a href="./umms-enterprise-soap-client.md">UMMS SOAP Client case study</a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    API Documentation Portfolio · Technical Writing Case Study
+  </footer>
+</body>
+</html>
