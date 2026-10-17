@@ -1,35 +1,45 @@
-# Orders API Documentation (Portfolio Project)
+# ekatmoz88-alt
 
-Interactive API documentation built with **OpenAPI 3.1**, **Redoc**, and **GitHub Actions**.
+## About This Portfolio
 
-## 🔗 Live Demo
-[View Documentation on GitHub Pages](https://ekatmoz88-alt.github.io/api-docs-portfolio-v2/)
+This repository showcases my work as a Technical Writer / Documentation Developer. It includes sample documentation, API reviews, and portfolio pieces demonstrating my skills in API documentation, specification analysis, and technical editing.
 
-## 📌 About this Public Demo
-This repository contains a **public demonstration** based on my professional experience as a Technical Writer at **Pelita (2021–2024)** and subsequent freelance work. 
+## Featured Projects
 
-Since real production materials (including internal API specs, integration docs, and software manuals) are confidential and covered by NDA, this project replicates the **same tasks, structure, and documentation approaches** using a fictional "Orders API". 
+### Orders API — OpenAPI 3.1 + Redoc
 
-The goal of this demo is to showcase my expertise in API documentation, OpenAPI 3.1 specification, error handling design, and CI/CD automation.
+A public demo of a complete REST API documentation set, generated from an OpenAPI 3.1 specification and rendered with Redoc.
 
-*Note: The GitHub account is new. My previous technical documentation work (2012–2024), including API and integration docs for Pelita, was created in internal corporate systems and remains closed/restricted.*
+**Topics:** REST · OpenAPI 3.1 · Redoc · API Documentation
 
-## 🛠 Tech Stack
-- **OpenAPI 3.1** (YAML specification)
-- **Redoc** (UI rendering)
-- **GitHub Actions** (CI/CD: Auto-lint + Auto-deploy)
-- **GitHub Pages** (Hosting)
-
-## ✨ Key Features
-- **Interactive Code Samples**: Implemented `x-codeSamples` extension for cURL, Python, and JavaScript.
-- **Error Handling Schemas**: Standardized `ProblemDetails` (RFC 7807) for 400/401 errors with real JSON examples.
-- **Automated Quality Control**: CI pipeline runs OpenAPI linter on every commit to `main`.
-- **Auto-Deployment**: Merging to `main` automatically builds and deploys docs to Pages.
-
-## 💼 Developer Experience (DX) Focus
-Designed not just for reading, but for developers: clear request/response examples, copy-paste-ready code snippets, strict schema validation, and clear error descriptions.
+📄 [View Documentation](./orders-api/README.md)
 
 ---
-**Author:** Technical Writer (API & Software Documentation, GOST/ESPD)
 
-*Created as a portfolio project to demonstrate Technical Writing & API Documentation skills.*
+## Legacy SOAP API Documentation Review
+
+A retrospective review of a legacy SOAP API specification, focusing on WSDL/XSD consistency, XML examples, data types, and actionable documentation improvements.
+
+**Topics:** SOAP · WSDL · XML · XSD · API Documentation
+
+📄 **[Read the case study](./soap-api-review.md)**
+
+---
+
+## Tech Stack
+
+- **API Specifications:** OpenAPI 3.1, SOAP/WSDL, XSD
+- **Documentation Tools:** Redoc, Markdown, Git
+- **Languages:** English, Russian
+- **Technologies:** REST, SOAP, XML, JSON, C#, .NET
+
+---
+
+## Contact
+
+Feel free to reach out via GitHub or open an issue if you'd like to discuss my work.
+
+---
+
+> **Note:** Some case studies are based on historical specifications. Implementation behavior and unresolved discrepancies require independent verification.
+
