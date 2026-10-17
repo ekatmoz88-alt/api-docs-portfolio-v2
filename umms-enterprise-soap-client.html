@@ -32,6 +32,17 @@
     .source-link a { color: #0747a6; font-weight: bold; }
     @media (max-width: 600px) { .content { padding: 20px; } h1 { font-size: 24px; } table { display: block; overflow-x: auto; white-space: nowrap; } }
   </style>
+  .diagram-flow { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; margin: 1rem 0; }
+.diagram-node { border: 2px solid #3498db; border-radius: 6px; padding: 0.75rem 1.25rem; background: #fff; max-width: 320px; min-width: 220px; }
+.diagram-node.soap-service { border-color: #e74c3c; background: #fdf2f0; }
+.diagram-node.sc-node { border-color: #27ae60; background: #f0faf4; }
+.diagram-node.mc-node { border-color: #f39c12; background: #fef9f0; }
+.diagram-node strong { display: block; margin-bottom: 0.25rem; }
+.diagram-node small { color: #666; font-size: 0.8rem; }
+.diagram-arrow { font-size: 1.5rem; color: #7f8c8d; line-height: 1; }
+.diagram-branch { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+.diagram-note { font-size: 0.8rem; color: #888; margin-top: 1rem; text-align: center; }
+@media (max-width: 600px) { .diagram-branch { flex-direction: column; } .diagram-arrow { transform: rotate(90deg); } }
 </head>
 <body>
  <nav class="portfolio-nav">
@@ -145,22 +156,29 @@
         <li><strong>Stationary Client (SC):</strong> operates on the local network with continuous access to the service.</li>
         <li><strong>Mobile Client (MC):</strong> supports autonomous operation followed by synchronization.</li>
       </ul>
-      <p><em>The diagram below is conceptual. It illustrates the described relationship between client modes and the SOAP service; it does not claim to reproduce a verified deployment architecture or synchronization protocol.</em></p>
-      <div class="diagram">
-        <div class="diagram-row">
-          <div class="node">👤 Operator<small>User</small></div>
-        </div>
-        <div class="arrow">↓</div>
-        <div class="diagram-row">
-          <div class="node">🖥️ Stationary Client<small>SC · Local network</small></div>
-          <div class="node">📱 Mobile Client<small>MC · Autonomous</small></div>
-        </div>
-        <div class="arrow">↓ ↔ ↓</div>
-        <div class="diagram-row">
-          <div class="node">☁️ UMMS SOAP Service</div>
-        </div>
-      </div>
-
+     <p><em>The diagram below is conceptual.</em></p>
+<div class="diagram-flow">
+  <div class="diagram-node soap-service">
+    <strong>Operator (User)</strong>
+    <small>Interacts with clients</small>
+  </div>
+  <div class="diagram-arrow">↓</div>
+  <div class="diagram-branch">
+    <div class="diagram-node sc-node">
+      <strong>Stationary Client (SC)</strong>
+      <small>Local network access</small>
+    </div>
+    <div class="diagram-node mc-node">
+      <strong>Mobile Client (MC)</strong>
+      <small>Autonomous operation</small>
+    </div>
+  </div>
+  <div class="diagram-node soap-service">
+    <strong>SC ↔ UMMS SOAP Service</strong>
+    <small>Service communication</small>
+  </div>
+  <div class="diagram-note">MC ↔ Synchronization: Conceptual workflow; details unverified</div>
+</div>
       <h2 id="scope">3. Functional Scope</h2>
       <p>The described functional areas include:</p>
       <ul>
