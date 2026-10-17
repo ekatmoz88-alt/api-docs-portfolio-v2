@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UMMS SOAP Client | API Documentation Portfolio</title>
+  <style>
+    /* Сохраняем твой дизайн и адаптивность */
+    .portfolio-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+      padding: 20px 24px;
+      background: #172b4d;
+      color: #fff;
+      align-items: center;
+    }
+    .portfolio-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .portfolio-nav a:hover, .portfolio-nav a:focus {
+      text-decoration: underline;
+    }
+    .portfolio-nav .brand {
+      margin-right: auto;
+      font-family: Montserrat, Arial, sans-serif;
+      font-weight: 700;
+    }
+    .hero {
+      padding: 32px 24px;
+      background: #f4f6f9;
+      border-bottom: 1px solid #dfe3e8;
+    }
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      color: #172b4d;
+    }
+    .hero p {
+      margin: 0 0 16px;
+      line-height: 1.6;
+      max-width: 800px;
+    }
+    .panel {
+      background: #fff;
+      border: 1px solid #dfe3e8;
+      border-radius: 4px;
+      padding: 20px;
+      margin: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .panel h2 {
+      margin-top: 0;
+      color: #172b4d;
+      font-size: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      display: block;
+      overflow-x: auto;
+    }
+    th, td {
+      border: 1px solid #dfe3e8;
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 14px;
+    }
+    th {
+      background: #f4f6f9;
+      font-weight: 700;
+    }
+    .tags {
+      margin-top: 16px;
+    }
+    .tag {
+      display: inline-block;
+      background: #e6effc;
+      color: #0747a6;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .source-link {
+      margin: 24px;
+      font-size: 14px;
+    }
+    .source-link a {
+      color: #0747a6;
+      font-weight: 700;
+    }
+    @media (max-width: 600px) {
+      .portfolio-nav {
+        gap: 12px 16px;
+        padding: 16px;
+      }
+      .portfolio-nav .brand {
+        width: 100%;
+      }
+      .hero, .panel, .source-link {
+        padding: 20px 16px;
+        margin: 16px;
+      }
+      .hero h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Единая навигация (пути пока .md, как договаривались) -->
+  <nav class="portfolio-nav" aria-label="Portfolio navigation">
+    <a class="brand" href="./index.html">API Documentation Portfolio</a>
+    <a href="./index.html#rest-api">Orders API</a>
+    <a href="./soap-api-review.md">Legacy SOAP API Review</a>
+    <a href="./umms-enterprise-soap-client.md">UMMS SOAP Client</a>
+  </nav>
+
+  <header class="hero">
+    <h1>UMMS Enterprise SOAP Client Documentation</h1>
+    <p>
+      Technical writing case study covering enterprise SOAP client integration, 
+      WSDL analysis, request/response mapping, and operational guides for complex systems.
+    </p>
+    <div class="tags">
+      <span class="tag">SOAP</span>
+      <span class="tag">Enterprise</span>
+      <span class="tag">WSDL</span>
+      <span class="tag">XML</span>
+      <span class="tag">Technical Writing</span>
+    </div>
+  </header>
+
+  <section class="panel">
+    <h2>Overview</h2>
+    <p>
+      This documentation set supports the UMMS (Unified Medical Management System) 
+      Enterprise SOAP Client. It targets developers and integration specialists 
+      connecting legacy enterprise workflows with modern API consumers.
+    </p>
+  </section>
+
+  <section class="panel">
+    <h2>Key Operations &amp; Endpoints</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Operation</th>
+          <th>Description</th>
+          <th>SOAP Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GetPatientRecord</td>
+          <td>Ret
