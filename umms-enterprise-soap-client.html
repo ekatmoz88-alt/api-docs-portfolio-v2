@@ -1,162 +1,217 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>UMMS SOAP Client | API Documentation Portfolio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UMMS SOAP Client | API Portfolio</title>
   <style>
-    /* Сохраняем твой дизайн и адаптивность */
-    .portfolio-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px 24px;
-      padding: 20px 24px;
-      background: #172b4d;
-      color: #fff;
-      align-items: center;
-    }
-    .portfolio-nav a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 14px;
-    }
-    .portfolio-nav a:hover, .portfolio-nav a:focus {
-      text-decoration: underline;
-    }
-    .portfolio-nav .brand {
-      margin-right: auto;
-      font-family: Montserrat, Arial, sans-serif;
-      font-weight: 700;
-    }
-    .hero {
-      padding: 32px 24px;
-      background: #f4f6f9;
-      border-bottom: 1px solid #dfe3e8;
-    }
-    .hero h1 {
-      margin: 0 0 12px;
-      font-size: 28px;
-      color: #172b4d;
-    }
-    .hero p {
-      margin: 0 0 16px;
-      line-height: 1.6;
-      max-width: 800px;
-    }
-    .panel {
-      background: #fff;
-      border: 1px solid #dfe3e8;
-      border-radius: 4px;
-      padding: 20px;
-      margin: 24px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-    .panel h2 {
-      margin-top: 0;
-      color: #172b4d;
-      font-size: 20px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 16px 0;
-      display: block;
-      overflow-x: auto;
-    }
-    th, td {
-      border: 1px solid #dfe3e8;
-      padding: 10px 12px;
-      text-align: left;
-      font-size: 14px;
-    }
-    th {
-      background: #f4f6f9;
-      font-weight: 700;
-    }
-    .tags {
-      margin-top: 16px;
-    }
-    .tag {
-      display: inline-block;
-      background: #e6effc;
-      color: #0747a6;
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 12px;
-      margin-right: 8px;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-    .source-link {
-      margin: 24px;
-      font-size: 14px;
-    }
-    .source-link a {
-      color: #0747a6;
-      font-weight: 700;
-    }
-    @media (max-width: 600px) {
-      .portfolio-nav {
-        gap: 12px 16px;
-        padding: 16px;
-      }
-      .portfolio-nav .brand {
-        width: 100%;
-      }
-      .hero, .panel, .source-link {
-        padding: 20px 16px;
-        margin: 16px;
-      }
-      .hero h1 {
-        font-size: 24px;
-      }
-    }
+    :root { --nav-bg: #172b4d; --text: #333; --bg: #f4f5f7; --card: #fff; --border: #dfe1e6; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .portfolio-nav { display: flex; flex-wrap: wrap; gap: 16px; padding: 20px 24px; background: var(--nav-bg); color: #fff; align-items: center; }
+    .portfolio-nav a { color: #fff; text-decoration: none; font-size: 14px; }
+    .portfolio-nav a:hover { text-decoration: underline; }
+    .brand { margin-right: auto; font-weight: bold; font-size: 18px; }
+    .container { max-width: 900px; margin: 40px auto; padding: 0 24px; background: var(--card); border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .content { padding: 32px; }
+    h1 { margin-top: 0; font-size: 28px; border-bottom: 2px solid var(--nav-bg); padding-bottom: 10px; }
+    h2 { font-size: 22px; margin-top: 36px; color: var(--nav-bg); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+    h3 { font-size: 18px; margin-top: 24px; color: #42526e; }
+    .alert { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 20px 0; font-size: 15px; }
+    ul.toc { background: #f8f9fa; padding: 20px 40px; border: 1px solid var(--border); border-radius: 4px; }
+    ul.toc li { margin-bottom: 6px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    th, td { border: 1px solid var(--border); padding: 10px; text-align: left; }
+    th { background: #e9ecef; }
+    code { background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-size: 14px; color: #d63384; }
+    .diagram { border: 1px solid var(--border); border-radius: 8px; padding: 24px; background: #fafbfc; margin: 20px 0; }
+    .diagram-row { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 16px; }
+    .node { border: 2px solid #42526e; border-radius: 8px; padding: 12px 20px; text-align: center; background: #fff; font-weight: bold; }
+    .node small { display: block; font-weight: normal; font-size: 12px; color: #666; }
+    .arrow { text-align: center; font-size: 24px; color: #42526e; margin: 8px 0; }
+    .source-link { margin-top: 40px; font-size: 14px; color: #666; border-top: 1px solid var(--border); padding-top: 16px; }
+    .source-link a { color: #0747a6; font-weight: bold; }
+    @media (max-width: 600px) { .content { padding: 20px; } h1 { font-size: 24px; } table { display: block; overflow-x: auto; white-space: nowrap; } }
   </style>
 </head>
 <body>
-  <!-- Единая навигация (пути пока .md, как договаривались) -->
-  <nav class="portfolio-nav" aria-label="Portfolio navigation">
-    <a class="brand" href="./index.html">API Documentation Portfolio</a>
-    <a href="./index.html#rest-api">Orders API</a>
-    <a href="./soap-api-review.md">Legacy SOAP API Review</a>
-    <a href="./umms-enterprise-soap-client.md">UMMS SOAP Client</a>
+  <nav class="portfolio-nav">
+    <div class="brand">API Documentation Portfolio</div>
+    <a href="index.html">Orders API</a>
+    <a href="soap-api-review.md">Legacy SOAP API Review</a>
+    <a href="umms-enterprise-soap-client.md">UMMS SOAP Client (Source)</a>
   </nav>
 
-  <header class="hero">
-    <h1>UMMS Enterprise SOAP Client Documentation</h1>
-    <p>
-      Technical writing case study covering enterprise SOAP client integration, 
-      WSDL analysis, request/response mapping, and operational guides for complex systems.
-    </p>
-    <div class="tags">
-      <span class="tag">SOAP</span>
-      <span class="tag">Enterprise</span>
-      <span class="tag">WSDL</span>
-      <span class="tag">XML</span>
-      <span class="tag">Technical Writing</span>
+  <div class="container">
+    <div class="content">
+      <h1>UMMS — Enterprise SOAP API &amp; Client System</h1>
+      
+      <div class="alert">
+        <strong>Portfolio case study · Anonymized documentation sample</strong><br>
+        This document presents a redacted, high-level overview for portfolio purposes. It is not a complete production API specification. Confirm that publication is authorized before sharing any project-related information publicly.
+      </div>
+
+      <h2>Table of Contents</h2>
+      <ul class="toc">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#soap-api">1. SOAP API Overview</a>
+          <ul>
+            <li><a href="#interface">Interface Characteristics</a></li>
+            <li><a href="#methods">Method Catalogue</a></li>
+            <li><a href="#data">Illustrative Data Structures</a> (Document, Address, Reference-Book Entry)</li>
+            <li><a href="#example">Example Operation: <code>searchPersonFile</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#architecture">2. Client Architecture</a></li>
+        <li><a href="#scope">3. Functional Scope</a></li>
+        <li><a href="#tech">4. Technology Overview</a></li>
+        <li><a href="#security">5. Security and Confidentiality</a></li>
+        <li><a href="#practices">6. Documentation Practices Demonstrated</a></li>
+      </ul>
+
+      <h2 id="overview">Overview</h2>
+      <p>UMMS is described here as an enterprise system with a SOAP interface and Windows-based client applications. The documented functional areas include person search, document and address management, document issuance, reference data, and information exchange between stationary and mobile clients.</p>
+      <p>This public sample intentionally excludes service URLs, credentials, production XML schemas, personal data, internal identifiers, and other confidential implementation details.</p>
+
+      <h2 id="soap-api">1. SOAP API Overview</h2>
+      
+      <h3 id="interface">Interface Characteristics</h3>
+      <table>
+        <tr><th>Item</th><th>Description</th></tr>
+        <tr><td>Protocol</td><td>SOAP</td></tr>
+        <tr><td>SOAP versions</td><td>SOAP 1.1 and SOAP 1.2</td></tr>
+        <tr><td>Service URL</td><td>Not included in this public sample</td></tr>
+        <tr><td>Credentials</td><td>Provided separately; not included</td></tr>
+        <tr><td>Detailed interface contract</td><td>Restricted / subject to authorization</td></tr>
+      </table>
+
+      <h3 id="methods">Method Catalogue</h3>
+      <p>The method names and summaries below are included as a high-level catalogue. Exact parameter types, XML element names, response schemas, fault codes, and transaction semantics must be verified against an authorized interface specification before being documented as a production contract.</p>
+      <table>
+        <tr><th>Method</th><th>Purpose</th><th>Input summary</th><th>Output summary</th></tr>
+        <tr><td><code>searchPersonFile</code></td><td>Search for a person using specified criteria</td><td>Search criteria</td><td>List of persons</td></tr>
+        <tr><td><code>getPersonDocuments</code></td><td>Retrieve documents associated with a person</td><td>Person identifier</td><td>List of documents</td></tr>
+        <tr><td><code>getPersonAddresses</code></td><td>Retrieve addresses associated with a person</td><td>Person identifier</td><td>List of addresses</td></tr>
+        <tr><td><code>getPersonCasesInfo</code></td><td>Retrieve case information associated with a person</td><td>Person identifier</td><td>List of cases</td></tr>
+        <tr><td><code>getDocumentDetail</code></td><td>Retrieve document details</td><td>Document identifier</td><td>Document details</td></tr>
+        <tr><td><code>getAddressDetail</code></td><td>Retrieve address details</td><td>Address identifier</td><td>Address details</td></tr>
+        <tr><td><code>getCountryDictionary</code></td><td>Retrieve the country reference data</td><td>None specified</td><td>List of countries</td></tr>
+        <tr><td><code>issueNewDocument</code></td><td>Issue a document according to an established workflow</td><td>Issuance data</td><td>Operation result</td></tr>
+        <tr><td><code>rollbackIssueNewDocument</code></td><td>Request rollback of a document-issuance operation</td><td>Document identifier</td><td>Operation result</td></tr>
+      </table>
+
+      <h3 id="data">Illustrative Data Structures</h3>
+      <p>The following fields are a conceptual summary, not a complete schema. Field types, requiredness, formats, and validation rules are not specified here.</p>
+      
+      <h4>Document</h4>
+      <table>
+        <tr><th>Field</th><th>Description</th></tr>
+        <tr><td>Series</td><td>Document series, where applicable</td></tr>
+        <tr><td>Number</td><td>Document number</td></tr>
+        <tr><td>Dates</td><td>Relevant document dates; exact fields are unspecified</td></tr>
+        <tr><td>Issuing authority</td><td>Authority associated with the document</td></tr>
+        <tr><td>Type</td><td>Document type</td></tr>
+      </table>
+
+      <h4>Address</h4>
+      <table>
+        <tr><th>Field</th><th>Description</th></tr>
+        <tr><td>MAC code</td><td>Code referenced by the source description; exact meaning and format require confirmation</td></tr>
+        <tr><td>Text representation</td><td>Human-readable address representation</td></tr>
+        <tr><td>Type</td><td>Address type</td></tr>
+      </table>
+
+      <h4>Reference-book entry</h4>
+      <table>
+        <tr><th>Field</th><th>Description</th></tr>
+        <tr><td>Code</td><td>Reference entry code</td></tr>
+        <tr><td>Value</td><td>Human-readable value</td></tr>
+      </table>
+
+      <h3 id="example">Example Operation: <code>searchPersonFile</code></h3>
+      <p>The supplied high-level description identifies date-from, date-to, and gender as search criteria. This sample does not include a SOAP envelope or XML schema because the exact namespace, element names, data types, and required fields must be taken from the authorized interface contract.</p>
+      <p><strong>Before publishing a production-level example, verify:</strong></p>
+      <ul>
+        <li>The exact request and response XML.</li>
+        <li>Required and optional fields.</li>
+        <li>Date and gender formats and allowed values.</li>
+        <li>SOAP action and namespace details, where applicable.</li>
+        <li>Fault responses and validation errors.</li>
+        <li>Authentication and transport-security requirements.</li>
+      </ul>
+
+      <h2 id="architecture">2. Client Architecture</h2>
+      <p>The system description identifies two client modes:</p>
+      <ul>
+        <li><strong>Stationary Client (SC):</strong> operates on the local network with continuous access to the service.</li>
+        <li><strong>Mobile Client (MC):</strong> supports autonomous operation followed by synchronization.</li>
+      </ul>
+      <p><em>The diagram below is conceptual. It illustrates the described relationship between client modes and the SOAP service; it does not claim to reproduce a verified deployment architecture or synchronization protocol.</em></p>
+      <div class="diagram">
+        <div class="diagram-row">
+          <div class="node">👤 Operator<small>User</small></div>
+        </div>
+        <div class="arrow">↓</div>
+        <div class="diagram-row">
+          <div class="node">🖥️ Stationary Client<small>SC · Local network</small></div>
+          <div class="node">📱 Mobile Client<small>MC · Autonomous</small></div>
+        </div>
+        <div class="arrow">↓ ↔ ↓</div>
+        <div class="diagram-row">
+          <div class="node">☁️ UMMS SOAP Service</div>
+        </div>
+      </div>
+
+      <h2 id="scope">3. Functional Scope</h2>
+      <p>The described functional areas include:</p>
+      <ul>
+        <li>Searching for individuals using specified criteria.</li>
+        <li>Managing document and address information.</li>
+        <li>Issuing documents through established scenarios.</li>
+        <li>Exchanging information between stationary and mobile clients.</li>
+        <li>Supporting autonomous mobile operation and subsequent synchronization.</li>
+        <li>Working with reference data, including countries and MAC-address-related codes.</li>
+      </ul>
+      <p><em>The precise business rules, authorization checks, and synchronization conflict-resolution behavior are not defined in this public overview.</em></p>
+
+      <h2 id="tech">4. Technology Overview</h2>
+      <table>
+        <tr><th>Area</th><th>Technology or characteristic</th></tr>
+        <tr><td>Operating system</td><td>Windows</td></tr>
+        <tr><td>Application framework</td><td>.NET</td></tr>
+        <tr><td>User interface</td><td>Windows Presentation Foundation (WPF)</td></tr>
+        <tr><td>Service integration</td><td>SOAP</td></tr>
+        <tr><td>Local data handling</td><td>Encrypted files; format and encryption details unspecified</td></tr>
+        <tr><td>Digital signatures</td><td>Mentioned in the source description; algorithms and verification rules unspecified</td></tr>
+      </table>
+      <p><em>This table records only the technologies and characteristics identified in the supplied project summary. It does not imply that this case-study author designed or implemented the underlying system.</em></p>
+
+      <h2 id="security">5. Security and Confidentiality</h2>
+      <p>This public sample intentionally omits:</p>
+      <ul>
+        <li>Production service URLs, usernames, passwords, tokens, certificates, and private keys.</li>
+        <li>Real request or response payloads that may contain personal or confidential data.</li>
+        <li>Internal identifiers and implementation-specific details.</li>
+        <li>Cryptographic algorithms, key-management procedures, and authentication mechanisms not confirmed by an authorized specification.</li>
+      </ul>
+      <p><strong>Do not infer security behavior from the technology names alone.</strong> Verify all security-related claims against approved project documentation before publication.</p>
+
+      <h2 id="practices">6. Documentation Practices Demonstrated</h2>
+      <p>This case study demonstrates how to organize a high-level interface overview into:</p>
+      <ul>
+        <li>A method catalogue with purpose, inputs, and outputs.</li>
+        <li>Conceptual data-structure summaries.</li>
+        <li>A client-mode and synchronization diagram.</li>
+        <li>A technology overview.</li>
+        <li>Explicit boundaries between verified information and details requiring confirmation.</li>
+        <li>A confidentiality checklist for public portfolio material.</li>
+      </ul>
+      <p><em>A production-ready specification would additionally require the authorized WSDL/XSD or equivalent contract, exact SOAP actions and namespaces, complete request and response examples, fault definitions, field-level validation rules, and versioning information.</em></p>
+
+      <div class="source-link">
+        <p>View the original Markdown source: <a href="umms-enterprise-soap-client.md">umms-enterprise-soap-client.md</a></p>
+      </div>
+
     </div>
-  </header>
-
-  <section class="panel">
-    <h2>Overview</h2>
-    <p>
-      This documentation set supports the UMMS (Unified Medical Management System) 
-      Enterprise SOAP Client. It targets developers and integration specialists 
-      connecting legacy enterprise workflows with modern API consumers.
-    </p>
-  </section>
-
-  <section class="panel">
-    <h2>Key Operations &amp; Endpoints</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Operation</th>
-          <th>Description</th>
-          <th>SOAP Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>GetPatientRecord</td>
-          <td>Ret
+  </div>
+</body>
+</html>
