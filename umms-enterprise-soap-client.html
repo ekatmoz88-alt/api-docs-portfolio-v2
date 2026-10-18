@@ -31,31 +31,32 @@
     .source-link { margin-top: 40px; font-size: 14px; color: #666; border-top: 1px solid var(--border); padding-top: 16px; }
     .source-link a { color: #0747a6; font-weight: bold; }
     @media (max-width: 600px) { .content { padding: 20px; } h1 { font-size: 24px; } table { display: block; overflow-x: auto; white-space: nowrap; } }
+
+    /* === Diagram flow styles (moved inside <style>) === */
+    .diagram-flow { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; margin: 1rem 0; }
+    .diagram-node { border: 2px solid #3498db; border-radius: 6px; padding: 0.75rem 1.25rem; background: #fff; max-width: 320px; min-width: 220px; }
+    .diagram-node.soap-service { border-color: #e74c3c; background: #fdf2f0; }
+    .diagram-node.sc-node { border-color: #27ae60; background: #f0faf4; }
+    .diagram-node.mc-node { border-color: #f39c12; background: #fef9f0; }
+    .diagram-node strong { display: block; margin-bottom: 0.25rem; }
+    .diagram-node small { color: #666; font-size: 0.8rem; }
+    .diagram-arrow { font-size: 1.5rem; color: #7f8c8d; line-height: 1; }
+    .diagram-branch { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .diagram-note { font-size: 0.8rem; color: #888; margin-top: 1rem; text-align: center; }
+    @media (max-width: 600px) { .diagram-branch { flex-direction: column; } .diagram-arrow { transform: rotate(90deg); } }
   </style>
-  .diagram-flow { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; margin: 1rem 0; }
-.diagram-node { border: 2px solid #3498db; border-radius: 6px; padding: 0.75rem 1.25rem; background: #fff; max-width: 320px; min-width: 220px; }
-.diagram-node.soap-service { border-color: #e74c3c; background: #fdf2f0; }
-.diagram-node.sc-node { border-color: #27ae60; background: #f0faf4; }
-.diagram-node.mc-node { border-color: #f39c12; background: #fef9f0; }
-.diagram-node strong { display: block; margin-bottom: 0.25rem; }
-.diagram-node small { color: #666; font-size: 0.8rem; }
-.diagram-arrow { font-size: 1.5rem; color: #7f8c8d; line-height: 1; }
-.diagram-branch { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-.diagram-note { font-size: 0.8rem; color: #888; margin-top: 1rem; text-align: center; }
-@media (max-width: 600px) { .diagram-branch { flex-direction: column; } .diagram-arrow { transform: rotate(90deg); } }
 </head>
 <body>
  <nav class="portfolio-nav">
   <div class="brand">API Documentation Portfolio</div>
-  <a href="index.html">Orders API</a>
-  <a href="soap-api-review.html">Legacy SOAP API Review</a>
-  <a href="umms-enterprise-soap-client.html">UMMS SOAP Client</a>
+  <a href="./">Orders API</a>
+  <a href="./soap-api-review.html">Legacy SOAP API Review</a>
 </nav>
-  
+
   <div class="container">
     <div class="content">
       <h1>UMMS — Enterprise SOAP API &amp; Client System</h1>
-      
+
       <div class="alert">
         <strong>Portfolio case study · Anonymized documentation sample</strong><br>
         This document presents a redacted, high-level overview for portfolio purposes. It is not a complete production API specification. Confirm that publication is authorized before sharing any project-related information publicly.
@@ -84,12 +85,12 @@
       <p>This public sample intentionally excludes service URLs, credentials, production XML schemas, personal data, internal identifiers, and other confidential implementation details.</p>
 
       <h2 id="soap-api">1. SOAP API Overview</h2>
-      
+
       <h3 id="interface">Interface Characteristics</h3>
       <table>
         <tr><th>Item</th><th>Description</th></tr>
         <tr><td>Protocol</td><td>SOAP</td></tr>
-        <tr><td>SOAP versions</td><td>SOAP 1.1 and SOAP 1.2</td></tr>
+        <tr><td>SOAP version</td><td>Not specified in this public sample</td></tr>
         <tr><td>Service URL</td><td>Not included in this public sample</td></tr>
         <tr><td>Credentials</td><td>Provided separately; not included</td></tr>
         <tr><td>Detailed interface contract</td><td>Restricted / subject to authorization</td></tr>
@@ -112,7 +113,7 @@
 
       <h3 id="data">Illustrative Data Structures</h3>
       <p>The following fields are a conceptual summary, not a complete schema. Field types, requiredness, formats, and validation rules are not specified here.</p>
-      
+
       <h4>Document</h4>
       <table>
         <tr><th>Field</th><th>Description</th></tr>
@@ -187,7 +188,7 @@
         <li>Issuing documents through established scenarios.</li>
         <li>Exchanging information between stationary and mobile clients.</li>
         <li>Supporting autonomous mobile operation and subsequent synchronization.</li>
-        <li>Working with reference data, including countries and MAC-address-related codes.</li>
+        <li>Working with reference data, including countries and codes whose exact meaning requires confirmation.</li>
       </ul>
       <p><em>The precise business rules, authorization checks, and synchronization conflict-resolution behavior are not defined in this public overview.</em></p>
 
@@ -220,16 +221,4 @@
         <li>Conceptual data-structure summaries.</li>
         <li>A client-mode and synchronization diagram.</li>
         <li>A technology overview.</li>
-        <li>Explicit boundaries between verified information and details requiring confirmation.</li>
-        <li>A confidentiality checklist for public portfolio material.</li>
-      </ul>
-      <p><em>A production-ready specification would additionally require the authorized WSDL/XSD or equivalent contract, exact SOAP actions and namespaces, complete request and response examples, fault definitions, field-level validation rules, and versioning information.</em></p>
-
-      <div class="source-link">
-        <p>View the original Markdown source: <a href="umms-enterprise-soap-client.md">umms-enterprise-soap-client.md</a></p>
-      </div>
-
-    </div>
-  </div>
-</body>
-</html>
+        <li>Explicit boundaries between verified information and de
