@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -173,4 +174,134 @@
 <body>
   <nav class="portfolio-nav" aria-label="Portfolio navigation">
     <a class="brand" href="./">API Documentation Portfolio</a>
-    <a href="./#orders-api
+    <a href="./#orders-api">Orders API</a>
+    <a href="./umms-enterprise-soap-client.html">UMMS SOAP Client</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Case Study · Retrospective Review</p>
+      <h1>Legacy SOAP API Documentation Review</h1>
+      <p>A critical evaluation of legacy SOAP API documentation practices, identifying gaps in WSDL/XSD consistency, XML examples, data-type definitions, and recommending improvements for clarity, completeness, and maintainability.</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="panel">
+      <h2>Overview</h2>
+      <p>This document presents a retrospective review of legacy SOAP API documentation. The review focuses on structural completeness, technical accuracy, and usability from a developer-consumer perspective. All findings are based on a redacted, anonymized sample and do not disclose confidential implementation details.</p>
+      <p><strong>Purpose:</strong> Demonstrate documentation-review methodology, identify common gaps in enterprise SOAP documentation, and propose actionable improvements.</p>
+    </div>
+
+    <div class="panel">
+      <h2>Review Scope</h2>
+      <table>
+        <tr><th>Area</th><th>Reviewed</th><th>Status in public sample</th></tr>
+        <tr><td>WSDL availability</td><td>Contract structure, endpoint definitions</td><td>Not included (confidential)</td></tr>
+        <tr><td>XSD / XML schemas</td><td>Element definitions, type constraints</td><td>Not included (confidential)</td></tr>
+        <tr><td>SOAP envelope examples</td><td>Request / response samples</td><td>Omitted; placeholders used</td></tr>
+        <tr><td>Data types</td><td>Primitive and complex types</td><td>Summarized conceptually</td></tr>
+        <tr><td>Error / fault definitions</td><td>SOAP faults, error codes</td><td>Not specified in this sample</td></tr>
+        <tr><td>Authentication</td><td>Security headers, tokens</td><td>Not included (confidential)</td></tr>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h2>Key Findings</h2>
+
+      <div class="finding">
+        <h3>1. Incomplete Interface Contract</h3>
+        <p>The original documentation referenced a SOAP service without providing the WSDL or XSD files. Without these, consumers cannot generate client stubs or validate message structure independently.</p>
+        <p class="recommendation"><strong>Recommendation:</strong> Always include the WSDL (or a redacted version) and link to XSD schemas. If confidentiality is required, provide a representative subset or anonymized equivalent.</p>
+      </div>
+
+      <div class="finding">
+        <h3>2. Missing or Inconsistent XML Examples</h3>
+        <p>Request and response XML samples were either absent or did not match the described method signatures. This forces developers to reverse-engineer message formats.</p>
+        <p class="recommendation"><strong>Recommendation:</strong> Provide at minimum one complete request/response pair per operation, annotated with field descriptions. Use syntax highlighting and clearly label namespaces.</p>
+      </div>
+
+      <div class="finding">
+        <h3>3. Undocumented Data Types and Constraints</h3>
+        <p>Field-level documentation listed field names but omitted data types, format rules, allowed values, and whether fields were required or optional.</p>
+        <p class="recommendation"><strong>Recommendation:</strong> Use a structured format (table or schema snippet) that specifies: type, required/optional, format, allowed values, default, and example.</p>
+      </div>
+
+      <div class="finding">
+        <h3>4. No Fault or Error Documentation</h3>
+        <p>The SOAP fault structure was not described. Developers cannot handle errors without knowing fault codes, reasons, and recovery hints.</p>
+        <p class="recommendation"><strong>Recommendation:</strong> Document the SOAP fault envelope structure, list all possible fault codes with meanings, and provide guidance on retry vs. abort decisions.</p>
+      </div>
+
+      <div class="finding">
+        <h3>5. Security and Authentication Gaps</h3>
+        <p>Authentication mechanism (WS-Security, API keys, certificates) was mentioned but not documented. Transport-level security (HTTPS) was assumed but not stated.</p>
+        <p class="recommendation"><strong>Recommendation:</strong> Explicitly state authentication method, required headers, token format, and TLS requirements. Include a sample authenticated request header.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Documentation Improvement Checklist</h2>
+      <ul>
+        <li>✅ Provide WSDL/XSD (or redacted representative samples)</li>
+        <li>✅ Include complete request/response XML examples per operation</li>
+        <li>✅ Document field-level details: type, required, format, constraints</li>
+        <li>✅ Define SOAP fault structure and all fault codes</li>
+        <li>✅ Specify authentication and transport security explicitly</li>
+        <li>✅ Add a quick-start or "getting started" section for new consumers</li>
+        <li>✅ Include versioning information and change log</li>
+        <li>✅ Provide a test/demo endpoint or sandbox reference (if available)</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2>Corrected Documentation Excerpt (Example)</h2>
+      <p>The table below demonstrates how a single operation should be documented with complete field-level detail:</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th><th>Example</th></tr>
+          <tr><td><code>personId</code></td><td>string (UUID)</td><td>Yes</td><td>Unique identifier of the person record</td><td><code>f47ac10b-58cc-4372-a567-0e02b2c3d479</code></td></tr>
+          <tr><td><code>includeHistory</code></td><td>boolean</td><td>No</td><td>If true, includes historical case records in the response</td><td><code>false</code></td></tr>
+          <tr><td><code>maxResults</code></td><td>integer</td><td>No</td><td>Maximum number of results to return (1–1000, default 50)</td><td><code>100</code></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Lessons for Technical Writers</h2>
+      <ul>
+        <li><strong>SOAP APIs require more upfront structure</strong> than REST — WSDL/XSD are non-negotiable references, not nice-to-have.</li>
+        <li><strong>Examples beat descriptions.</strong> A well-annotated XML sample is worth more than a paragraph of prose.</li>
+        <li><strong>Fault documentation is part of the API contract.</strong> Never omit it.</li>
+        <li><strong>Anonymization is not obfuscation.</strong> Redact confidential values but preserve structural fidelity so the documentation remains technically useful.</li>
+        <li><strong>Versioning matters.</strong> State which version of the API the documentation covers and link to a changelog.</li>
+      </ul>
+    </div>
+
+    <div class="note">
+      <strong>Portfolio note:</strong> This review is based on a redacted, anonymized sample of a legacy SOAP API. Service URLs, credentials, WSDL contents, and all production-identifying details have been removed. The findings and recommendations are generalizable to enterprise SOAP documentation projects.
+    </div>
+
+    <div class="tags">
+      <span class="tag">SOAP</span>
+      <span class="tag">Documentation Review</span>
+      <span class="tag">WSDL</span>
+      <span class="tag">XSD</span>
+      <span class="tag">Technical Writing</span>
+      <span class="tag">API Documentation</span>
+    </div>
+
+    <div class="panel" style="margin-top: 28px;">
+      <h2>Related Pages</h2>
+      <div class="page-links">
+        <a href="./">← Orders API</a>
+        <a href="./umms-enterprise-soap-client.html">UMMS SOAP Client →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>API Documentation Portfolio · Legacy SOAP API Review · <a href="./">Home</a></p>
+  </footer>
+</body>
+</html>
