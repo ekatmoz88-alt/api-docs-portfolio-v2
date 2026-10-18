@@ -1,10 +1,19 @@
-# ekatmoz88-alt
-
-## About This Portfolio
+# Technical Writing Portfolio
 
 This repository showcases my work as a Technical Writer / Documentation Developer. It includes sample documentation, API reviews, and portfolio pieces demonstrating my skills in API documentation, specification analysis, and technical editing.
 
 ## Featured Projects
+
+### UMMS SOAP Client — Full Documentation Site
+
+A complete 7-page developer reference for a WPF/SOAP desktop client used in secure inter-departmental data exchange. Built as a static HTML site with Mermaid.js diagrams, C# code samples, and a full SOAP API reference.
+
+**Tech:** HTML5 · Mermaid.js · C# · WPF/SOAP · GitHub Pages  
+**Topics:** SOAP API · Desktop Client · Data Models · Sequence Diagrams · Troubleshooting
+
+🔗 **[Live Site](https://YOUR_USERNAME.github.io/api-docs-portfolio-v2/)** · 📁 **[Repository](./api-docs-portfolio-v2/)**
+
+---
 
 ### Orders API — OpenAPI 3.1 + Redoc
 
@@ -16,7 +25,7 @@ A public demo of a complete REST API documentation set, generated from an OpenAP
 
 ---
 
-## Legacy SOAP API Documentation Review
+### Legacy SOAP API Documentation Review
 
 A retrospective review of a legacy SOAP API specification, focusing on WSDL/XSD consistency, XML examples, data types, and actionable documentation improvements.
 
@@ -28,10 +37,12 @@ A retrospective review of a legacy SOAP API specification, focusing on WSDL/XSD 
 
 ## Tech Stack
 
-- **API Specifications:** OpenAPI 3.1, SOAP/WSDL, XSD
-- **Documentation Tools:** Redoc, Markdown, Git
-- **Languages:** English, Russian
-- **Technologies:** REST, SOAP, XML, JSON, C#, .NET
+| Category | Tools & Technologies |
+|----------|---------------------|
+| API Specs | OpenAPI 3.1, SOAP/WSDL, XSD |
+| Docs Tools | Redoc, Mermaid.js, Markdown, Git, GitHub Pages |
+| Languages | English, Russian |
+| Technologies | REST, SOAP, XML, JSON, C#, .NET, WPF |
 
 ---
 
@@ -41,5 +52,4 @@ Feel free to reach out via GitHub or open an issue if you'd like to discuss my w
 
 ---
 
-> **Note:** Some case studies are based on historical specifications. Implementation behavior and unresolved discrepancies require independent verification.
-
+> **Note:** Some case studies are based on historical specifications. Implementation behavior and unresolved discrepancies require independent verification. Personal data and proprietary identifiers have been removed from all published materials.
