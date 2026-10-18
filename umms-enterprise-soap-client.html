@@ -32,7 +32,7 @@
     .source-link a { color: #0747a6; font-weight: bold; }
     @media (max-width: 600px) { .content { padding: 20px; } h1 { font-size: 24px; } table { display: block; overflow-x: auto; white-space: nowrap; } }
 
-    /* === Diagram flow styles (moved inside <style>) === */
+    /* Diagram flow styles - moved inside <style> */
     .diagram-flow { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; margin: 1rem 0; }
     .diagram-node { border: 2px solid #3498db; border-radius: 6px; padding: 0.75rem 1.25rem; background: #fff; max-width: 320px; min-width: 220px; }
     .diagram-node.soap-service { border-color: #e74c3c; background: #fdf2f0; }
@@ -180,6 +180,7 @@
   </div>
   <div class="diagram-note">MC ↔ Synchronization: Conceptual workflow; details unverified</div>
 </div>
+
       <h2 id="scope">3. Functional Scope</h2>
       <p>The described functional areas include:</p>
       <ul>
@@ -221,4 +222,16 @@
         <li>Conceptual data-structure summaries.</li>
         <li>A client-mode and synchronization diagram.</li>
         <li>A technology overview.</li>
-        <li>Explicit boundaries between verified information and de
+        <li>Explicit boundaries between verified information and details requiring confirmation.</li>
+        <li>A confidentiality checklist for public portfolio material.</li>
+      </ul>
+      <p><em>A production-ready specification would additionally require the authorized WSDL/XSD or equivalent contract, exact SOAP actions and namespaces, complete request and response examples, fault definitions, field-level validation rules, and versioning information.</em></p>
+
+      <div class="source-link">
+        <p>View the original Markdown source: <a href="./umms-enterprise-soap-client.md">umms-enterprise-soap-client.md</a></p>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
