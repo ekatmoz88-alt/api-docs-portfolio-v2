@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy SOAP API Documentation Review — Case Study</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --container-bg: #161b22;
+            --border-color: #30363d;
+            --text-color: #c9d1d9;
+            --accent-color: #58a6ff;
+            --code-bg: #05070a;
+            --warning-color: #d29922;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+        }
+        nav {
+            width: 100%; background-color: var(--container-bg); border-bottom: 1px solid var(--border-color);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .nav-container {
+            max-width: 800px; margin: 0 auto; padding: 15px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .back-link { color: var(--accent-color); text-decoration: none; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+        main { max-width: 800px; width: calc(100% - 40px); margin: 40px auto; }
+        .card { background-color: var(--container-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 35px; }
+        h1, h2, h3 { color: var(--accent-color); margin-top: 0; }
+        h1 { font-size: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        h2 { font-size: 1.4rem; margin-top: 30px; border-bottom: 1px solid #21262d; padding-bottom: 5px; }
+        p, li { line-height: 1.6; font-size: 1rem; color: #c9d1d9; }
+        ul, ol { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95rem; }
+        th, td { border: 1px solid var(--border-color); padding: 12px 15px; text-align: left; }
+        th { background-color: #1f242c; color: #f0f6fc; }
+        tr:nth-child(even) { background-color: #191f28; }
+        .finding-item { margin-bottom: 25px; }
+        .finding-item strong { color: var(--warning-color); }
+        .recommendation { background-color: #1f242c; padding: 15px; border-left: 4px solid var(--accent-color); border-radius: 0 6px 6px 0; margin-top: 10px; }
+        .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
+        .tag { background-color: #21262d; border: 1px solid var(--border-color); padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; color: #8b949e; }
+        .scope-note { font-size: 0.85rem; color: #8b949e; font-style: italic; margin-top: 40px; border-top: 1px solid var(--border-color); padding-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="back-link">← Вернуться в портфолио</a>
+            <div style="font-weight: bold; color: #8b949e;">Technical Writing Case Study</div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="card">
+            <h1>Legacy SOAP API Documentation Review</h1>
+            <p>A retrospective review of a legacy SOAP API specification, focusing on contract consistency, XML examples, data types, and actionable documentation improvements.</p>
+            
+            <h2>Overview</h2>
+            <p>This case study examines technical documentation for a legacy SOAP API associated with a transport infrastructure monitoring system. The review focuses on the clarity and consistency of the available API contract and its illustrative examples.</p>
+            <p>The work demonstrates a structured documentation review: identifying discrepancies, describing their potential impact, and recommending verification or corrective actions.</p>
+
+            <h2>Scope of Review</h2>
+            <ul>
+                <li>SOAP operations and request/response structures.</li>
+                <li>WSDL and XML Schema (XSD) definitions.</li>
+                <li>XML request and response examples.</li>
+                <li>Field data types and optionality.</li>
+                <li>Identifier formats and collection response examples.</li>
+                <li>Consistency between the documented contract and example payloads.</li>
+            </ul>
+
+            <h2>API Operations</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operation</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>AddEvent</code></td><td>Submit an event to the service.</td></tr>
+                    <tr><td><code>AddEventEx</code></td><td>Submit an extended event payload.</td></tr>
+                    <tr><td><code>GetKnownCoords</code></td><td>Retrieve known coordinate data.</td></tr>
+                    <tr><td><code>GetKnownStrategies</code></td><td>Retrieve known event strategy data.</td></tr>
+                </tbody>
+            </table>
+            <p><em>Operation purposes are summarized from the available specification.</em></p>
+
+            <h2>Review Findings</h2>
+            
+            <div class="finding-item">
+                <h3>1. Potential Data Type Inconsistency</h3>
+                <p>The documented <code>StrategyId</code> field is declared as <code>xs:dateTime</code>, while an example supplies a GUID-like identifier.</p>
+                <div class="recommendation">
+                    <strong>Recommendation:</strong> Verify the field type against the authoritative WSDL, XSD, and service implementation. Align the schema and examples once the intended contract is confirmed.
+                </div>
+            </div>
+
+            <div class="finding-item">
+                <h3>2. Incomplete Collection Example</h3>
+                <p>The <code>GetKnownCoords</code> response example contains an empty array, so it does not demonstrate the structure of a populated response.</p>
+                <div class="recommendation">
+                    <strong>Recommendation:</strong> Add a representative response with one or more coordinate entries. Explain field names, data types, and cardinality.
+                </div>
+            </div>
+
+            <div class="finding-item">
+                <h3>3. Unclear Field Optionality</h3>
+                <p>Required and optional fields are not always easy to distinguish between the specification's field tables and schema definitions.</p>
+                <div class="recommendation">
+                    <strong>Recommendation:</strong> Document requiredness consistently and verify it against <code>minOccurs</code>, <code>nillable</code>, and the relevant schema declarations.
+                </div>
+            </div>
+
+            <div class="finding-item">
+                <h3>4. Undocumented Return Value Semantics</h3>
+                <p>The <code>AddEvent</code> and <code>AddEventEx</code> examples return strings resembling resource paths or identifiers, but their meaning and format need clarification.</p>
+                <div class="recommendation">
+                    <strong>Recommendation:</strong> Explain successful return values, provide representative examples, and document SOAP faults or error responses where supported by the contract.
+                </div>
+            </div>
+
+            <div class="finding-item">
+                <h3>5. Apparent Typographical Error in a Schema Type</h3>
+                <p>One field table contains <code>xs:srting</code>, which appears to be a misspelling of <code>xs:string</code>.</p>
+                <div class="recommendation">
+                    <strong>Recommendation:</strong> Correct the spelling in the documentation and verify that the field table agrees with the underlying schema.
+                </div>
+            </div>
+
+            <h2>Documentation Quality Recommendations</h2>
+            <ul>
+                <li>Use the WSDL and XSD as contract references after verifying their relationship to the implementation.</li>
+                <li>Keep field tables synchronized with schema definitions.</li>
+                <li>Provide realistic request and response examples for each operation.</li>
+                <li>Explain identifier formats, collection structures, optional fields, and error behavior.</li>
+                <li>Distinguish confirmed defects from discrepancies requiring implementation-level verification.</li>
+            </ul>
+
+            <h2>Skills Demonstrated</h2>
+            <div class="tags">
+                <span class="tag">SOAP API documentation review</span>
+                <span class="tag">WSDL and XSD analysis</span>
+                <span class="tag">XML request and response analysis</span>
+                <span class="tag">Data contract consistency checks</span>
+                <span class="tag">Technical editing</span>
+                <span class="tag">Issue identification</span>
+                <span class="tag">Actionable recommendations</span>
+            </div>
+            
+            <div class="tags" style="margin-top: 10px;">
+                <span class="tag">SOAP</span><span class="tag">WSDL</span><span class="tag">XML</span>
+                <span class="tag">XSD</span><span class="tag">C#</span><span class="tag">.NET</span>
+                <span class="tag">API Documentation</span>
+            </div>
+
+            <div class="scope-note">
+                <strong>Scope note:</strong> This is a retrospective analysis of an available historical specification, not a claim of authorship of the original specification or implementation. Implementation behavior and unresolved schema discrepancies require independent verification.
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
