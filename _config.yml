@@ -1,0 +1,15 @@
+title: "Technical Writing & API Portfolio"
+description: "Примеры технической документации, интерактивных панелей и спецификаций API"
+theme: jekyll-theme-cayman
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+  - .github/
