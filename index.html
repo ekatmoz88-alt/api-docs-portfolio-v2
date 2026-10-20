@@ -1,110 +1,198 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>API Documentation Portfolio</title>  <!-- Optional web fonts; system fonts are used as fallback -->  <link
-    href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,700"
-    rel="stylesheet"
-  >  <style>
-    :root {
-      color-scheme: light;
-      font-family: Roboto, Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио Технического Писателя</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --container-bg: #161b22;
+            --border-color: #30363d;
+            --text-color: #c9d1d9;
+            --accent-color: #58a6ff;
+            --hover-color: #1f6feb;
+        }
 
-    body {
-      margin: 0;
-      color: #172b4d;
-      font-family: Roboto, Arial, sans-serif;
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-    .portfolio-nav {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px 24px;
-      padding: 16px 24px;
-      background: #172b4d;
-    }
+        header {
+            width: 100%;
+            background-color: var(--container-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 30px 0;
+            text-align: center;
+        }
 
-    .portfolio-nav a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 14px;
-    }
+        header h1 {
+            color: var(--accent-color);
+            margin: 0;
+            font-size: 2rem;
+        }
 
-    .portfolio-nav a:hover,
-    .portfolio-nav a:focus {
-      text-decoration: underline;
-    }
+        header p {
+            color: #8b949e;
+            margin: 10px 0 0 0;
+            font-size: 1.1rem;
+        }
 
-    .portfolio-nav .brand {
-      margin-right: auto;
-      font-family: Montserrat, Arial, sans-serif;
-      font-weight: 700;
-    }
+        main {
+            max-width: 1000px;
+            width: calc(100% - 40px);
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 25px;
+        }
 
-    .case-study {
-      padding: 24px;
-      background: #f4f6f9;
-      border-bottom: 1px solid #dfe3e8;
-    }
+        .card {
+            background-color: var(--container-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, border-color 0.2s;
+        }
 
-    .case-study h1 {
-      margin: 0 0 8px;
-      font-size: 22px;
-    }
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: #8b949e;
+        }
 
-    .case-study p {
-      margin: 0 0 12px;
-      line-height: 1.6;
-    }
+        .card-body h2 {
+            color: var(--accent-color);
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
 
-    .case-study a {
-      color: #0747a6;
-      font-weight: 700;
-    }
+        .card-body p {
+            line-height: 1.6;
+            color: #c9d1d9;
+            font-size: 0.95rem;
+        }
 
-    #orders-api {
-      min-height: 60vh;
-    }
+        .tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
 
-    @media (max-width: 600px) {
-      .portfolio-nav {
-        gap: 12px 16px;
-        padding: 16px;
-      }
+        .tag {
+            background-color: #21262d;
+            border: 1px solid var(--border-color);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: #8b949e;
+        }
 
-      .portfolio-nav .brand {
-        width: 100%;
-      }
+        .card-action a {
+            display: inline-block;
+            background-color: #21262d;
+            border: 1px solid var(--border-color);
+            color: var(--accent-color);
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            width: calc(100% - 40px);
+            text-align: center;
+        }
 
-      .case-study {
-        padding: 20px 16px;
-      }
-    }
-  </style></head><body>
-  <nav class="portfolio-nav" aria-label="Portfolio navigation">
-    <a class="brand" href="./">API Documentation Portfolio</a>
-    <a href="#orders-api">Orders API</a>
-    <a href="./soap-api-review.html">Legacy SOAP API Review</a>
-    <a href="./umms-enterprise-soap-client.html">UMMS SOAP Client</a>
-  </nav>  <main>
-    <section class="case-study">
-      <h1>Technical Writing Portfolio</h1>
-      <p>
-        API documentation, specification analysis, and documentation reviews
-        covering REST and SOAP services.
-      </p>
-      <p>
-        <a href="./soap-api-review.html">Read the Legacy SOAP API Review</a>
-        |
-        <a href="./umms-enterprise-soap-client.html">
-          Explore the UMMS SOAP Client Documentation
-        </a>
-      </p>
-    </section><section id="orders-api" aria-label="Orders API documentation">
-  <redoc spec-url="./openapi/openapi.yaml"></redoc>
-</section>
+        .card-action a:hover {
+            background-color: var(--accent-color);
+            color: #0d1117;
+            border-color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
 
-  </main>  <!-- Redoc remains externally hosted; this URL must be reachable -->  <script src="https://cdn.redoc.ly/redoc/v2.0.0/bundles/redoc.standalone.js"></script></body>
+    <header>
+        <h1>Technical Writing & API Portfolio</h1>
+        <p>Примеры технической документации, интерактивных панелей и спецификаций API</p>
+    </header>
+
+    <main>
+        <!-- Карточка 1: СС ТМК -->
+        <div class="card">
+            <div class="card-body">
+                <h2>Система мониторинга СС ТМК</h2>
+                <div class="tags">
+                    <span class="tag">Интерфейсы</span>
+                    <span class="tag">Тестирование API</span>
+                    <span class="tag">Логирование</span>
+                </div>
+                <p>Интерактивная панель мониторинга и контроля объектов транспортной инфраструктуры. Включает симулятор отправки JSON-запросов к бэкенду (mcp_server.py) и живую ленту логов безопасности.</p>
+            </div>
+            <div class="card-action">
+                <a href="https://github.io" target="_blank">Открыть панель мониторинга →</a>
+            </div>
+        </div>
+
+        <!-- Карточка 2: AutoCAD Coordinate Exporter -->
+        <div class="card">
+            <div class="card-body">
+                <h2>AutoCAD Coordinate Exporter</h2>
+                <div class="tags">
+                    <span class="tag">Автоматизация</span>
+                    <span class="tag">AutoLISP / Python</span>
+                    <span class="tag">Спецификация</span>
+                </div>
+                <p>Документация и техническое руководство утилиты автоматического извлечения пространственных данных (X, Y, Z) из чертежей формата DWG. Содержит описание API-модулей и структуры CSV-вывода.</p>
+            </div>
+            <div class="card-action">
+                <a href="https://github.io" target="_blank">Проверить документацию →</a>
+            </div>
+        </div>
+
+        <!-- Карточка 3: UMMS SOAP Client -->
+        <div class="card">
+            <div class="card-body">
+                <h2>UMMS SOAP Client Documentation</h2>
+                <div class="tags">
+                    <span class="tag">SOAP API</span>
+                    <span class="tag">.NET / WPF</span>
+                    <span class="tag">Case Study</span>
+                </div>
+                <p>Архитектурный обзор корпоративной системы взаимодействия стационарных и мобильных клиентов через SOAP-интерфейсы. Каталог методов, структуры данных и разбор операции поиска.</p>
+            </div>
+            <div class="card-action">
+                <a href="umms-enterprise-soap-client.html">Посмотреть кейс-стади →</a>
+            </div>
+        </div>
+
+        <!-- Карточка 4: Legacy SOAP Review -->
+        <div class="card">
+            <div class="card-body">
+                <h2>Legacy SOAP API Review</h2>
+                <div class="tags">
+                    <span class="tag">Ревью</span>
+                    <span class="tag">REST vs SOAP</span>
+                    <span class="tag">Аналитика</span>
+                </div>
+                <p>Аналитический обзор и аудит интеграционных процессов устаревших SOAP-сервисов, выявление узких мест и подготовка рекомендаций по переходу на современные REST-архитектуры.</p>
+            </div>
+            <div class="card-action">
+                <a href="#">Открыть аналитический обзор →</a>
+            </div>
+        </div>
+    </main>
+
+</body>
 </html>
