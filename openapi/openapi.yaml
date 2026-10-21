@@ -5,12 +5,12 @@ info:
   description: API for managing orders
   license:
     name: MIT
-    url: https://opensource.org/licenses/MIT
+    url: https://opensource.org
   contact:
     name: Developer
     email: dev@example.com
 servers:
-  - url: https://api.example.com/v1
+  - url: https://example.com
     description: Demo API
 security: []
 paths:
@@ -22,7 +22,7 @@ paths:
         - lang: 'cURL'
           label: 'cURL'
           source: |
-            curl -X GET "https://api.example.com/v1/orders" \
+            curl -X GET "https://example.com/orders" \
               -H "Authorization: Bearer YOUR_TOKEN"
         - lang: 'Python'
           label: 'Python'
@@ -30,14 +30,14 @@ paths:
             import requests
 
             response = requests.get(
-                "https://api.example.com/v1/orders",
+                "https://example.com/orders",
                 headers={"Authorization": "Bearer YOUR_TOKEN"}
             )
             print(response.json())
         - lang: 'JavaScript'
           label: 'JavaScript'
           source: |
-            fetch("https://api.example.com/v1/orders", {
+            fetch("https://example.com/orders", {
               headers: { "Authorization": "Bearer YOUR_TOKEN" }
             })
               .then(response => response.json())
@@ -67,7 +67,7 @@ paths:
               examples:
                 badRequest:
                   value:
-                    type: "https://example.com/probs/bad-request"
+                    type: "https://example.com"
                     title: "Bad Request"
                     status: 400
                     detail: "Invalid query parameters."
@@ -80,7 +80,7 @@ paths:
               examples:
                 unauthorized:
                   value:
-                    type: "https://example.com/probs/unauthorized"
+                    type: "https://example.com"
                     title: "Unauthorized"
                     status: 401
                     detail: "Authentication required."
@@ -91,7 +91,7 @@ paths:
         - lang: 'cURL'
           label: 'cURL'
           source: |
-            curl -X POST "https://api.example.com/v1/orders" \
+            curl -X POST "https://example.com/orders" \
               -H "Authorization: Bearer YOUR_TOKEN" \
               -H "Content-Type: application/json" \
               -d '{"status": "pending"}'
@@ -101,7 +101,7 @@ paths:
             import requests
 
             response = requests.post(
-                "https://api.example.com/v1/orders",
+                "https://example.com/orders",
                 headers={"Authorization": "Bearer YOUR_TOKEN"},
                 json={"status": "pending"}
             )
@@ -110,7 +110,7 @@ paths:
         - lang: 'JavaScript'
           label: 'JavaScript'
           source: |
-            fetch("https://api.example.com/v1/orders", {
+            fetch("https://example.com/orders", {
               method: "POST",
               headers: {
                 "Authorization": "Bearer YOUR_TOKEN",
@@ -146,6 +146,32 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+
+  /orders/{id}:
+    get:
+      summary: Get order by ID
+      description: Returns a single order object by its unique identifier.
+      operationId: getOrderById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique ID of the order.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Order details found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404':
+          description: Order not found
           content:
             application/json:
               schema:
