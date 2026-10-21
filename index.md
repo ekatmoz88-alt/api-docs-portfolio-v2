@@ -238,7 +238,7 @@ permalink: /
 <header class="hero-section">
   <div class="hero-container">
     <div class="hero-avatar-placeholder">💻</div>
-    <h1 class="hero-title">Екатерина <span>Моцар</span></h1>
+    <h1 class="hero-title">Екатерина <span>Моцарь</span></h1>
     <p class="hero-subtitle">Technical Writer & Documentation Engineer | API & Docs-as-Code Specialist</p>
   </div>
 </header>
