@@ -258,7 +258,7 @@ permalink: /
         </div>
         <p>Интерактивная REST API спецификация управления заказами. Развернута с использованием генератора Redocly для наглядного тестирования эндпоинтов.</p>
       </div>
-      <a href="{{ '/openapi/' | relative_url }}" class="portfolio-btn">Открыть API Спецификацию →</a>
+      <a href="{{ '/openapi/openapi.yaml' | relative_url }}" class="portfolio-btn">Открыть API Спецификацию →</a>
     </div>
 
     <!-- Карточка 2: UMMS SOAP Client -->
