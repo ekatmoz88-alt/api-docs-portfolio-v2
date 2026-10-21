@@ -1,239 +1,100 @@
 ---
 layout: default
 title: UMMS SOAP Client Documentation
+permalink: /umms-enterprise-soap-client
 ---
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UMMS SOAP Client | API Portfolio</title>
-  <style>
-    :root { --nav-bg: #172b4d; --text: #333; --bg: #f4f5f7; --card: #fff; --border: #dfe1e6; }
-    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-    .portfolio-nav { display: flex; flex-wrap: wrap; gap: 16px; padding: 20px 24px; background: var(--nav-bg); color: #fff; align-items: center; }
-    .portfolio-nav a { color: #fff; text-decoration: none; font-size: 14px; }
-    .portfolio-nav a:hover { text-decoration: underline; }
-    .brand { margin-right: auto; font-weight: bold; font-size: 18px; }
-    .container { max-width: 900px; margin: 40px auto; padding: 0 24px; background: var(--card); border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-    .content { padding: 32px; }
-    h1 { margin-top: 0; font-size: 28px; border-bottom: 2px solid var(--nav-bg); padding-bottom: 10px; }
-    h2 { font-size: 22px; margin-top: 36px; color: var(--nav-bg); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
-    h3 { font-size: 18px; margin-top: 24px; color: #42526e; }
-    .alert { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 20px 0; font-size: 15px; }
-    ul.toc { background: #f8f9fa; padding: 20px 40px; border: 1px solid var(--border); border-radius: 4px; }
-    ul.toc li { margin-bottom: 6px; }
-    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
-    th, td { border: 1px solid var(--border); padding: 10px; text-align: left; }
-    th { background: #e9ecef; }
-    code { background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-size: 14px; color: #d63384; }
-    .diagram { border: 1px solid var(--border); border-radius: 8px; padding: 24px; background: #fafbfc; margin: 20px 0; }
-    .diagram-row { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 16px; }
-    .node { border: 2px solid #42526e; border-radius: 8px; padding: 12px 20px; text-align: center; background: #fff; font-weight: bold; }
-    .node small { display: block; font-weight: normal; font-size: 12px; color: #666; }
-    .arrow { text-align: center; font-size: 24px; color: #42526e; margin: 8px 0; }
-    .source-link { margin-top: 40px; font-size: 14px; color: #666; border-top: 1px solid var(--border); padding-top: 16px; }
-    .source-link a { color: #0747a6; font-weight: bold; }
-    @media (max-width: 600px) { .content { padding: 20px; } h1 { font-size: 24px; } table { display: block; overflow-x: auto; white-space: nowrap; } }
-    .diagram-flow { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; margin: 1rem 0; }
-    .diagram-node { border: 2px solid #3498db; border-radius: 6px; padding: 0.75rem 1.25rem; background: #fff; max-width: 320px; min-width: 220px; }
-    .diagram-node.soap-service { border-color: #e74c3c; background: #fdf2f0; }
-    .diagram-node.sc-node { border-color: #27ae60; background: #f0faf4; }
-    .diagram-node.mc-node { border-color: #f39c12; background: #fef9f0; }
-    .diagram-node strong { display: block; margin-bottom: 0.25rem; }
-    .diagram-node small { color: #666; font-size: 0.8rem; }
-    .diagram-arrow { font-size: 1.5rem; color: #7f8c8d; line-height: 1; }
-    .diagram-branch { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-    .diagram-note { font-size: 0.8rem; color: #888; margin-top: 1rem; text-align: center; }
-    @media (max-width: 600px) { .diagram-branch { flex-direction: column; } .diagram-arrow { transform: rotate(90deg); } }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMMS SOAP Client Documentation — Case Study</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --bg-color: #0d1117;
+            --container-bg: #161b22;
+            --border-color: #30363d;
+            --text-color: #c9d1d9;
+            --accent-color: #58a6ff;
+            --code-bg: #1f242c;
+        }
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        code, pre {
+            font-family: var(--font-mono) !important;
+            background-color: var(--code-bg);
+        }
+        nav {
+            width: 100%;
+            background-color: var(--container-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #21262d;
+            color: #c9d1d9;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+        .back-btn:hover {
+            background-color: #30363d;
+        }
+        .main-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        h1 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
- <nav class="portfolio-nav">
-  <div class="brand">API Documentation Portfolio</div>
-  <a href="./">Orders API</a>
-  <a href="./soap-api-review.html">Legacy SOAP API Review</a>
+
+<nav class="nav-container">
+    <a href="{{ '/' | relative_url }}" class="back-btn">← На главную</a>
 </nav>
 
-  <div class="container">
-    <div class="content">
-      <h1>UMMS — Enterprise SOAP API &amp; Client System</h1>
+<div class="main-container">
+    <h1>UMMS SOAP Client: Архитектурный обзор интеграции стационарных и мобильных клиентов</h1>
+    <p>Данный кейс-стади содержит детальное описание и технический разбор корпоративного слоя взаимодействия рабочих мест операторов (WPF-приложения) и мобильных клиентов через шину данных SOAP API.</p>
 
-      <div class="alert">
-        <strong>Portfolio case study · Anonymized documentation sample</strong><br>
-        This document presents a redacted, high-level overview for portfolio purposes. It is not a complete production API specification. Confirm that publication is authorized before sharing any project-related information publicly.
-      </div>
-
-      <h2>Table of Contents</h2>
-      <ul class="toc">
-        <li><a href="#overview">Overview</a></li>
-        <li><a href="#soap-api">1. SOAP API Overview</a>
-          <ul>
-            <li><a href="#interface">Interface Characteristics</a></li>
-            <li><a href="#methods">Method Catalogue</a></li>
-            <li><a href="#data">Illustrative Data Structures</a> (Document, Address, Reference-Book Entry)</li>
-            <li><a href="#example">Example Operation: <code>searchPersonFile</code></a></li>
-          </ul>
-        </li>
-        <li><a href="#architecture">2. Client Architecture</a></li>
-        <li><a href="#scope">3. Functional Scope</a></li>
-        <li><a href="#tech">4. Technology Overview</a></li>
-        <li><a href="#security">5. Security and Confidentiality</a></li>
-        <li><a href="#practices">6. Documentation Practices Demonstrated</a></li>
-      </ul>
-
-      <h2 id="overview">Overview</h2>
-      <p>UMMS is described here as an enterprise system with a SOAP interface and Windows-based client applications. The documented functional areas include person search, document and address management, document issuance, reference data, and information exchange between stationary and mobile clients.</p>
-      <p>This public sample intentionally excludes service URLs, credentials, production XML schemas, personal data, internal identifiers, and other confidential implementation details.</p>
-
-      <h2 id="soap-api">1. SOAP API Overview</h2>
-
-      <h3 id="interface">Interface Characteristics</h3>
-      <table>
-        <tr><th>Item</th><th>Description</th></tr>
-        <tr><td>Protocol</td><td>SOAP</td></tr>
-        <tr><td>SOAP version</td><td>Not specified in this public sample</td></tr>
-        <tr><td>Service URL</td><td>Not included in this public sample</td></tr>
-        <tr><td>Credentials</td><td>Provided separately; not included</td></tr>
-        <tr><td>Detailed interface contract</td><td>Restricted / subject to authorization</td></tr>
-      </table>
-
-      <h3 id="methods">Method Catalogue</h3>
-      <p>The method names and summaries below are included as a high-level catalogue. Exact parameter types, XML element names, response schemas, fault codes, and transaction semantics must be verified against an authorized interface specification before being documented as a production contract.</p>
-      <table>
-        <tr><th>Method</th><th>Purpose</th><th>Input summary</th><th>Output summary</th></tr>
-        <tr><td><code>searchPersonFile</code></td><td>Search for a person using specified criteria</td><td>Search criteria</td><td>List of persons</td></tr>
-        <tr><td><code>getPersonDocuments</code></td><td>Retrieve documents associated with a person</td><td>Person identifier</td><td>List of documents</td></tr>
-        <tr><td><code>getPersonAddresses</code></td><td>Retrieve addresses associated with a person</td><td>Person identifier</td><td>List of addresses</td></tr>
-        <tr><td><code>getPersonCasesInfo</code></td><td>Retrieve case information associated with a person</td><td>Person identifier</td><td>List of cases</td></tr>
-        <tr><td><code>getDocumentDetail</code></td><td>Retrieve document details</td><td>Document identifier</td><td>Document details</td></tr>
-        <tr><td><code>getAddressDetail</code></td><td>Retrieve address details</td><td>Address identifier</td><td>Address details</td></tr>
-        <tr><td><code>getCountryDictionary</code></td><td>Retrieve the country reference data</td><td>None specified</td><td>List of countries</td></tr>
-        <tr><td><code>issueNewDocument</code></td><td>Issue a document according to an established workflow</td><td>Issuance data</td><td>Operation result</td></tr>
-        <tr><td><code>rollbackIssueNewDocument</code></td><td>Request rollback of a document-issuance operation</td><td>Document identifier</td><td>Operation result</td></tr>
-      </table>
-
-      <h3 id="data">Illustrative Data Structures</h3>
-      <p>The following fields are a conceptual summary, not a complete schema. Field types, requiredness, formats, and validation rules are not specified here.</p>
-
-      <h4>Document</h4>
-      <table>
-        <tr><th>Field</th><th>Description</th></tr>
-        <tr><td>Series</td><td>Document series, where applicable</td></tr>
-        <tr><td>Number</td><td>Document number</td></tr>
-        <tr><td>Dates</td><td>Relevant document dates; exact fields are unspecified</td></tr>
-        <tr><td>Issuing authority</td><td>Authority associated with the document</td></tr>
-        <tr><td>Type</td><td>Document type</td></tr>
-      </table>
-
-      <h4>Address</h4>
-      <table>
-        <tr><th>Field</th><th>Description</th></tr>
-        <tr><td>MAC code</td><td>Code referenced by the source description; exact meaning and format require confirmation</td></tr>
-        <tr><td>Text representation</td><td>Human-readable address representation</td></tr>
-        <tr><td>Type</td><td>Address type</td></tr>
-      </table>
-
-      <h4>Reference-book entry</h4>
-      <table>
-        <tr><th>Field</th><th>Description</th></tr>
-        <tr><td>Code</td><td>Reference entry code</td></tr>
-        <tr><td>Value</td><td>Human-readable value</td></tr>
-      </table>
-
-      <h3 id="example">Example Operation: <code>searchPersonFile</code></h3>
-      <p>The supplied high-level description identifies date-from, date-to, and gender as search criteria. This sample does not include a SOAP envelope or XML schema because the exact namespace, element names, data types, and required fields must be taken from the authorized interface contract.</p>
-      <p><strong>Before publishing a production-level example, verify:</strong></p>
-      <ul>
-        <li>The exact request and response XML.</li>
-        <li>Required and optional fields.</li>
-        <li>Date and gender formats and allowed values.</li>
-        <li>SOAP action and namespace details, where applicable.</li>
-        <li>Fault responses and validation errors.</li>
-        <li>Authentication and transport-security requirements.</li>
-      </ul>
-
-      <h2 id="architecture">2. Client Architecture</h2>
-      <p>The system description identifies two client modes:</p>
-      <ul>
-        <li><strong>Stationary Client (SC):</strong> operates on the local network with continuous access to the service.</li>
-        <li><strong>Mobile Client (MC):</strong> supports autonomous operation followed by synchronization.</li>
-      </ul>
-     <p><em>The diagram below is conceptual.</em></p>
-<div class="diagram-flow">
-  <div class="diagram-node soap-service">
-    <strong>Operator (User)</strong>
-    <small>Interacts with clients</small>
-  </div>
-  <div class="diagram-arrow">↓</div>
-  <div class="diagram-branch">
-    <div class="diagram-node sc-node">
-      <strong>Stationary Client (SC)</strong>
-      <small>Local network access</small>
-    </div>
-    <div class="diagram-node mc-node">
-      <strong>Mobile Client (MC)</strong>
-      <small>Autonomous operation</small>
-    </div>
-  </div>
-  <div class="diagram-node soap-service">
-    <strong>SC ↔ UMMS SOAP Service</strong>
-    <small>Service communication</small>
-  </div>
-  <div class="diagram-note">MC ↔ Synchronization: Conceptual workflow; details unverified</div>
+    <h2>Основные разделы документации</h2>
+    <ul>
+        <li><strong>Каталог методов:</strong> Описание доступных операций, включая методы авторизации, синхронизации нормативно-справочной информации (НСИ) и отправки транзакций.</li>
+        <li><strong>Структуры данных:</strong> Подробный разбор XSD-схем, типов данных, обязательных полей и ограничений на форматы значений.</li>
+        <li><strong>Операция поиска:</strong> Детальное пошаговое описание выполнения поисковых запросов с примерами XML-пакетов запросов и ответов.</li>
+    </ul>
 </div>
 
-      <h2 id="scope">3. Functional Scope</h2>
-      <p>The described functional areas include:</p>
-      <ul>
-        <li>Searching for individuals using specified criteria.</li>
-        <li>Managing document and address information.</li>
-        <li>Issuing documents through established scenarios.</li>
-        <li>Exchanging information between stationary and mobile clients.</li>
-        <li>Supporting autonomous mobile operation and subsequent synchronization.</li>
-        <li>Working with reference data, including countries and codes whose exact meaning requires confirmation.</li>
-      </ul>
-      <p><em>The precise business rules, authorization checks, and synchronization conflict-resolution behavior are not defined in this public overview.</em></p>
-
-      <h2 id="tech">4. Technology Overview</h2>
-      <table>
-        <tr><th>Area</th><th>Technology or characteristic</th></tr>
-        <tr><td>Operating system</td><td>Windows</td></tr>
-        <tr><td>Application framework</td><td>.NET</td></tr>
-        <tr><td>User interface</td><td>Windows Presentation Foundation (WPF)</td></tr>
-        <tr><td>Service integration</td><td>SOAP</td></tr>
-        <tr><td>Local data handling</td><td>Encrypted files; format and encryption details unspecified</td></tr>
-        <tr><td>Digital signatures</td><td>Mentioned in the source description; algorithms and verification rules unspecified</td></tr>
-      </table>
-      <p><em>This table records only the technologies and characteristics identified in the supplied project summary. It does not imply that this case-study author designed or implemented the underlying system.</em></p>
-
-      <h2 id="security">5. Security and Confidentiality</h2>
-      <p>This public sample intentionally omits:</p>
-      <ul>
-        <li>Production service URLs, usernames, passwords, tokens, certificates, and private keys.</li>
-        <li>Real request or response payloads that may contain personal or confidential data.</li>
-        <li>Internal identifiers and implementation-specific details.</li>
-        <li>Cryptographic algorithms, key-management procedures, and authentication mechanisms not confirmed by an authorized specification.</li>
-      </ul>
-      <p><strong>Do not infer security behavior from the technology names alone.</strong> Verify all security-related claims against approved project documentation before publication.</p>
-
-      <h2 id="practices">6. Documentation Practices Demonstrated</h2>
-      <p>This case study demonstrates how to organize a high-level interface overview into:</p>
-      <ul>
-        <li>A method catalogue with purpose, inputs, and outputs.</li>
-        <li>Conceptual data-structure summaries.</li>
-        <li>A client-mode and synchronization diagram.</li>
-        <li>A technology overview.</li>
-        <li>Explicit boundaries between verified information and details requiring confirmation.</li>
-        <li>A confidentiality checklist for public portfolio material.</li>
-      </ul>
-      <p><em>A production-ready specification would additionally require the authorized WSDL/XSD or equivalent contract, exact SOAP actions and namespaces, complete request and response examples, fault definitions, field-level validation rules, and versioning information.</em></p>
-
-      <div class="source-link">
-        <p>View the original Markdown source: <a href="./umms-enterprise-soap-client.md">umms-enterprise-soap-client.md</a></p>
-      </div>
-
-    </div>
-  </div>
 </body>
 </html>
