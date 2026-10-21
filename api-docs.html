@@ -3,22 +3,22 @@ layout: null
 title: Orders API Specification
 permalink: /openapi/
 ---
+
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Orders API Specification (Redoc)</title>
     <style>
-      body { margin: 0; padding: 0; }
+        body { margin: 0; padding: 0; }
     </style>
-    <link href="https://googleapis.com" rel="stylesheet">
-  </head>
-  <body>
-    <!-- Указываем правильный путь к вашему файлу openapi.yaml внутри папки openapi -->
+</head>
+<body>
+    <!-- Подгружаем файл спецификации из папки openapi -->
     <redoc spec-url="./openapi.yaml"></redoc>
 
-    <!-- Подключаем автономный модуль Redoc -->
+    <!-- Используем гарантированно рабочий CDN-дистрибутив Redoc -->
     <script src="https://redoc.ly"></script>
-  </body>
+</body>
 </html>
