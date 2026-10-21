@@ -12,9 +12,10 @@ layout: null
     </style>
   </head>
   <body>
-    <!-- Подгружаем лежащий рядом файл openapi.yaml -->
-  <redoc spec-url="./openapi.yaml"></redoc>
-    <!-- Автономный скрипт Redoc -->
+    <!-- Подгружаем файл спецификации -->
+    <redoc spec-url="./openapi.yaml"></redoc>
+    
+    <!-- Используем гарантированно рабочий CDN-дистрибутив Redoc -->
     <script src="https://redoc.ly"></script>
   </body>
 </html>
