@@ -7,17 +7,20 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           
       - name: Install Redocly CLI
         run: npm install -g @redocly/cli
         
       - name: Lint OpenAPI spec
-        run: redocly lint openapi/openapi.yaml
+        run: redocly lint openapi/navigation-api.yaml
