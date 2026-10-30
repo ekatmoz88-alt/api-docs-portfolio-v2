@@ -1,0 +1,20 @@
+name: API Contract Quality Assurance
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  spectral-lint:
+    name: Execute Spectral Linter Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository Source
+        uses: actions/checkout@v4
+
+      - name: Run Spectral OpenApi Validations
+        uses: stoplightio/spectral-action@v0.8.2
+        with:
+          file_glob: 'openapi/navigation-api.yaml'

@@ -1,0 +1,185 @@
+openapi: 3.1.0
+info:
+  title: MIB3 Connected Navigation System Interface (RSI/ViWi)
+  description: |
+    Automotivemiddleware layer specification for event-driven cross-domain navigation services.
+    Enforces strict real-time telemetry processing and proactive search gating over vehicle interfaces (MEB ICAS).
+  version: 1.0.0
+
+servers:
+  - url: http://192.168.10
+    description: Local Vehicle Middleware Gateway (ICAS3 core)
+
+paths:
+  /places/searches:
+    post:
+      summary: Initialize Proactive Sub-Route Search
+      description: Triggered asynchronously by the HMI client upon receiving low fuel/energy telemetry bounds.
+      operationId: postProactiveSearch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - needle
+                - preposition
+              properties:
+                needle:
+                  type: string
+                  description: Search keyword query string (empty for global category triggering).
+                  example: ""
+                preposition:
+                  type: string
+                  enum: [along-route, near-destination, near-car]
+                  description: Spatial positioning constraint parameter enforced by the search engine.
+                  example: "along-route"
+      responses:
+        '201':
+          description: Search Context Created and Populated Successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - searchId
+                  - results
+                properties:
+                  searchId:
+                    type: string
+                    format: uuid
+                    example: "4a2b8c9d-1234-5678-90ab-cdef12345678"
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlaceResultObject'
+
+  /guidance/drivingContexts/activeRoute:
+    put:
+      summary: Inject Stopover Node / Modify Active Route Context
+      description: Updates the operational engine path execution context with a selected target waypoint.
+      operationId: updateActiveRoute
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - waypoint
+              properties:
+                waypoint:
+                  $ref: '#/components/schemas/PlaceResultObject'
+      responses:
+        '200':
+          description: Context Updated. Triggers 30Hz viewport render updates.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "SUCCESS"
+                  cameraTransitionState:
+                    type: string
+                    enum: [idle, in-motion, panning]
+                    example: "in-motion"
+
+components:
+  schemas:
+    PlaceResultObject:
+      type: object
+      required:
+        - poiId
+        - name
+        - category
+        - position
+      properties:
+        poiId:
+          type: string
+          format: uuid
+          example: "7e9a8b1c-5555-4444-3333-222211110000"
+        name:
+          type: string
+          example: "Shell Gas Station (LPG/Diesel)"
+        category:
+          type: string
+          example: "FuelStation"
+        position:
+          type: object
+          required:
+            - latitude
+            - longitude
+          properties:
+            latitude:
+              type: number
+              format: double
+              example: 52.520007
+            longitude:
+              type: number
+              format: double
+              example: 13.404954
+
+    # Схемы для WebSocket/RSI асинхронных уведомлений и данных телеметрии
+    FuelWarningNotification:
+      type: object
+      description: Asynchronous middleware push event fired when tank/battery thresholds breach safety boundaries.
+      required:
+        - type
+        - timestamp
+        - severity
+        - relatedPOICategories
+      properties:
+        type:
+          type: string
+          example: "fuel-warning"
+        timestamp:
+          type: integer
+          format: int64
+          description: UNIX Epoch milliseconds timestamp.
+          example: 1793388200000
+        severity:
+          type: string
+          enum: [LOW, CRITICAL]
+          example: "CRITICAL"
+        relatedPOICategories:
+          type: array
+          items:
+            type: string
+          example: ["FuelStation", "EVChargingStation"]
+
+    CarPositionTelemetry:
+      type: object
+      description: Real-time high-integrity spatial GNSS positioning payload.
+      required:
+        - latitude
+        - longitude
+        - heading
+        - gdop
+        - hdop
+      properties:
+        latitude:
+          type: number
+          format: double
+          example: 52.518621
+        longitude:
+          type: number
+          format: double
+          example: 13.376198
+        heading:
+          type: number
+          format: float
+          description: Bearing angle relative to true North (0-360 degrees).
+          example: 184.5
+        gdop:
+          type: number
+          format: float
+          description: Geometric Dilution of Precision (DBC Signal SG_ ND_GDOP mapping).
+          example: 1.8
+        hdop:
+          type: number
+          format: float
+          description: Horizontal Dilution of Precision (DBC Signal SG_ ND_HDOP mapping).
+          example: 1.2
