@@ -291,9 +291,9 @@ permalink: /
 <!-- Рендеринг футера с контактами -->
 <footer class="portfolio-footer">
   <div class="footer-links">
-    <a href="https://linkedin.com" target="_blank" class="footer-link">🔗 LinkedIn</a>
-    <a href="https://github.com" target="_blank" class="footer-link">🐙 GitHub</a>
-    <a href="mailto:ekaterina@example.com" class="footer-link">✉️ Email</a>
-  </div>
+  <a href="https://www.linkedin.com/in/ekatmoz88/" target="_blank" rel="noopener noreferrer" class="footer-link">🔗 LinkedIn</a>
+  <a href="https://github.com/ekatmoz88-alt" target="_blank" rel="noopener noreferrer" class="footer-link">🐙 GitHub</a>
+  <a href="mailto:ekatmoz88@gmail.com" class="footer-link">✉️ Email</a>
+</div>
   <p class="footer-credits">© 2026 Ekaterina Motsar. Built with Jekyll & GitHub Pages (Docs-as-Code).</p>
 </footer>
