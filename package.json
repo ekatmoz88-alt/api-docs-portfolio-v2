@@ -1,0 +1,20 @@
+{
+  "name": "api-docs-portfolio-v2",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "lint:spectral": "spectral lint --ruleset .spectral.yaml --fail-severity error openapi/openapi.yaml && spectral lint --ruleset .spectral.yaml --fail-severity error openapi/navigation-api.yaml",
+    "lint:redocly": "redocly lint openapi/openapi.yaml && redocly lint openapi/navigation-api.yaml",
+    "lint:openapi": "npm run lint:spectral && npm run lint:redocly"
+  },
+  "devDependencies": {
+    "@redocly/cli": "2.72.1",
+    "@stoplight/spectral-cli": "6.17.0"
+  },
+  "allowScripts": {
+    "@scarf/scarf": false
+  }
+}
