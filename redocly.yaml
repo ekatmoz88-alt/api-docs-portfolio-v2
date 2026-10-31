@@ -1,0 +1,22 @@
+extends:
+  - recommended
+
+rules:
+  # Security is mandatory for new operations.
+  # Temporary exceptions pending confirmation of the actual auth model.
+  security-defined:
+    severity: error
+    exceptions:
+      - path: /places/searches
+        methods:
+          - post
+      - path: /guidance/drivingContexts/activeRoute
+        methods:
+          - put
+
+  # Keep these checks visible without blocking CI
+  # until the documentation details are confirmed.
+  info-license: warn
+  no-server-example.com: warn
+  operation-4xx-response: warn
+  no-unused-components: warn
