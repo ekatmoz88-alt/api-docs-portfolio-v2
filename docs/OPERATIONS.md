@@ -1,30 +1,25 @@
 # Локальная проверка и публикация
 
-## Локальная сборка
+## Быстрые ссылки
+- [Опубликованный сайт](https://ekatmoz88-alt.github.io/api-docs-portfolio-v2/)
+- [Репозиторий](https://github.com/ekatmoz88-alt/api-docs-portfolio-v2)
+- [Запуски GitHub Actions](https://github.com/ekatmoz88-alt/api-docs-portfolio-v2/actions)
+- [CI workflow](../.github/workflows/ci.yml)
 
-Используйте версию Node.js и команды из `.github/workflows/ci.yml`. Установите зависимости:
-
+## Локальная работа
+Установите зависимости командой:
 ```bash
 npm ci
 ```
-
-Затем выполните команды аудита и валидации OpenAPI, указанные в workflow (Spectral и Redocly). Для проверки сайта используйте Jekyll-конфигурацию `_config.yml` и шаги сборки из workflow.
-
-## CI / GitHub Pages
-
-`.github/workflows/ci.yml` устанавливает npm-зависимости, выполняет аудит, проверяет обе OpenAPI-спецификации, собирает Jekyll-сайт и публикует Pages artifact из основной ветки. Точный список команд и версий определяется YAML workflow.
+Затем выполните аудит, проверки Spectral и Redocly для обеих OpenAPI-спецификаций и Jekyll build в соответствии с шагами [CI workflow](../.github/workflows/ci.yml).
 
 ## Release checklist
-
-- [ ] `npm ci` завершается успешно.
+- [ ] npm ci завершается успешно.
 - [ ] Аудит зависимостей проверен.
-- [ ] Обе OpenAPI-спецификации проходят Spectral и Redocly.
+- [ ] Обе OpenAPI-спецификации проходят проверки.
 - [ ] Примеры соответствуют схемам.
-- [ ] Материалы SOAP не содержат конфиденциальных данных.
-- [ ] Jekyll build успешен.
-- [ ] Pages deployment job успешен.
-- [ ] Сайт и навигация доступны.
+- [ ] SOAP-материалы не содержат конфиденциальных данных.
+- [ ] Jekyll build и Pages deployment успешны.
+- [ ] [Сайт](https://ekatmoz88-alt.github.io/api-docs-portfolio-v2/) и навигация доступны.
 
-## Диагностика
-
-Откройте последний запуск Actions и найдите первый failure. Проверьте версию Node.js, установку зависимостей, ошибки валидаторов и Jekyll build. Не отключайте аудит зависимостей без документированной причины.
+При ошибке откройте [Actions](https://github.com/ekatmoz88-alt/api-docs-portfolio-v2/actions), найдите первый упавший step и проверьте версии Node.js, зависимости и сообщения валидаторов.
