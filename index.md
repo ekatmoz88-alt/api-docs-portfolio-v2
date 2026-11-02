@@ -232,6 +232,47 @@ permalink: /
       gap: 12px;
     }
   }
+
+/* Shared white-and-blue accessibility design system */
+:root{
+ color-scheme:light;
+ --bg:#ffffff;--bg-main:#ffffff;--bg2:#ffffff;--navy:#ffffff;--deep:#ffffff;
+ --panel:#ffffff;--panel2:#f7faff;--bg-card:#ffffff;
+ --ink:#1d2939;--text:#1d2939;--text-primary:#1d2939;--white:#1d2939;
+ --muted:#475467;--text-muted:#475467;--line:#d8e3f0;--border-color:#d8e3f0;
+ --accent:#0759c7;--blue:#0759c7;--cyan:#0759c7;--teal:#0759c7;
+ --lime:#eaf3ff;--purple:#426fbd;--violet:#426fbd;--coral:#426fbd;
+ --success:#0759c7;--shadow:0 10px 30px rgba(16,42,80,.07);
+}
+html{scroll-behavior:smooth}
+body{background:#fff!important;color:#1d2939!important;font-family:Inter,"Segoe UI",Arial,sans-serif!important}
+header,footer,.top,.topbar,.hero,.hero-section,.portfolio-footer{background:#fff!important;color:#1d2939!important}
+p,li,.lead,.intro,.sub,.nav,.nav a,.footer,.footer-link,.footer-credits{color:#475467!important}
+h1,h2,h3,h4,strong,b{color:#172b4d}
+a,.card a,.read,.footer a,.nav a{color:#0759c7!important;text-decoration:underline;text-decoration-color:#9bbcf0;text-underline-offset:3px}
+a:hover,.card a:hover,.read:hover{color:#003f91!important;text-decoration-color:#003f91}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid #0759c7!important;outline-offset:4px!important;background-color:#eaf3ff!important;border-radius:4px}
+.card,.portfolio-card,.window,.visual,.cad,.samplebox,.scope,.notice,.step,.tag,.pill,.hero-section,.portfolio-footer{
+ background:#fff!important;color:#1d2939!important;border:1px solid #d8e3f0!important;box-shadow:0 8px 28px rgba(16,42,80,.055)!important
+}
+.card p,.portfolio-card p,.scope p,.notice,.samplebox p{color:#475467!important}
+.btn,.portfolio-btn,.primary,.mark,.brandmark,.info{
+ background:#0759c7!important;color:#fff!important;border:1px solid #0759c7!important;box-shadow:none!important
+}
+.btn.ghost,.secondary{background:#fff!important;color:#0759c7!important;border:1px solid #9bbcf0!important}
+.kicker,.eyebrow,.sub,.num,.tagline,.pill,.read,.brand{color:#0759c7!important}
+.mark,.brandmark{border-radius:9px}
+.gridbg{opacity:.28}
+.drawing,.orb,.glow{border-color:#9bbcf0!important;box-shadow:none!important}
+.coord{background:#f2f7ff!important;color:#173b70!important;border:1px solid #b8cfee!important;box-shadow:none!important}
+.point{background:#0759c7!important;box-shadow:none!important}
+.cross:before,.cross:after{background:#426fbd!important}
+.csv,.code,pre,code{color:#173b70!important}
+.csv .head,.csv .value{color:#0759c7!important}
+footer{border-top:1px solid #d8e3f0!important}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media(max-width:700px){nav{flex-wrap:wrap;gap:12px!important}.wrap,.shell{width:min(100% - 32px,1160px)}}
+
 </style>
 
 <!-- Рендеринг Hero-блока -->
