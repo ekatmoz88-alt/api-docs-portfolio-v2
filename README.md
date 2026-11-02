@@ -1,38 +1,53 @@
-# API Documentation Portfolio V2
+# API Documentation Portfolio
 
-A technical writing portfolio demonstrating API documentation, documentation architecture, and Docs-as-Code automation.
+A technical writing portfolio demonstrating **API documentation, documentation architecture, and Docs-as-Code automation** through practical examples and case studies.
+
+[**View the live API documentation →**](https://ekatmoz88-alt.github.io/api-docs-portfolio-v2/openapi/)
+
+## Project overview
+
+This repository brings together API reference materials, structured API contracts, SOAP integration case studies, and an automated documentation publishing workflow. It demonstrates how API information can be organized for developers and maintained as version-controlled source content.
 
 ## What this project demonstrates
 
-- REST API documentation with OpenAPI 3.1 (YAML).
-- API reference structure, request/response examples, schemas, and error responses.
-- SOAP integration documentation and WSDL-oriented analysis.
+- REST API documentation based on OpenAPI 3.1.
+- Endpoint, parameter, schema, request, and response descriptions.
+- Reusable YAML components and example payloads.
+- SOAP integration concepts and legacy API analysis.
 - Documentation portal structure, navigation, and presentation.
-- Automated API contract checks and website publishing with GitHub Actions.
+- API contract validation and automated website publishing.
 
-## Selected work
+## Selected portfolio artifacts
 
-| Artifact | What it demonstrates |
+| Artifact | Skills demonstrated |
 |---|---|
 | [Orders API specification](openapi/openapi.yaml) | OpenAPI 3.1, REST endpoints, schemas, and examples |
 | [Navigation API specification](openapi/navigation-api.yaml) | A second API contract used in validation workflows |
-| [Legacy SOAP API review](legacy-soap-api-review.html) | Analysis of legacy SOAP integration patterns and migration considerations |
-| [UMMS SOAP client case study](umms-enterprise-soap-client.html) | Structured documentation of a SOAP client and its integration concepts |
-| [Portfolio landing page source](index.md) | Information architecture, visual layout, and project navigation |
+| [Legacy SOAP API review](legacy-soap-api-review.html) | Legacy SOAP integration analysis and migration considerations |
+| [UMMS SOAP client case study](umms-enterprise-soap-client.html) | Structured explanation of a SOAP client and integration concepts |
+| [Portfolio landing page](index.md) | Information architecture and project navigation |
 
-## Tooling and workflow
+## Tools and workflow
 
 - **API contracts:** OpenAPI 3.1, YAML
-- **Documentation rendering and validation:** Redocly CLI, Spectral
-- **Docs-as-Code:** Markdown, Git
-- **Website:** Jekyll, HTML, CSS, GitHub Pages
+- **Documentation validation:** Redocly CLI, Spectral
+- **Content:** Markdown, HTML, CSS
+- **Docs-as-Code:** Git, GitHub
+- **Site generation:** Jekyll, GitHub Pages
 - **Automation:** GitHub Actions, Node.js, npm
 
 The GitHub Actions workflow installs dependencies, runs dependency audit checks, validates both OpenAPI specifications with Spectral and Redocly, builds the Jekyll site, and deploys the Pages artifact from the main branch.
 
+## Documentation principles
+
+- **Accuracy:** keep reference content aligned with the API contract.
+- **Usability:** provide examples and clear descriptions for developer tasks.
+- **Consistency:** reuse schemas, terminology, and documentation patterns.
+- **Maintainability:** validate source files and publish through an automated workflow.
+
 ## Project context
 
-This is a portfolio/demo project. The Orders API uses example endpoints and illustrative data; it is not presented as a live production service. SOAP case studies are portfolio materials and should not be interpreted as access to a live customer system.
+This is a portfolio/demo project. The Orders API uses illustrative endpoints and data; it is not a live production service. SOAP case studies are portfolio materials and do not imply access to a live customer system.
 
 ## Author
 
