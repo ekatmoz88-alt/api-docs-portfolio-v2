@@ -2,11 +2,13 @@
 
 A technical writing portfolio demonstrating API documentation, documentation architecture, and Docs-as-Code automation.
 
-**Focus:** REST APIs · OpenAPI 3.1 · API reference · SOAP case studies · Documentation QA · CI/CD
+## What this project demonstrates
 
-## Project overview
-
-This repository brings together API specifications, documentation examples, integration case studies, and automated documentation checks. It demonstrates how API documentation can be structured, validated, and published as part of a version-controlled workflow.
+- REST API documentation with OpenAPI 3.1 (YAML).
+- API reference structure, request/response examples, schemas, and error responses.
+- SOAP integration documentation and WSDL-oriented analysis.
+- Documentation portal structure, navigation, and presentation.
+- Automated API contract checks and website publishing with GitHub Actions.
 
 ## Selected work
 
@@ -15,28 +17,25 @@ This repository brings together API specifications, documentation examples, inte
 | [Orders API specification](openapi/openapi.yaml) | OpenAPI 3.1, REST endpoints, schemas, and examples |
 | [Navigation API specification](openapi/navigation-api.yaml) | A second API contract used in validation workflows |
 | [Legacy SOAP API review](legacy-soap-api-review.html) | Analysis of legacy SOAP integration patterns and migration considerations |
-| [UMMS SOAP client case study](umms-enterprise-soap-client.html) | Structured documentation of SOAP client and integration concepts |
-| [Portfolio landing page](index.md) | Information architecture, layout, and project navigation |
+| [UMMS SOAP client case study](umms-enterprise-soap-client.html) | Structured documentation of a SOAP client and its integration concepts |
+| [Portfolio landing page source](index.md) | Information architecture, visual layout, and project navigation |
 
-## Skills and tools
+## Tooling and workflow
 
 - **API contracts:** OpenAPI 3.1, YAML
-- **Documentation:** Markdown, HTML, Jekyll
-- **Validation:** Redocly CLI, Spectral
-- **Version control:** Git, GitHub
+- **Documentation rendering and validation:** Redocly CLI, Spectral
+- **Docs-as-Code:** Markdown, Git
+- **Website:** Jekyll, HTML, CSS, GitHub Pages
 - **Automation:** GitHub Actions, Node.js, npm
-- **API exploration:** Postman
 
-## Documentation workflow
-
-The GitHub Actions workflow installs dependencies, runs dependency audit checks, validates the OpenAPI specifications with Spectral and Redocly, builds the Jekyll site, and deploys the Pages artifact from the main branch.
+The GitHub Actions workflow installs dependencies, runs dependency audit checks, validates both OpenAPI specifications with Spectral and Redocly, builds the Jekyll site, and deploys the Pages artifact from the main branch.
 
 ## Project context
 
-This is a portfolio/demo project. The Orders API uses illustrative endpoints and data; it is not a live production service. SOAP case studies are portfolio materials and do not imply access to a live customer system.
+This is a portfolio/demo project. The Orders API uses example endpoints and illustrative data; it is not presented as a live production service. SOAP case studies are portfolio materials and should not be interpreted as access to a live customer system.
 
 ## Author
 
 **Kate Motsar** — Technical Writer | API Documentation | Documentation Engineering
 
-[GitHub profile](https://github.com/ekatmoz88-alt) · [LinkedIn](https://www.linkedin.com/in/kate-motsar-b56974267/) · [Live API documentation](https://ekatmoz88-alt.github.io/api-docs-portfolio-v2/openapi/)
+[GitHub profile](https://github.com/ekatmoz88-alt) · [LinkedIn](https://www.linkedin.com/in/kate-motsar-b56974267/)
