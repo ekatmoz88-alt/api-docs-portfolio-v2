@@ -17,7 +17,7 @@
 | Материал | Что демонстрирует |
 |---|---|
 | [Спецификация Orders API](openapi/openapi.yaml) | OpenAPI 3.1, REST-эндпоинты, схемы и примеры |
-| [Quickstart для Orders API](quickstart.md) | Пошаговое руководство по трём операциям из спецификации |
+| [Quickstart для Orders API](quickstart.md) | Аутентификация и примеры запросов к развёрнутому демо-API |
 | [Спецификация Navigation API](openapi/navigation-api.yaml) | Второй API-контракт, включённый в автоматические проверки |
 | [Анализ Legacy SOAP API](legacy-soap-api-review.html) | Анализ устаревших SOAP-интеграций и вариантов миграции |
 | [Кейс SOAP-клиента UMMS](umms-enterprise-soap-client.html) | Структурированное описание SOAP-клиента и интеграционных концепций |
@@ -33,9 +33,9 @@
 
 Workflow GitHub Actions устанавливает зависимости, выполняет аудит npm-пакетов, проверяет обе OpenAPI-спецификации через Spectral и Redocly, собирает сайт на Jekyll и публикует артефакт GitHub Pages из основной ветки.
 
-## Контекст проекта
+## Развёрнутый демонстрационный API\n\n- Base URL: `https://ajnslobbgvnsoyezboqa.supabase.co/functions/v1/orders-api`\n- Аутентификация: токен Supabase Auth + публичный ключ проекта\n- Операции: `GET /orders`, `POST /orders`, `GET /orders/{id}`\n- Изоляция данных: PostgreSQL Row Level Security ограничивает доступ владельцем заказа\n\nИнструкции по регистрации, входу и запросам — в [Quickstart](quickstart.md).\n\n## Контекст проекта
 
-Это демонстрационный проект для портфолио. В Orders API используются примерные адреса и иллюстративные данные; сервис не заявляется как действующий production API. SOAP-кейсы являются материалами портфолио и не предполагают доступ к работающей системе заказчика.
+Orders API развёрнут как Supabase Edge Function с базой PostgreSQL и Supabase Auth. Это демонстрационный сервис для портфолио, а не production-система управления заказами; используйте только тестовые данные. SOAP-кейсы являются материалами портфолио и не предполагают доступ к работающей системе заказчика.
 
 ## Автор
 
