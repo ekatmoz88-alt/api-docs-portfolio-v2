@@ -8,7 +8,7 @@ permalink: /quickstart/
 
 This guide introduces the illustrative Orders API contract included in this portfolio. It is based only on the operations and schemas defined in [openapi/openapi.yaml]({{ '/openapi/openapi.yaml' | relative_url }}).
 
-> **Demo limitation:** this is a documentation example, not a live production API. The specification uses `https://example.com` as a placeholder server. Requests in this guide are examples of request construction; they are not expected to return live data.
+> **Demo limitation:** this is a documentation example, not a live production API. The specification uses `https://api.example.test/v1` as a placeholder server. Requests in this guide are examples of request construction; they are not expected to return live data.
 
 ## 1. What you can do
 
@@ -31,7 +31,7 @@ The `OrderInput` request schema contains the `status` field with the same allowe
 The specification declares this demo server:
 
 ```text
-https://example.com
+https://api.example.test/v1
 ```
 
 It is a placeholder. Replace it only when working with an actual deployment and its confirmed base URL.
@@ -44,7 +44,7 @@ Use `GET /orders` to request the order collection.
 
 ```bash
 curl --request GET \
-  --url "https://example.com/orders"
+  --url "https://api.example.test/v1/orders"
 ```
 
 The documented successful response is `200 OK` with a JSON array of `Order` objects. The specification includes this illustrative response:
@@ -72,7 +72,7 @@ Use `POST /orders` with a JSON request body. The body must contain `status`, who
 
 ```bash
 curl --request POST \
-  --url "https://example.com/orders" \
+  --url "https://api.example.test/v1/orders" \
   --header "Content-Type: application/json" \
   --data '{
     "status": "pending"
@@ -98,7 +98,7 @@ Use `GET /orders/{id}` to request one order. The `id` path parameter is required
 
 ```bash
 curl --request GET \
-  --url "https://example.com/orders/1"
+  --url "https://api.example.test/v1/orders/1"
 ```
 
 The contract documents:
