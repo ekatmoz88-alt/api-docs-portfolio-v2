@@ -246,6 +246,18 @@ components:
                 title: Invalid order
                 status: 400
                 detail: status is required and must be pending, shipped, or delivered. No other fields are accepted.
+            invalidJson:
+              value:
+                type: urn:orders-api:problems:400
+                title: Invalid JSON
+                status: 400
+                detail: The request body must contain valid JSON.
+            invalidOrderId:
+              value:
+                type: urn:orders-api:problems:400
+                title: Invalid order ID
+                status: 400
+                detail: The order ID must be a positive integer.
             invalidPagination:
               value:
                 type: urn:orders-api:problems:400
