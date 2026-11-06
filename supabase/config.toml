@@ -1,0 +1,2 @@
+[functions.orders-api]
+verify_jwt = true
