@@ -44,7 +44,8 @@ Use `GET /orders` to request the order collection.
 
 ```bash
 curl --request GET \
-  --url "https://api.example.test/v1/orders"
+  --url "https://api.example.test/v1/orders" \
+  --header "Authorization: Bearer YOUR_ACCESS_TOKEN"
 ```
 
 The documented successful response is `200 OK` with a JSON array of `Order` objects. The specification includes this illustrative response:
@@ -73,6 +74,7 @@ Use `POST /orders` with a JSON request body. The body must contain `status`, who
 ```bash
 curl --request POST \
   --url "https://api.example.test/v1/orders" \
+  --header "Authorization: Bearer YOUR_ACCESS_TOKEN" \
   --header "Content-Type: application/json" \
   --data '{
     "status": "pending"
@@ -98,7 +100,8 @@ Use `GET /orders/{id}` to request one order. The `id` path parameter is required
 
 ```bash
 curl --request GET \
-  --url "https://api.example.test/v1/orders/1"
+  --url "https://api.example.test/v1/orders/1" \
+  --header "Authorization: Bearer YOUR_ACCESS_TOKEN"
 ```
 
 The contract documents:
@@ -121,9 +124,9 @@ The API uses the `ProblemDetails` schema for documented error responses. Its fie
 
 Example values for `400 Bad Request` and `401 Unauthorized` are included in the OpenAPI specification for `GET /orders`.
 
-## 7. Authentication note
+## 7. Authentication
 
-The OpenAPI document contains cURL, Python, and JavaScript snippets with an `Authorization: Bearer YOUR_TOKEN` header for the collection and creation operations. However, the document's top-level `security` field is an empty array and does not define a security scheme. Therefore, this portfolio guide does not treat bearer authentication as a confirmed API requirement. The `401` responses are listed because they are present in the contract.
+The OpenAPI contract applies HTTP Bearer authentication to all operations through the `bearerAuth` security scheme. Supply an access token in the `Authorization` header as `Bearer YOUR_ACCESS_TOKEN`. The token shown here is a placeholder; the contract does not define a token-issuance endpoint or identity provider.
 
 ## 8. Explore the complete contract
 
