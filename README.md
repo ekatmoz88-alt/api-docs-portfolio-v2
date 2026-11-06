@@ -39,4 +39,4 @@ This is a portfolio/demo project. The Orders API uses illustrative endpoints and
 
 **Kate Motsar** — Technical Writer | API Documentation | Documentation Engineering
 
-[GitHub profile](https://github.com/ekatmoz88-alt) · [LinkedIn](https://www.linkedin.com/in/kate-motsar-b56974267/) · [Live API documentation](https://ekatmoz88-alt.github.io/api-docs-portfolio-v2/openapi/)
+[GitHub profile](https://github.com/ekatmoz88-alt) · [LinkedIn](https://www.linkedin.com/in/ekatmoz88/) · [Live API documentation](https://ekatmoz88-alt.github.io/api-docs-portfolio-v2/openapi/)
