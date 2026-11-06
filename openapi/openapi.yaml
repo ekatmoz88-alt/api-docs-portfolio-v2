@@ -2,31 +2,50 @@ openapi: 3.1.0
 info:
   title: Orders API
   version: 1.0.0
-  summary: REST API for creating and retrieving customer orders.
+  summary: Authenticated API for creating and retrieving orders.
   description: |
-    A portfolio reference contract for a small order-management service.
-    It exposes operations to list orders, create an order, and retrieve an
-    order by its identifier.
+    A working portfolio API deployed as a Supabase Edge Function.
+    Authenticated users can create orders and retrieve only the orders
+    associated with their own account.
 
-    The server URL uses the reserved .test domain. It is intentionally
-    non-routable and must be replaced with the base URL of a deployed service.
+    Supply both the Supabase publishable API key in the apikey header and
+    a Supabase Auth access token in the Authorization: Bearer header.
   contact:
     name: API Documentation
 servers:
-  - url: https://api.example.test/v1
-    description: Reserved example host for documentation and testing; not a live service.
+  - url: https://ajnslobbgvnsoyezboqa.supabase.co/functions/v1/orders-api
+    description: Live Orders API Edge Function (Supabase, eu-central-1).
 security:
-  - bearerAuth: []
+  - apiKeyAuth: []
+    bearerAuth: []
 tags:
   - name: Orders
-    description: Create and retrieve customer orders.
+    description: Create and retrieve orders belonging to the authenticated user.
 paths:
   /orders:
     get:
       tags: [Orders]
-      summary: List orders
-      description: Returns the collection of orders visible to the authenticated caller.
+      summary: List the current user's orders
+      description: Returns orders owned by the authenticated user, newest first.
       operationId: listOrders
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of orders to return (1–100).
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+        - name: offset
+          in: query
+          required: false
+          description: Number of orders to skip.
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
       responses:
         '200':
           description: The order collection was returned successfully.
@@ -38,40 +57,35 @@ paths:
                   $ref: '#/components/schemas/Order'
               examples:
                 orders:
-                  summary: Two orders
                   value:
                     - id: 1001
                       status: pending
-                    - id: 1002
-                      status: shipped
+                      created_at: '2026-11-07T10:30:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
     post:
       tags: [Orders]
       summary: Create an order
-      description: Creates an order and returns the newly assigned order identifier.
+      description: Creates an order for the authenticated user.
       operationId: createOrder
       requestBody:
         required: true
-        description: Order details supplied by the caller.
+        description: New order details.
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/OrderInput'
             examples:
               newOrder:
-                summary: Create a pending order
                 value:
                   status: pending
       responses:
         '201':
           description: The order was created successfully.
-          headers:
-            Location:
-              description: Relative URI of the newly created order.
-              schema:
-                type: string
-                example: /v1/orders/1003
           content:
             application/json:
               schema:
@@ -81,21 +95,24 @@ paths:
                   value:
                     id: 1003
                     status: pending
+                    created_at: '2026-11-07T10:30:00Z'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /orders/{id}:
     get:
       tags: [Orders]
-      summary: Get an order
-      description: Returns a single order by its unique numeric identifier.
+      summary: Get one of the current user's orders
+      description: Returns an order by its numeric identifier. Users cannot retrieve another user's orders.
       operationId: getOrderById
       parameters:
         - name: id
           in: path
           required: true
-          description: Unique order identifier.
+          description: Positive integer order identifier.
           schema:
             type: integer
             format: int64
@@ -113,10 +130,13 @@ paths:
                   value:
                     id: 1001
                     status: pending
+                    created_at: '2026-11-07T10:30:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
-          description: No order exists with the supplied identifier.
+          description: The order does not exist or is not visible to the current user.
           content:
             application/problem+json:
               schema:
@@ -124,35 +144,48 @@ paths:
               examples:
                 orderNotFound:
                   value:
-                    type: https://api.example.test/problems/order-not-found
+                    type: urn:orders-api:problems:404
                     title: Order not found
                     status: 404
                     detail: No order was found for the supplied identifier.
+        '500':
+          $ref: '#/components/responses/InternalServerError'
 components:
   securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: apikey
+      description: Supabase publishable API key for this project.
     bearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: opaque
-      description: Access token issued by the service. Obtain a token from the service operator.
+      bearerFormat: JWT
+      description: Supabase Auth access token for the signed-in user.
   schemas:
     Order:
       type: object
-      description: An order resource returned by the API.
+      description: An order owned by the authenticated user.
       additionalProperties: false
       properties:
         id:
           type: integer
           format: int64
           minimum: 1
-          description: Server-assigned order identifier.
+          description: Server-generated order identifier.
           examples: [1001]
         status:
           $ref: '#/components/schemas/OrderStatus'
-      required: [id, status]
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Timestamp when the order was created.
+      required: [id, status, created_at]
       examples:
         - id: 1001
           status: pending
+          created_at: '2026-11-07T10:30:00Z'
     OrderInput:
       type: object
       description: Fields accepted when creating an order.
@@ -170,34 +203,24 @@ components:
       examples: [pending]
     ProblemDetails:
       type: object
-      description: Error response based on the Problem Details format (RFC 9457).
+      description: Error response based on RFC 9457 Problem Details.
       properties:
         type:
           type: string
           format: uri
-          description: URI identifying the problem type.
         title:
           type: string
-          description: Short, human-readable summary of the problem.
         status:
           type: integer
-          description: HTTP status code.
         detail:
           type: string
-          description: Human-readable explanation specific to this occurrence.
         instance:
           type: string
           format: uri
-          description: URI identifying this specific occurrence of the problem.
       required: [type, title, status, detail]
-      examples:
-        - type: https://api.example.test/problems/invalid-request
-          title: Invalid request
-          status: 400
-          detail: The request body is missing or contains an invalid value.
   responses:
     BadRequest:
-      description: The request is malformed or contains invalid input.
+      description: The request body or query parameters are invalid.
       content:
         application/problem+json:
           schema:
@@ -205,18 +228,12 @@ components:
           examples:
             invalidRequest:
               value:
-                type: https://api.example.test/problems/invalid-request
+                type: urn:orders-api:problems:400
                 title: Invalid request
                 status: 400
-                detail: The request body is missing or contains an invalid value.
+                detail: The request body or query parameters are invalid.
     Unauthorized:
-      description: A valid bearer access token was not supplied.
-      headers:
-        WWW-Authenticate:
-          description: Authentication challenge.
-          schema:
-            type: string
-            example: Bearer
+      description: A valid Supabase Auth access token was not supplied.
       content:
         application/problem+json:
           schema:
@@ -224,7 +241,20 @@ components:
           examples:
             unauthorized:
               value:
-                type: https://api.example.test/problems/unauthorized
+                type: urn:orders-api:problems:401
                 title: Unauthorized
                 status: 401
-                detail: A valid bearer access token is required.
+                detail: A valid Supabase Auth access token is required.
+    InternalServerError:
+      description: The API could not complete the request because of a server-side error.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+          examples:
+            internalError:
+              value:
+                type: urn:orders-api:problems:500
+                title: Internal server error
+                status: 500
+                detail: The request could not be completed.
