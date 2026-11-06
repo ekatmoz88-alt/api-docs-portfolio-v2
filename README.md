@@ -2,6 +2,8 @@
 
 A technical writing portfolio demonstrating API documentation, documentation architecture, and Docs-as-Code automation.
 
+**Published documentation portal:** https://ekatmoz88-alt.github.io/api-docs-portfolio-v2/
+
 **Focus:** REST APIs · OpenAPI 3.1 · API reference · SOAP case studies · Documentation QA · CI/CD
 
 ## Project overview
