@@ -6,74 +6,88 @@ permalink: /quickstart/
 
 # Orders API — Quickstart
 
-This guide introduces the illustrative Orders API contract included in this portfolio. It is based only on the operations and schemas defined in [openapi/openapi.yaml]({{ '/openapi/openapi.yaml' | relative_url }}).
+This guide explains how to authenticate and call the deployed Orders API. The API is hosted as a Supabase Edge Function and stores orders in PostgreSQL.
 
-> **Demo limitation:** this is a documentation example, not a live production API. The specification uses `https://api.example.test/v1` as a placeholder server. Requests in this guide are examples of request construction; they are not expected to return live data.
-
-## 1. What you can do
-
-The OpenAPI contract describes three operations:
-
-| Method | Endpoint | Purpose | Documented responses |
-|---|---|---|---|
-| `GET` | `/orders` | List orders | `200`, `400`, `401` |
-| `POST` | `/orders` | Create an order | `201`, `400`, `401` |
-| `GET` | `/orders/{id}` | Retrieve an order by ID | `200`, `404` |
-
-The `Order` schema contains:
-- `id` — integer identifier;
-- `status` — one of `pending`, `shipped`, or `delivered`.
-
-The `OrderInput` request schema contains the `status` field with the same allowed values.
-
-## 2. Base URL
-
-The specification declares this demo server:
+## 1. API base URL
 
 ```text
-https://api.example.test/v1
+https://ajnslobbgvnsoyezboqa.supabase.co/functions/v1/orders-api
 ```
 
-It is a placeholder. Replace it only when working with an actual deployment and its confirmed base URL.
+All API operations require two headers:
 
-## 3. List orders
+- `apikey`: the Supabase publishable key for this project;
+- `Authorization: Bearer <access_token>`: a Supabase Auth access token for a signed-in user.
 
-Use `GET /orders` to request the order collection.
+Do not put a secret or service-role key in browser code, Postman shared collections, or this repository.
 
-### cURL
+## 2. Get an access token
+
+If you do not have an account, create one using Supabase Auth. Replace the placeholders with your email, password, and project publishable key.
+
+### Sign up
+
+```bash
+curl --request POST \
+  --url "https://ajnslobbgvnsoyezboqa.supabase.co/auth/v1/signup" \
+  --header "apikey: YOUR_SUPABASE_PUBLISHABLE_KEY" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "email": "you@example.com",
+    "password": "Use-a-strong-password"
+  }'
+```
+
+If email confirmation is enabled for the project, confirm the address before signing in.
+
+### Sign in
+
+```bash
+curl --request POST \
+  --url "https://ajnslobbgvnsoyezboqa.supabase.co/auth/v1/token?grant_type=password" \
+  --header "apikey: YOUR_SUPABASE_PUBLISHABLE_KEY" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "email": "you@example.com",
+    "password": "Use-a-strong-password"
+  }'
+```
+
+The response contains an `access_token`. Use that value as the Bearer token in the requests below. Treat it as a credential and do not commit it to source control.
+
+## 3. List your orders
+
+`GET /orders` returns the authenticated user's orders, newest first. Pagination is controlled by `limit` (1–100, default 50) and `offset` (default 0).
 
 ```bash
 curl --request GET \
-  --url "https://api.example.test/v1/orders" \
+  --url "https://ajnslobbgvnsoyezboqa.supabase.co/functions/v1/orders-api/orders?limit=50&offset=0" \
+  --header "apikey: YOUR_SUPABASE_PUBLISHABLE_KEY" \
   --header "Authorization: Bearer YOUR_ACCESS_TOKEN"
 ```
 
-The documented successful response is `200 OK` with a JSON array of `Order` objects. The specification includes this illustrative response:
+A successful response is `200 OK` with a JSON array:
 
 ```json
 [
   {
-    "id": 1,
-    "status": "pending"
-  },
-  {
-    "id": 2,
-    "status": "shipped"
+    "id": 1001,
+    "status": "pending",
+    "created_at": "2026-11-07T10:30:00Z"
   }
 ]
 ```
 
-The contract also documents `400 Bad Request` and `401 Unauthorized` responses using the `ProblemDetails` schema.
+An empty array means the current user has no orders yet.
 
 ## 4. Create an order
 
-Use `POST /orders` with a JSON request body. The body must contain `status`, whose value must be `pending`, `shipped`, or `delivered`.
-
-### cURL
+`POST /orders` creates an order for the authenticated user. The only accepted request field is `status`. Allowed values are `pending`, `shipped`, and `delivered`.
 
 ```bash
 curl --request POST \
-  --url "https://api.example.test/v1/orders" \
+  --url "https://ajnslobbgvnsoyezboqa.supabase.co/functions/v1/orders-api/orders" \
+  --header "apikey: YOUR_SUPABASE_PUBLISHABLE_KEY" \
   --header "Authorization: Bearer YOUR_ACCESS_TOKEN" \
   --header "Content-Type: application/json" \
   --data '{
@@ -81,59 +95,66 @@ curl --request POST \
   }'
 ```
 
-The documented successful response is `201 Created`:
+A successful request returns `201 Created` and the new order:
 
 ```json
 {
-  "id": 3,
-  "status": "pending"
+  "id": 1003,
+  "status": "pending",
+  "created_at": "2026-11-07T10:30:00Z"
 }
 ```
 
-The specification also lists `400 Bad Request` and `401 Unauthorized` responses. It does not define additional validation rules for the request body beyond the required `status` field and its enum values.
+The database assigns the identifier, owner, and creation timestamp. The client must not submit `id` or `user_id`.
 
-## 5. Retrieve an order by ID
+## 5. Get an order by ID
 
-Use `GET /orders/{id}` to request one order. The `id` path parameter is required and has integer type.
-
-### cURL
+`GET /orders/{id}` returns one order if it belongs to the authenticated user.
 
 ```bash
 curl --request GET \
-  --url "https://api.example.test/v1/orders/1" \
+  --url "https://ajnslobbgvnsoyezboqa.supabase.co/functions/v1/orders-api/orders/1003" \
+  --header "apikey: YOUR_SUPABASE_PUBLISHABLE_KEY" \
   --header "Authorization: Bearer YOUR_ACCESS_TOKEN"
 ```
 
-The contract documents:
-- `200 OK` when order details are found; the response schema is `Order`;
-- `404 Not Found` when the order is not found; the response schema is `ProblemDetails`.
+The API returns `404 Not Found` if the order does not exist or is not visible to the current user.
 
-The specification does not provide an example response body for this operation.
+## 6. Error responses
 
-## 6. Error response format
+Errors use the `application/problem+json` media type and the RFC 9457 Problem Details structure.
 
-The API uses the `ProblemDetails` schema for documented error responses. Its fields are:
+| HTTP status | Meaning |
+|---|---|
+| `400` | Invalid JSON, order status, ID, or pagination values |
+| `401` | Missing, invalid, or expired access token |
+| `404` | Order not found or not visible to the current user |
+| `405` | HTTP method not supported for the route |
+| `500` | Server or database error |
 
-| Field | Type | Description in the schema |
-|---|---|---|
-| `type` | string (URI format) | Problem type |
-| `title` | string | Short problem title |
-| `status` | integer | HTTP status code |
-| `detail` | string | Human-readable detail |
-| `instance` | string (URI format) | Problem instance |
+Example:
 
-Example values for `400 Bad Request` and `401 Unauthorized` are included in the OpenAPI specification for `GET /orders`.
+```json
+{
+  "type": "urn:orders-api:problems:400",
+  "title": "Invalid order",
+  "status": 400,
+  "detail": "status is required and must be pending, shipped, or delivered. No other fields are accepted."
+}
+```
 
-## 7. Authentication
+## 7. Data access and security
 
-The OpenAPI contract applies HTTP Bearer authentication to all operations through the `bearerAuth` security scheme. Supply an access token in the `Authorization` header as `Bearer YOUR_ACCESS_TOKEN`. The token shown here is a placeholder; the contract does not define a token-issuance endpoint or identity provider.
+- Each order is associated with the authenticated Supabase user.
+- PostgreSQL Row Level Security restricts reads and inserts to that owner.
+- The Edge Function validates the access token with Supabase Auth.
+- The API never accepts a client-supplied `user_id`.
+- The publishable key identifies the Supabase project; it is not a substitute for user authentication.
 
-## 8. Explore the complete contract
+## 8. OpenAPI reference
 
-For full schemas, response definitions, and code samples, open the [interactive Orders API reference]({{ '/openapi/' | relative_url }}).
-
-For the source of truth, see the [OpenAPI 3.1 specification]({{ '/openapi/openapi.yaml' | relative_url }}).
+See the [OpenAPI 3.1 specification]({{ '/openapi/openapi.yaml' | relative_url }}) for the complete contract, request schemas, responses, and authentication requirements.
 
 ---
 
-*Portfolio note: endpoints, example identifiers, payloads, and the server address are illustrative documentation data. They do not represent a running service.*
+*Portfolio note: this API is deployed on Supabase as a demonstration service. Do not submit real customer, payment, or confidential business data.*
