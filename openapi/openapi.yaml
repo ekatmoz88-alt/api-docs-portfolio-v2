@@ -65,6 +65,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
         '500':
           $ref: '#/components/responses/InternalServerError'
     post:
@@ -100,6 +102,10 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
         '500':
           $ref: '#/components/responses/InternalServerError'
   /orders/{id}:
@@ -148,6 +154,8 @@ paths:
                     title: Order not found
                     status: 404
                     detail: No order was found for the supplied identifier.
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
@@ -220,7 +228,7 @@ components:
       required: [type, title, status, detail]
   responses:
     BadRequest:
-      description: The request body or query parameters are invalid.
+      description: The request body, query parameters, or order identifier are invalid.
       content:
         application/problem+json:
           schema:
@@ -232,6 +240,18 @@ components:
                 title: Invalid request
                 status: 400
                 detail: The request body or query parameters are invalid.
+            invalidOrder:
+              value:
+                type: urn:orders-api:problems:400
+                title: Invalid order
+                status: 400
+                detail: status is required and must be pending, shipped, or delivered. No other fields are accepted.
+            invalidPagination:
+              value:
+                type: urn:orders-api:problems:400
+                title: Invalid pagination
+                status: 400
+                detail: limit must be an integer from 1 to 100 and offset must be a non-negative integer.
     Unauthorized:
       description: A valid Supabase Auth access token was not supplied.
       content:
@@ -245,6 +265,32 @@ components:
                 title: Unauthorized
                 status: 401
                 detail: A valid Supabase Auth access token is required.
+    Forbidden:
+      description: The authenticated user is not allowed to create orders.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+          examples:
+            forbidden:
+              value:
+                type: urn:orders-api:problems:403
+                title: Forbidden
+                status: 403
+                detail: The authenticated user is not allowed to create orders.
+    MethodNotAllowed:
+      description: The HTTP method is not supported for the requested resource.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+          examples:
+            methodNotAllowed:
+              value:
+                type: urn:orders-api:problems:405
+                title: Method not allowed
+                status: 405
+                detail: This HTTP method is not supported for the requested resource.
     InternalServerError:
       description: The API could not complete the request because of a server-side error.
       content:
