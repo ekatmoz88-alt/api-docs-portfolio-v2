@@ -13,6 +13,7 @@ This repository brings together API specifications, documentation examples, inte
 | Artifact | What it demonstrates |
 |---|---|
 | [Orders API specification](openapi/openapi.yaml) | OpenAPI 3.1, REST endpoints, schemas, and examples |
+| [Orders API Quickstart](quickstart.md) | Step-by-step guide to the three operations documented in the contract |
 | [Navigation API specification](openapi/navigation-api.yaml) | A second API contract used in validation workflows |
 | [Legacy SOAP API review](legacy-soap-api-review.html) | Analysis of legacy SOAP integration patterns and migration considerations |
 | [UMMS SOAP client case study](umms-enterprise-soap-client.html) | Structured documentation of SOAP client and integration concepts |
