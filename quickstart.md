@@ -128,6 +128,7 @@ Errors use the `application/problem+json` media type and the RFC 9457 Problem De
 |---|---|
 | `400` | Invalid JSON, order status, ID, or pagination values |
 | `401` | Missing, invalid, or expired access token |
+| `403` | The authenticated user is not allowed to create orders |
 | `404` | Order not found or not visible to the current user |
 | `405` | HTTP method not supported for the route |
 | `500` | Server or database error |
