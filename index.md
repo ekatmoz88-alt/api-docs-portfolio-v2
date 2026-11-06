@@ -300,6 +300,7 @@ footer{border-top:1px solid #d8e3f0!important}
         <p>Интерактивная REST API спецификация управления заказами. Развернута с использованием генератора Redocly для наглядного тестирования эндпоинтов.</p>
       </div>
       <a href="{{ '/openapi/'| relative_url }}" class="portfolio-btn">Открыть API Спецификацию →</a>
+      <p><a href="{{ '/quickstart/' | relative_url }}">Quickstart: пошаговое руководство по Orders API</a></p>
     </div>
 
     <!-- Карточка 2: UMMS SOAP Client -->
