@@ -13,7 +13,7 @@ This repository brings together API specifications, documentation examples, inte
 | Artifact | What it demonstrates |
 |---|---|
 | [Orders API specification](openapi/openapi.yaml) | OpenAPI 3.1, REST endpoints, schemas, and examples |
-| [Orders API Quickstart](quickstart.md) | Step-by-step guide to the three operations documented in the contract |
+| [Orders API Quickstart](quickstart.md) | Authentication and request examples for the deployed demo API |
 | [Navigation API specification](openapi/navigation-api.yaml) | A second API contract used in validation workflows |
 | [Legacy SOAP API review](legacy-soap-api-review.html) | Analysis of legacy SOAP integration patterns and migration considerations |
 | [UMMS SOAP client case study](umms-enterprise-soap-client.html) | Structured documentation of SOAP client and integration concepts |
@@ -32,9 +32,9 @@ This repository brings together API specifications, documentation examples, inte
 
 The GitHub Actions workflow installs dependencies, runs dependency audit checks, validates the OpenAPI specifications with Spectral and Redocly, builds the Jekyll site, and deploys the Pages artifact from the main branch.
 
-## Project context
+## Live demo API\n\n- Base URL: `https://ajnslobbgvnsoyezboqa.supabase.co/functions/v1/orders-api`\n- Authentication: Supabase Auth access token + project publishable API key\n- Operations: `GET /orders`, `POST /orders`, `GET /orders/{id}`\n- Data isolation: PostgreSQL Row Level Security restricts orders to their owner\n\nSee the [Quickstart](quickstart.md) for signup, sign-in, and request examples.\n\n## Project context
 
-This is a portfolio/demo project. The Orders API uses illustrative endpoints and data; it is not a live production service. SOAP case studies are portfolio materials and do not imply access to a live customer system.
+This is a portfolio/demo project. The Orders API is deployed as a Supabase Edge Function with a PostgreSQL data store and Supabase Auth. It is a portfolio demonstration service, not a production order-management system; use test data only. SOAP case studies are portfolio materials and do not imply access to a live customer system.
 
 ## Author
 
