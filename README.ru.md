@@ -33,7 +33,16 @@
 
 Workflow GitHub Actions устанавливает зависимости, выполняет аудит npm-пакетов, проверяет обе OpenAPI-спецификации через Spectral и Redocly, собирает сайт на Jekyll и публикует артефакт GitHub Pages из основной ветки.
 
-## Развёрнутый демонстрационный API\n\n- Base URL: `https://ajnslobbgvnsoyezboqa.supabase.co/functions/v1/orders-api`\n- Аутентификация: токен Supabase Auth + публичный ключ проекта\n- Операции: `GET /orders`, `POST /orders`, `GET /orders/{id}`\n- Изоляция данных: PostgreSQL Row Level Security ограничивает доступ владельцем заказа\n\nИнструкции по регистрации, входу и запросам — в [Quickstart](quickstart.md).\n\n## Контекст проекта
+## Развёрнутый демонстрационный API
+
+- Base URL: `https://ajnslobbgvnsoyezboqa.supabase.co/functions/v1/orders-api`
+- Аутентификация: токен Supabase Auth + публичный ключ проекта
+- Операции: `GET /orders`, `POST /orders`, `GET /orders/{id}`
+- Изоляция данных: PostgreSQL Row Level Security ограничивает доступ владельцем заказа
+
+Инструкции по регистрации, входу и запросам — в [Quickstart](quickstart.md).
+
+## Контекст проекта
 
 Orders API развёрнут как Supabase Edge Function с базой PostgreSQL и Supabase Auth. Это демонстрационный сервис для портфолио, а не production-система управления заказами; используйте только тестовые данные. SOAP-кейсы являются материалами портфолио и не предполагают доступ к работающей системе заказчика.
 
@@ -41,6 +50,6 @@ Orders API развёрнут как Supabase Edge Function с базой Postgr
 
 **Kate Motsar** — Technical Writer | API Documentation | Documentation Engineering
 
-[GitHub profile](https://github.com/ekatmoz88-alt) · [LinkedIn](https://www.linkedin.com/in/kate-motsar-b56974267/)
+[GitHub profile](https://github.com/ekatmoz88-alt) · [LinkedIn](https://www.linkedin.com/in/ekatmoz88/)
 
 [English](README.md) | **Русский**
