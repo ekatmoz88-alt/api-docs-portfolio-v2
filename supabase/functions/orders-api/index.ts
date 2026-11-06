@@ -14,7 +14,7 @@ const allowedStatuses = new Set(["pending", "shipped", "delivered"]);
 function problem(status: number, title: string, detail: string): Response {
   return new Response(
     JSON.stringify({
-      type: `https://api.example.test/problems/${status}`,
+      type: `urn:orders-api:problems:${status}`,
       title,
       status,
       detail,
