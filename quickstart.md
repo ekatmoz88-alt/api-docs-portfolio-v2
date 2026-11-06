@@ -6,7 +6,7 @@ permalink: /quickstart/
 
 # Orders API — Quickstart
 
-This guide introduces the illustrative Orders API contract included in this portfolio. It is based only on the operations and schemas defined in [openapi/openapi.yaml](/openapi/openapi.yaml).
+This guide introduces the illustrative Orders API contract included in this portfolio. It is based only on the operations and schemas defined in [openapi/openapi.yaml]({{ '/openapi/openapi.yaml' | relative_url }}).
 
 > **Demo limitation:** this is a documentation example, not a live production API. The specification uses `https://example.com` as a placeholder server. Requests in this guide are examples of request construction; they are not expected to return live data.
 
@@ -127,9 +127,9 @@ The OpenAPI document contains cURL, Python, and JavaScript snippets with an `Aut
 
 ## 8. Explore the complete contract
 
-For full schemas, response definitions, and code samples, open the [interactive Orders API reference](/openapi/).
+For full schemas, response definitions, and code samples, open the [interactive Orders API reference]({{ '/openapi/' | relative_url }}).
 
-For the source of truth, see the [OpenAPI 3.1 specification](openapi/openapi.yaml).
+For the source of truth, see the [OpenAPI 3.1 specification]({{ '/openapi/openapi.yaml' | relative_url }}).
 
 ---
 
