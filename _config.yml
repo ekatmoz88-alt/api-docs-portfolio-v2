@@ -1,5 +1,6 @@
 title: "Technical Writing & API Portfolio"
 description: "Примеры технической документации, интерактивных панелей и спецификаций API"
+baseurl: "/api-docs-portfolio-v2"
 theme: jekyll-theme-cayman
 
 markdown: kramdown
