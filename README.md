@@ -52,3 +52,8 @@ This is a portfolio/demo project. The Orders API is deployed as a Supabase Edge 
 **Kate Motsar** — Technical Writer | API Documentation | Documentation Engineering
 
 [GitHub profile](https://github.com/ekatmoz88-alt) · [LinkedIn](https://www.linkedin.com/in/ekatmoz88/) · [Live API documentation](https://ekatmoz88-alt.github.io/api-docs-portfolio-v2/openapi/)
+
+
+## Tags
+
+`api-documentation` · `openapi-3-1` · `rest-api` · `soap` · `wsdl` · `docs-as-code` · `en-ru`
