@@ -57,3 +57,8 @@ This is a portfolio/demo project. The Orders API is deployed as a Supabase Edge 
 ## Tags
 
 `api-documentation` · `openapi-3-1` · `rest-api` · `soap` · `wsdl` · `docs-as-code` · `en-ru`
+
+
+## Related portfolio example
+
+The separate [Technical Writing Portfolio](https://github.com/ekatmoz88-alt/technical-writing-portfolio) documents a simulated Orders API for a documentation-only exercise. It is not the same deployed Supabase Edge Function used by this repository.
