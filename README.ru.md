@@ -60,3 +60,8 @@ Orders API развёрнут как Supabase Edge Function с базой Postgr
 ## Теги
 
 `api-documentation` · `openapi-3-1` · `rest-api` · `soap` · `wsdl` · `docs-as-code` · `en-ru`
+
+
+## Связанный пример портфолио
+
+Отдельный репозиторий [Technical Writing Portfolio](https://github.com/ekatmoz88-alt/technical-writing-portfolio) описывает вымышленный Orders API в рамках демонстрационного задания по документации. Это не та же развёрнутая Supabase Edge Function, которая используется в данном репозитории.
