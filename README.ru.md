@@ -55,3 +55,8 @@ Orders API развёрнут как Supabase Edge Function с базой Postgr
 [GitHub profile](https://github.com/ekatmoz88-alt) · [LinkedIn](https://www.linkedin.com/in/ekatmoz88/)
 
 [English](README.md) | **Русский**
+
+
+## Теги
+
+`api-documentation` · `openapi-3-1` · `rest-api` · `soap` · `wsdl` · `docs-as-code` · `en-ru`
