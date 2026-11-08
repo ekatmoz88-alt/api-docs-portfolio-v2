@@ -9,9 +9,9 @@ permalink: /umms-enterprise-soap-client
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UMMS SOAP Client Documentation — Case Study</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -46,23 +46,41 @@ permalink: /umms-enterprise-soap-client
             max-width: 1100px;
             margin: 0 auto;
             padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
         }
-        .back-btn {
+        .back-btn, .lang-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             background-color: #21262d;
             color: #c9d1d9;
-            padding: 8px 16px;
+            padding: 8px 14px;
             font-size: 14px;
             font-weight: 600;
             text-decoration: none;
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s, border-color 0.2s;
         }
-        .back-btn:hover {
+        .back-btn:hover, .lang-btn:hover {
             background-color: #30363d;
+        }
+        .lang-switch {
+            display: flex;
+            gap: 6px;
+        }
+        .lang-btn {
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .lang-btn[aria-pressed="true"] {
+            color: #ffffff;
+            background-color: #1f6feb;
+            border-color: #1f6feb;
         }
         .main-container {
             max-width: 900px;
@@ -76,25 +94,81 @@ permalink: /umms-enterprise-soap-client
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
         }
+        @media (max-width: 480px) {
+            .nav-container { padding: 12px; }
+            .back-btn, .lang-btn { padding: 8px 10px; font-size: 13px; }
+            .main-container { margin-top: 28px; padding: 0 16px; }
+        }
     </style>
 </head>
 <body>
 
-<nav class="nav-container">
-    <a href="{{ '/' | relative_url }}" class="back-btn">← На главную</a>
+<nav>
+    <div class="nav-container">
+        <a href="{{ '/' | relative_url }}" class="back-btn" data-i18n="home">← На главную</a>
+        <div class="lang-switch" role="group" aria-label="Language selection">
+            <button class="lang-btn" type="button" data-lang="ru" aria-pressed="true">RU</button>
+            <button class="lang-btn" type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+    </div>
 </nav>
 
-<div class="main-container">
-    <h1>UMMS SOAP Client: Архитектурный обзор интеграции стационарных и мобильных клиентов</h1>
-    <p>Данный кейс-стади содержит детальное описание и технический разбор корпоративного слоя взаимодействия рабочих мест операторов (WPF-приложения) и мобильных клиентов через шину данных SOAP API.</p>
+<main class="main-container">
+    <h1 data-i18n="title">UMMS SOAP Client: Архитектурный обзор интеграции стационарных и мобильных клиентов</h1>
+    <p data-i18n="intro">Данный кейс-стади содержит детальное описание и технический разбор корпоративного слоя взаимодействия рабочих мест операторов (WPF-приложения) и мобильных клиентов через шину данных SOAP API.</p>
 
-    <h2>Основные разделы документации</h2>
+    <h2 data-i18n="sections">Основные разделы документации</h2>
     <ul>
-        <li><strong>Каталог методов:</strong> Описание доступных операций, включая методы авторизации, синхронизации нормативно-справочной информации (НСИ) и отправки транзакций.</li>
-        <li><strong>Структуры данных:</strong> Подробный разбор XSD-схем, типов данных, обязательных полей и ограничений на форматы значений.</li>
-        <li><strong>Операция поиска:</strong> Детальное пошаговое описание выполнения поисковых запросов с примерами XML-пакетов запросов и ответов.</li>
+        <li><strong data-i18n="methodsLabel">Каталог методов:</strong> <span data-i18n="methodsText">Описание доступных операций, включая методы авторизации, синхронизации нормативно-справочной информации (НСИ) и отправки транзакций.</span></li>
+        <li><strong data-i18n="dataLabel">Структуры данных:</strong> <span data-i18n="dataText">Подробный разбор XSD-схем, типов данных, обязательных полей и ограничений на форматы значений.</span></li>
+        <li><strong data-i18n="searchLabel">Операция поиска:</strong> <span data-i18n="searchText">Детальное пошаговое описание выполнения поисковых запросов с примерами XML-пакетов запросов и ответов.</span></li>
     </ul>
-</div>
+</main>
+
+<script>
+    const translations = {
+        ru: {
+            home: "← На главную",
+            title: "UMMS SOAP Client: Архитектурный обзор интеграции стационарных и мобильных клиентов",
+            intro: "Данный кейс-стади содержит детальное описание и технический разбор корпоративного слоя взаимодействия рабочих мест операторов (WPF-приложения) и мобильных клиентов через шину данных SOAP API.",
+            sections: "Основные разделы документации",
+            methodsLabel: "Каталог методов:",
+            methodsText: "Описание доступных операций, включая методы авторизации, синхронизации нормативно-справочной информации (НСИ) и отправки транзакций.",
+            dataLabel: "Структуры данных:",
+            dataText: "Подробный разбор XSD-схем, типов данных, обязательных полей и ограничений на форматы значений.",
+            searchLabel: "Операция поиска:",
+            searchText: "Детальное пошаговое описание выполнения поисковых запросов с примерами XML-пакетов запросов и ответов."
+        },
+        en: {
+            home: "← Back to home",
+            title: "UMMS SOAP Client: Architecture Overview of Desktop and Mobile Client Integration",
+            intro: "This case study presents a technical overview of the enterprise integration layer connecting operator workstations (WPF applications) and mobile clients through a SOAP API data bus.",
+            sections: "Documentation Sections",
+            methodsLabel: "Method Reference:",
+            methodsText: "Description of available operations, including authentication, synchronization of reference data, and transaction submission.",
+            dataLabel: "Data Structures:",
+            dataText: "Detailed review of XSD schemas, data types, required fields, and value-format constraints.",
+            searchLabel: "Search Operation:",
+            searchText: "Step-by-step description of search requests with XML request and response examples."
+        }
+    };
+
+    function setLanguage(language) {
+        const dictionary = translations[language] || translations.ru;
+        document.documentElement.lang = language;
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+            const key = element.dataset.i18n;
+            if (dictionary[key]) element.textContent = dictionary[key];
+        });
+        document.querySelectorAll("[data-lang]").forEach((button) => {
+            button.setAttribute("aria-pressed", String(button.dataset.lang === language));
+        });
+    }
+
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+</script>
 
 </body>
 </html>
