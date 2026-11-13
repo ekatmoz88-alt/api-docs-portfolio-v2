@@ -45,7 +45,7 @@ See the [Quickstart](quickstart.md) for signup, sign-in, and request examples.
 
 ## Project context
 
-This is a portfolio/demo project. The Orders API is deployed as a Supabase Edge Function with a PostgreSQL data store and Supabase Auth. It is a portfolio demonstration service, not a production order-management system; use test data only. SOAP case studies are portfolio materials and do not imply access to a live customer system.
+The Orders API is a real deployed service implemented as a Supabase Edge Function with PostgreSQL and Supabase Auth. Use controlled test data in the public environment; do not submit real customer, payment, or confidential business data. SOAP documentation is based on real enterprise integration work and is anonymized for public release.
 
 ## Author
 
@@ -61,4 +61,4 @@ This is a portfolio/demo project. The Orders API is deployed as a Supabase Edge 
 
 ## Related portfolio example
 
-The separate [Technical Writing Portfolio](https://github.com/ekatmoz88-alt/technical-writing-portfolio) documents a simulated Orders API for a documentation-only exercise. It is not the same deployed Supabase Edge Function used by this repository.
+The related [Technical Writing Portfolio](https://github.com/ekatmoz88-alt/technical-writing-portfolio) contains additional documentation artifacts for the real Orders API project. The V2 repository includes the deployed Supabase Edge Function and its implementation.
