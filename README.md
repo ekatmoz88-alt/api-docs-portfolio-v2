@@ -15,7 +15,7 @@ This repository brings together API specifications, documentation examples, inte
 | Artifact | What it demonstrates |
 |---|---|
 | [Orders API specification](openapi/openapi.yaml) | OpenAPI 3.1, REST endpoints, schemas, and examples |
-| [Orders API Quickstart](quickstart.md) | Authentication and request examples for the deployed demo API |
+| [Orders API Quickstart](quickstart.md) | Authentication and request examples for the deployed API |
 | [Navigation API specification](openapi/navigation-api.yaml) | A second API contract used in validation workflows |
 | [Legacy SOAP API review](legacy-soap-api-review.html) | Analysis of legacy SOAP integration patterns and migration considerations |
 | [UMMS SOAP client case study](umms-enterprise-soap-client.html) | Structured documentation of SOAP client and integration concepts |
@@ -34,7 +34,7 @@ This repository brings together API specifications, documentation examples, inte
 
 The GitHub Actions workflow installs dependencies, runs dependency audit checks, validates the OpenAPI specifications with Spectral and Redocly, builds the Jekyll site, and deploys the Pages artifact from the main branch.
 
-## Live demo API
+## Deployed Orders API
 
 - Base URL: `https://ajnslobbgvnsoyezboqa.supabase.co/functions/v1/orders-api`
 - Authentication: Supabase Auth access token + project publishable API key
