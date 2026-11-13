@@ -46,7 +46,7 @@ Workflow GitHub Actions устанавливает зависимости, вы�
 
 ## Контекст проекта
 
-Orders API развёрнут как Supabase Edge Function с базой PostgreSQL и Supabase Auth. Это демонстрационный сервис для портфолио, а не production-система управления заказами; используйте только тестовые данные. SOAP-кейсы являются материалами портфолио и не предполагают доступ к работающей системе заказчика.
+Orders API развёрнут как Supabase Edge Function с базой PostgreSQL и Supabase Auth. Orders API — реальный развёрнутый сервис на Supabase Edge Function, PostgreSQL и Supabase Auth. В публичной среде используйте контролируемые тестовые данные; не отправляйте реальные клиентские, платёжные или конфиденциальные сведения. Документация SOAP основана на реальной работе с enterprise-интеграцией и обезличена для публикации.
 
 ## Автор
 
@@ -64,4 +64,4 @@ Orders API развёрнут как Supabase Edge Function с базой Postgr
 
 ## Связанный пример портфолио
 
-Отдельный репозиторий [Technical Writing Portfolio](https://github.com/ekatmoz88-alt/technical-writing-portfolio) описывает вымышленный Orders API в рамках демонстрационного задания по документации. Это не та же развёрнутая Supabase Edge Function, которая используется в данном репозитории.
+Связанный репозиторий [Technical Writing Portfolio](https://github.com/ekatmoz88-alt/technical-writing-portfolio) содержит дополнительные материалы документации реального проекта Orders API. В V2 находятся развёрнутая Supabase Edge Function и её реализация.
