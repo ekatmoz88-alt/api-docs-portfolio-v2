@@ -19,7 +19,7 @@
 | Материал | Что демонстрирует |
 |---|---|
 | [Спецификация Orders API](openapi/openapi.yaml) | OpenAPI 3.1, REST-эндпоинты, схемы и примеры |
-| [Quickstart для Orders API](quickstart.md) | Аутентификация и примеры запросов к развёрнутому демо-API |
+| [Quickstart для Orders API](quickstart.md) | Аутентификация и примеры запросов к развёрнутому API |
 | [Спецификация Navigation API](openapi/navigation-api.yaml) | Второй API-контракт, включённый в автоматические проверки |
 | [Анализ Legacy SOAP API](legacy-soap-api-review.html) | Анализ устаревших SOAP-интеграций и вариантов миграции |
 | [Кейс SOAP-клиента UMMS](umms-enterprise-soap-client.html) | Структурированное описание SOAP-клиента и интеграционных концепций |
@@ -35,7 +35,7 @@
 
 Workflow GitHub Actions устанавливает зависимости, выполняет аудит npm-пакетов, проверяет обе OpenAPI-спецификации через Spectral и Redocly, собирает сайт на Jekyll и публикует артефакт GitHub Pages из основной ветки.
 
-## Развёрнутый демонстрационный API
+## Развёрнутый Orders API
 
 - Base URL: `https://ajnslobbgvnsoyezboqa.supabase.co/functions/v1/orders-api`
 - Аутентификация: токен Supabase Auth + публичный ключ проекта
@@ -46,7 +46,7 @@ Workflow GitHub Actions устанавливает зависимости, вы�
 
 ## Контекст проекта
 
-Orders API развёрнут как Supabase Edge Function с базой PostgreSQL и Supabase Auth. Orders API — реальный развёрнутый сервис на Supabase Edge Function, PostgreSQL и Supabase Auth. В публичной среде используйте контролируемые тестовые данные; не отправляйте реальные клиентские, платёжные или конфиденциальные сведения. Документация SOAP основана на реальной работе с enterprise-интеграцией и обезличена для публикации.
+Orders API — реальный развёрнутый сервис на Supabase Edge Function, PostgreSQL и Supabase Auth. В публичной среде используйте контролируемые тестовые данные; не отправляйте реальные клиентские, платёжные или конфиденциальные сведения. Документация SOAP основана на реальной работе с enterprise-интеграцией и обезличена для публикации.
 
 ## Автор
 
