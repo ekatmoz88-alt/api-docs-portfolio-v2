@@ -158,4 +158,4 @@ See the [OpenAPI 3.1 specification]({{ '/openapi/openapi.yaml' | relative_url }}
 
 ---
 
-*Portfolio note: this API is deployed on Supabase as a demonstration service. Do not submit real customer, payment, or confidential business data.*
+*Environment note: this API is deployed on Supabase for controlled testing and portfolio access. Do not submit real customer, payment, or confidential business data.*
