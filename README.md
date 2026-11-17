@@ -61,4 +61,6 @@ The Orders API is a real deployed service implemented as a Supabase Edge Functio
 
 ## Related portfolio example
 
-The related [Technical Writing Portfolio](https://github.com/ekatmoz88-alt/technical-writing-portfolio) contains additional documentation artifacts for the real Orders API project. The V2 repository includes the deployed Supabase Edge Function and its implementation.
+The [Technical Writing Portfolio](https://github.com/ekatmoz88-alt/technical-writing-portfolio) is a separate documentation case study built around an independent sample Orders API contract. It demonstrates API reference design, developer onboarding, error handling, webhook workflows, documentation QA, and Docs-as-Code practices.
+
+Its sample contract is not the contract implemented by the deployed Supabase Orders API in this repository. The two repositories demonstrate different API documentation scenarios; their endpoints, authentication flows, webhook capabilities, and implementation details must not be treated as interchangeable.
