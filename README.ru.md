@@ -64,4 +64,6 @@ Orders API — реальный развёрнутый сервис на Supabas
 
 ## Связанный пример портфолио
 
-Связанный репозиторий [Technical Writing Portfolio](https://github.com/ekatmoz88-alt/technical-writing-portfolio) содержит дополнительные материалы документации реального проекта Orders API. В V2 находятся развёрнутая Supabase Edge Function и её реализация.
+[Technical Writing Portfolio](https://github.com/ekatmoz88-alt/technical-writing-portfolio) — отдельный документационный кейс, построенный вокруг самостоятельного демонстрационного контракта Orders API. Он показывает проектирование API Reference, руководства разработчика, обработки ошибок, сценариев Webhooks, QA документации и Docs-as-Code.
+
+Демонстрационный контракт из Technical Writing Portfolio не является контрактом развёрнутого Supabase Orders API в этом репозитории. Два репозитория демонстрируют разные сценарии API-документирования; их эндпоинты, схемы авторизации, возможности Webhooks и детали реализации нельзя считать взаимозаменяемыми.
