@@ -16,8 +16,8 @@ permalink: /
     :root {
       color-scheme: light;
       --blue: #455a64;
-      --blue-dark: #06479d;
-      --blue-soft: #edf4ff;
+      --blue-dark: #37474f;
+      --blue-soft: #e0f2f1;
       --ink: #263238;
       --text: #37474f;
       --muted: #607d8b;
@@ -53,7 +53,7 @@ permalink: /
       padding: 0 28px;
       color: #fff;
       background: var(--blue);
-      box-shadow: 0 2px 8px rgba(16, 42, 80, .14);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, .18);
     }
     .brand { display: flex; align-items: center; gap: 12px; color: #fff; font-weight: 650; letter-spacing: .01em; }
     .brand-mark {
