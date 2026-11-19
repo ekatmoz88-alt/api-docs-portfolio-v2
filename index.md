@@ -1,341 +1,367 @@
 ---
-layout: default
-title: Home
+layout: null
+title: API Documentation & Integration Analysis
 permalink: /
 ---
 
-<!-- Подключение современных шрифтов Inter и JetBrains Mono -->
-<link rel="preconnect" href="https://googleapis.com">
-<link rel="preconnect" href="https://gstatic.com" crossorigin>
-<link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<style>
-  /* ==========================================================================
-     1. ГЛОБАЛЬНЫЕ СТИЛИ И ШРИФТЫ
-     ========================================================================== */
-  :root {
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-    --bg-main: #0d1117;
-    --bg-card: #1f242c;
-    --border-color: #30363d;
-    --text-primary: #c9d1d9;
-    --text-muted: #8b949e;
-    --accent: #58a6ff;
-    --success: #238636;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  }
-
-  body {
-    font-family: var(--font-sans);
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-    margin: 0;
-    padding: 0;
-  }
-
-  code, pre {
-    font-family: var(--font-mono) !important;
-    font-size: 0.9em;
-  }
-
-  /* ==========================================================================
-     2. HERO-БЛОК (Имя и Специализация)
-     ========================================================================== */
-  .hero-section {
-    background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
-    border-bottom: 1px solid var(--border-color);
-    padding: 60px 20px;
-    text-align: center;
-  }
-
-  .hero-container {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .hero-avatar-placeholder {
-    font-size: 40px;
-    margin-bottom: 15px;
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0 0 10px 0;
-  }
-
-  .hero-title span {
-    color: var(--accent);
-  }
-
-  .hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--text-muted);
-    margin: 0 0 25px 0;
-    font-weight: 400;
-  }
-
-  /* ==========================================================================
-     3. СЕТКА ПРОЕКТОВ (Grid Layout с тенями и иконками)
-     ========================================================================== */
-  .portfolio-container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
-  }
-
-  .section-title {
-    font-size: 1.75rem;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
-    margin-bottom: 30px;
-    color: #ffffff;
-  }
-
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-  }
-
-  .portfolio-card {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 24px;
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .portfolio-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(88, 166, 255, 0.15);
-    border-color: #444c56;
-  }
-
-  .card-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 15px;
-  }
-
-  .card-icon {
-    font-size: 24px;
-    color: var(--accent);
-    background: rgba(88, 166, 255, 0.1);
-    padding: 8px;
-    border-radius: 6px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .portfolio-card h3 {
-    margin: 0;
-    font-size: 1.3rem;
-    color: #ffffff;
-  }
-
-  .portfolio-card p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    flex-grow: 1;
-    margin: 0 0 20px 0;
-  }
-
-  .portfolio-btn {
-    display: inline-block;
-    background-color: var(--success);
-    color: #ffffff !important;
-    padding: 10px 16px;
-    font-size: 14px;
-    font-weight: 600;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: background-color 0.2s;
-  }
-
-  .portfolio-btn:hover {
-    background-color: #2ea44f;
-    text-decoration: none;
-  }
-
-  /* ==========================================================================
-     4. ФУТЕР С КОНТАКТАМИ
-     ========================================================================== */
-  .portfolio-footer {
-    background-color: #161b22;
-    border-top: 1px solid var(--border-color);
-    padding: 40px 20px;
-    margin-top: 60px;
-    text-align: center;
-  }
-
-  .footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-  }
-
-  .footer-link {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: color 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .footer-link:hover {
-    color: var(--accent);
-  }
-
-  .footer-credits {
-    font-size: 0.85rem;
-    color: #57606a;
-  }
-
-  /* ==========================================================================
-     5. АДАПТИВНОСТЬ И МОБИЛЬНАЯ ВЕРСИЯ (Media Queries)
-     ========================================================================== */
-  @media (max-width: 768px) {
-    .hero-section {
-      padding: 40px 15px;
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Портфолио системного анализа и API-документации: REST, OpenAPI 3.1, SOAP, WSDL, XML, архитектура интеграций и Docs-as-Code.">
+  <meta name="theme-color" content="#0759c7">
+  <title>API Documentation & Integration Analysis — Kate Motsar</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --blue: #0759c7;
+      --blue-dark: #06479d;
+      --blue-soft: #edf4ff;
+      --ink: #172b4d;
+      --text: #344054;
+      --muted: #667085;
+      --line: #dce5f0;
+      --surface: #ffffff;
+      --surface-soft: #f7f9fc;
+      --code: #f1f5fb;
+      --shadow: 0 8px 28px rgba(16, 42, 80, .06);
+      --radius: 12px;
+      --sidebar: 248px;
+      --header: 62px;
     }
-    
-    .hero-title {
-      font-size: 2rem;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header) + 24px); }
+    body {
+      margin: 0;
+      background: var(--surface);
+      color: var(--text);
+      font: 15px/1.7 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
     }
-
-    .hero-subtitle {
-      font-size: 1.1rem;
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { color: var(--blue-dark); text-decoration: underline; text-underline-offset: 3px; }
+    a:focus-visible { outline: 3px solid #8bb8f2; outline-offset: 3px; border-radius: 4px; }
+    .topbar {
+      position: sticky;
+      z-index: 20;
+      top: 0;
+      height: var(--header);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 0 28px;
+      color: #fff;
+      background: var(--blue);
+      box-shadow: 0 2px 8px rgba(16, 42, 80, .14);
     }
-
-    .portfolio-grid {
-      grid-template-columns: 1fr;
-      gap: 15px;
+    .brand { display: flex; align-items: center; gap: 12px; color: #fff; font-weight: 650; letter-spacing: .01em; }
+    .brand-mark {
+      display: grid; place-items: center; width: 32px; height: 32px;
+      border: 1px solid rgba(255,255,255,.35); border-radius: 8px;
+      font-size: 13px; font-weight: 750;
     }
-
-    .footer-links {
-      flex-direction: column;
-      gap: 12px;
+    .top-links { display: flex; align-items: center; gap: 20px; }
+    .top-links a { color: #fff; font-size: 13px; opacity: .94; }
+    .layout { display: grid; grid-template-columns: var(--sidebar) minmax(0, 1fr); min-height: calc(100vh - var(--header)); }
+    .sidebar {
+      position: sticky; top: var(--header); align-self: start;
+      height: calc(100vh - var(--header)); overflow-y: auto;
+      padding: 28px 18px 36px 24px; border-right: 1px solid var(--line);
+      background: #fbfcfe;
     }
-  }
+    .side-label {
+      margin: 0 0 12px 10px; color: #98a2b3; font-size: 10px;
+      font-weight: 750; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .side-nav { display: grid; gap: 4px; }
+    .side-nav a {
+      display: block; padding: 8px 10px; border-radius: 7px;
+      color: #475467; font-size: 13px; line-height: 1.45;
+    }
+    .side-nav a:hover { background: var(--blue-soft); color: var(--blue); text-decoration: none; }
+    .side-nav .sub-link { padding-left: 24px; color: #667085; font-size: 12px; }
+    .side-divider { height: 1px; margin: 20px 4px; background: var(--line); }
+    .content { width: min(100%, 1120px); padding: 46px clamp(24px, 5vw, 76px) 80px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px;
+      color: var(--blue); font-size: 11px; font-weight: 750; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .eyebrow:before { content: ""; width: 22px; height: 2px; background: var(--blue); }
+    h1, h2, h3 { color: var(--ink); line-height: 1.25; }
+    h1 { max-width: 820px; margin: 0 0 16px; font-size: clamp(32px, 4vw, 48px); letter-spacing: -.035em; }
+    h1 span { color: var(--blue); }
+    .lead { max-width: 790px; margin: 0; color: #526174; font-size: 17px; line-height: 1.75; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .chip {
+      display: inline-flex; align-items: center; padding: 5px 10px;
+      border: 1px solid #cddcf0; border-radius: 999px; background: #f7faff;
+      color: #31547e; font-size: 11px; font-weight: 650;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 42px; padding: 9px 15px; border: 1px solid var(--blue);
+      border-radius: 7px; background: var(--blue); color: #fff; font-size: 13px; font-weight: 650;
+    }
+    .button:hover { background: var(--blue-dark); color: #fff; text-decoration: none; }
+    .button.secondary { background: #fff; color: var(--blue); border-color: #b8cbea; }
+    .button.secondary:hover { background: var(--blue-soft); }
+    .section { margin-top: 62px; }
+    .section-heading { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+    .section-heading h2 { margin: 0; font-size: 25px; letter-spacing: -.02em; }
+    .section-index { color: #8ba5c8; font: 650 12px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .section-intro { max-width: 800px; margin: 0 0 22px; color: var(--muted); }
+    .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .card {
+      min-width: 0; padding: 22px; border: 1px solid var(--line);
+      border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow);
+    }
+    .card:hover { border-color: #b7cbea; }
+    .card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .card-icon {
+      display: grid; place-items: center; width: 36px; height: 36px;
+      border-radius: 9px; background: var(--blue-soft); color: var(--blue);
+      font-size: 13px; font-weight: 800;
+    }
+    .card-type { color: #7a8ba2; font-size: 10px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+    .card h3 { margin: 0 0 8px; font-size: 17px; }
+    .card p { margin: 0 0 16px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+    .card-links { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; font-weight: 650; }
+    .feature-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 22px 0 0; padding: 0; list-style: none; }
+    .feature-list li { position: relative; padding: 14px 15px 14px 38px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-soft); font-size: 13px; }
+    .feature-list li:before { content: "✓"; position: absolute; left: 15px; color: var(--blue); font-weight: 800; }
+    .flow {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 22px;
+    }
+    .flow-step { position: relative; padding: 15px; border: 1px solid var(--line); border-radius: 9px; background: #fff; }
+    .flow-step strong { display: block; margin-bottom: 5px; color: var(--ink); font-size: 13px; }
+    .flow-step span { color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .flow-step:not(:last-child):after {
+      content: "→"; position: absolute; z-index: 2; top: 50%; right: -13px;
+      transform: translate(50%, -50%); color: #8aa9d3; font-weight: 800;
+    }
+    .note {
+      margin-top: 20px; padding: 15px 18px; border-left: 3px solid #7ba6df;
+      border-radius: 0 8px 8px 0; background: #f3f7fd; color: #526174; font-size: 12px;
+    }
+    .tech-groups { display: grid; gap: 12px; }
+    .tech-row { display: grid; grid-template-columns: 170px 1fr; gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .tech-row strong { color: var(--ink); font-size: 13px; }
+    .tech-row span { color: var(--muted); font-size: 13px; }
+    .footer {
+      margin-top: 70px; padding-top: 24px; border-top: 1px solid var(--line);
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;
+      color: #8a96a8; font-size: 11px;
+    }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 16px; }
+    .footer a { font-size: 12px; }
+    @media (max-width: 900px) {
+      :root { --sidebar: 210px; }
+      .content { padding: 36px 28px 64px; }
+      .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .flow-step:nth-child(2):after { display: none; }
+    }
+    @media (max-width: 680px) {
+      :root { --header: 56px; }
+      .topbar { padding: 0 16px; }
+      .brand { font-size: 13px; }
+      .top-links { gap: 12px; }
+      .top-links a { font-size: 11px; }
+      .layout { display: block; }
+      .sidebar { position: static; height: auto; padding: 10px 14px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .side-label, .side-divider { display: none; }
+      .side-nav { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 2px; }
+      .side-nav a, .side-nav .sub-link { flex: 0 0 auto; padding: 7px 9px; font-size: 11px; }
+      .content { padding: 34px 18px 54px; }
+      .cards, .feature-list { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: 1fr 1fr; }
+      .flow-step:nth-child(2):after { display: block; }
+      .flow-step:nth-child(even):after { display: none; }
+      .tech-row { grid-template-columns: 1fr; gap: 3px; }
+      .footer { flex-direction: column; }
+    }
+    @media (max-width: 390px) {
+      .top-links a:first-child { display: none; }
+      .flow { grid-template-columns: 1fr; }
+      .flow-step:after { display: none !important; }
+      h1 { font-size: 31px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *:before, *:after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="API Documentation home">
+      <span class="brand-mark">API</span>
+      <span>API Documentation Portfolio</span>
+    </a>
+    <nav class="top-links" aria-label="External links">
+      <a href="https://github.com/ekatmoz88-alt/api-docs-portfolio-v2" target="_blank" rel="noopener noreferrer">GitHub repository ↗</a>
+      <a href="https://github.com/ekatmoz88-alt" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a>
+    </nav>
+  </header>
 
-/* Shared white-and-blue accessibility design system */
-:root{
- color-scheme:light;
- --bg:#ffffff;--bg-main:#ffffff;--bg2:#ffffff;--navy:#ffffff;--deep:#ffffff;
- --panel:#ffffff;--panel2:#f7faff;--bg-card:#ffffff;
- --ink:#1d2939;--text:#1d2939;--text-primary:#1d2939;--white:#1d2939;
- --muted:#475467;--text-muted:#475467;--line:#d8e3f0;--border-color:#d8e3f0;
- --accent:#0759c7;--blue:#0759c7;--cyan:#0759c7;--teal:#0759c7;
- --lime:#eaf3ff;--purple:#426fbd;--violet:#426fbd;--coral:#426fbd;
- --success:#0759c7;--shadow:0 10px 30px rgba(16,42,80,.07);
-}
-html{scroll-behavior:smooth}
-body{background:#fff!important;color:#1d2939!important;font-family:Inter,"Segoe UI",Arial,sans-serif!important}
-header,footer,.top,.topbar,.hero,.hero-section,.portfolio-footer{background:#fff!important;color:#1d2939!important}
-p,li,.lead,.intro,.sub,.nav,.nav a,.footer,.footer-link,.footer-credits{color:#475467!important}
-h1,h2,h3,h4,strong,b{color:#172b4d}
-a,.card a,.read,.footer a,.nav a{color:#0759c7!important;text-decoration:underline;text-decoration-color:#9bbcf0;text-underline-offset:3px}
-a:hover,.card a:hover,.read:hover{color:#003f91!important;text-decoration-color:#003f91}
-a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid #0759c7!important;outline-offset:4px!important;background-color:#eaf3ff!important;border-radius:4px}
-.card,.portfolio-card,.window,.visual,.cad,.samplebox,.scope,.notice,.step,.tag,.pill,.hero-section,.portfolio-footer{
- background:#fff!important;color:#1d2939!important;border:1px solid #d8e3f0!important;box-shadow:0 8px 28px rgba(16,42,80,.055)!important
-}
-.card p,.portfolio-card p,.scope p,.notice,.samplebox p{color:#475467!important}
-.btn,.portfolio-btn,.primary,.mark,.brandmark,.info{
- background:#0759c7!important;color:#fff!important;border:1px solid #0759c7!important;box-shadow:none!important
-}
-.btn.ghost,.secondary{background:#fff!important;color:#0759c7!important;border:1px solid #9bbcf0!important}
-.kicker,.eyebrow,.sub,.num,.tagline,.pill,.read,.brand{color:#0759c7!important}
-.mark,.brandmark{border-radius:9px}
-.gridbg{opacity:.28}
-.drawing,.orb,.glow{border-color:#9bbcf0!important;box-shadow:none!important}
-.coord{background:#f2f7ff!important;color:#173b70!important;border:1px solid #b8cfee!important;box-shadow:none!important}
-.point{background:#0759c7!important;box-shadow:none!important}
-.cross:before,.cross:after{background:#426fbd!important}
-.csv,.code,pre,code{color:#173b70!important}
-.csv .head,.csv .value{color:#0759c7!important}
-footer{border-top:1px solid #d8e3f0!important}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-@media(max-width:700px){nav{flex-wrap:wrap;gap:12px!important}.wrap,.shell{width:min(100% - 32px,1160px)}}
+  <div class="layout">
+    <aside class="sidebar" aria-label="Page navigation">
+      <p class="side-label">Documentation</p>
+      <nav class="side-nav">
+        <a href="#overview">Обзор</a>
+        <a href="#rest">REST API</a>
+        <a href="#soap">SOAP и интеграции</a>
+        <a href="#quality">Качество спецификаций</a>
+        <a href="#workflow">Docs-as-Code</a>
+        <a href="#stack">Инструменты</a>
+      </nav>
+      <div class="side-divider"></div>
+      <p class="side-label">API reference</p>
+      <nav class="side-nav">
+        <a class="sub-link" href="{{ '/openapi/' | relative_url }}">Orders API · OpenAPI</a>
+        <a class="sub-link" href="{{ '/quickstart/' | relative_url }}">Orders API · Quickstart</a>
+        <a class="sub-link" href="{{ '/umms-enterprise-soap-client.html' | relative_url }}">UMMS SOAP Client</a>
+        <a class="sub-link" href="{{ '/legacy-soap-api-review' | relative_url }}">Legacy SOAP Review</a>
+      </nav>
+    </aside>
 
-</style>
+    <main class="content">
+      <section id="overview">
+        <div class="eyebrow">Systems analysis · API contracts · Docs-as-Code</div>
+        <h1>API Documentation <span>&</span><br>Integration Analysis</h1>
+        <p class="lead">
+          Портфолио системного анализа и технической документации API.
+          Спецификации REST на OpenAPI 3.1, SOAP-кейсы на основе WSDL и XML,
+          описание контрактов, структур данных, интеграционных сценариев и процессов проверки документации.
+        </p>
+        <div class="hero-meta" aria-label="Technologies">
+          <span class="chip">REST</span>
+          <span class="chip">SOAP</span>
+          <span class="chip">OpenAPI 3.1</span>
+          <span class="chip">WSDL</span>
+          <span class="chip">XML · JSON</span>
+          <span class="chip">Redoc</span>
+          <span class="chip">Spectral</span>
+          <span class="chip">Postman</span>
+        </div>
+        <div class="hero-actions">
+          <a class="button" href="{{ '/openapi/' | relative_url }}">Открыть OpenAPI reference →</a>
+          <a class="button secondary" href="{{ '/quickstart/' | relative_url }}">Перейти к Quickstart</a>
+        </div>
+      </section>
 
-<!-- Рендеринг Hero-блока -->
-<header class="hero-section">
-  <div class="hero-container">
-    <div class="hero-avatar-placeholder">💻</div>
-    <h1 class="hero-title">Екатерина <span>Моцарь</span></h1>
-    <p class="hero-subtitle">Technical Writer & Documentation Engineer | API & Docs-as-Code Specialist</p>
+      <section class="section" id="rest">
+        <div class="section-heading"><span class="section-index">01</span><h2>REST API и OpenAPI</h2></div>
+        <p class="section-intro">Контракты API, описание операций, параметров, схем запросов и ответов, а также требований к аутентификации и обработке ошибок.</p>
+        <div class="cards">
+          <article class="card">
+            <div class="card-top"><span class="card-icon">GET</span><span class="card-type">Live portfolio API</span></div>
+            <h3>Orders API</h3>
+            <p>REST API на Supabase Edge Function. Контракт описывает получение списка заказов, создание заказа и получение заказа по идентификатору. Аутентификация — Supabase Auth; доступ к данным ограничен владельцем записи.</p>
+            <div class="card-links">
+              <a href="{{ '/openapi/' | relative_url }}">OpenAPI reference →</a>
+              <a href="{{ '/quickstart/' | relative_url }}">Quickstart →</a>
+              <a href="https://github.com/ekatmoz88-alt/api-docs-portfolio-v2/blob/main/openapi/openapi.yaml" target="_blank" rel="noopener noreferrer">YAML contract ↗</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="card-icon">API</span><span class="card-type">Additional contract</span></div>
+            <h3>Navigation API</h3>
+            <p>Отдельная спецификация OpenAPI 3.1 для интерфейсов навигационного сценария: поисковые запросы, обновление активного маршрута и структуры данных результатов.</p>
+            <div class="card-links">
+              <a href="https://github.com/ekatmoz88-alt/api-docs-portfolio-v2/blob/main/openapi/navigation-api.yaml" target="_blank" rel="noopener noreferrer">OpenAPI YAML ↗</a>
+              <a href="https://github.com/ekatmoz88-alt/api-docs-portfolio-v2" target="_blank" rel="noopener noreferrer">Repository ↗</a>
+            </div>
+          </article>
+        </div>
+        <ul class="feature-list">
+          <li>Описание HTTP-методов, параметров и тел запросов</li>
+          <li>Схемы данных, обязательные поля и ограничения</li>
+          <li>Коды ответов и форматы ошибок Problem Details</li>
+          <li>Требования к API key и Bearer-аутентификации</li>
+        </ul>
+      </section>
+
+      <section class="section" id="soap">
+        <div class="section-heading"><span class="section-index">02</span><h2>SOAP и интеграционные кейсы</h2></div>
+        <p class="section-intro">Техническое описание SOAP-взаимодействия, структуры XML-сообщений и программных интерфейсов интеграционных клиентов.</p>
+        <div class="cards">
+          <article class="card">
+            <div class="card-top"><span class="card-icon">XML</span><span class="card-type">Anonymized case study</span></div>
+            <h3>UMMS Enterprise SOAP Client</h3>
+            <p>Кейс по взаимодействию стационарных рабочих мест и мобильных клиентов. Материал охватывает каталог методов, структуры данных, XSD-типы и примеры XML-запросов и ответов.</p>
+            <div class="card-links">
+              <a href="{{ '/umms-enterprise-soap-client.html' | relative_url }}">Открыть SOAP case study →</a>
+              <a href="https://github.com/ekatmoz88-alt/api-docs-portfolio-v2/blob/main/umms-enterprise-soap-client.html" target="_blank" rel="noopener noreferrer">Source ↗</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="card-icon">WSDL</span><span class="card-type">Technical review</span></div>
+            <h3>Legacy SOAP API Review</h3>
+            <p>Аналитический обзор интеграционных паттернов SOAP-сервисов, ограничений контрактного взаимодействия и вопросов совместимости при рассмотрении REST-подхода.</p>
+            <div class="card-links">
+              <a href="{{ '/legacy-soap-api-review' | relative_url }}">Открыть обзор →</a>
+              <a href="https://github.com/ekatmoz88-alt/api-docs-portfolio-v2/blob/main/legacy-soap-api-review.html" target="_blank" rel="noopener noreferrer">Source ↗</a>
+            </div>
+          </article>
+        </div>
+        <div class="note">
+          SOAP-кейс обезличен для публичного портфолио. Он демонстрирует документирование интеграционного взаимодействия и не раскрывает конфиденциальные сведения исходной системы.
+        </div>
+      </section>
+
+      <section class="section" id="quality">
+        <div class="section-heading"><span class="section-index">03</span><h2>Проверка качества API-спецификаций</h2></div>
+        <p class="section-intro">Спецификация рассматривается как технический контракт: её структура, схемы, ссылки и описания проверяются до публикации.</p>
+        <div class="cards">
+          <article class="card">
+            <div class="card-top"><span class="card-icon">QA</span><span class="card-type">Linting & validation</span></div>
+            <h3>Spectral и Redocly CLI</h3>
+            <p>Проверка OpenAPI-документов на структурные ошибки и соответствие правилам оформления. Redoc используется для публикации читаемой API reference.</p>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="card-icon">CI</span><span class="card-type">Automation</span></div>
+            <h3>GitHub Actions</h3>
+            <p>Автоматизированный workflow устанавливает зависимости, запускает проверки спецификаций и собирает статический сайт документации для публикации через GitHub Pages.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="workflow">
+        <div class="section-heading"><span class="section-index">04</span><h2>Документация как код</h2></div>
+        <p class="section-intro">Материалы хранятся в Git, проходят проверку и публикуются как версионируемая документация.</p>
+        <div class="flow" aria-label="Documentation workflow">
+          <div class="flow-step"><strong>1. Описание</strong><span>OpenAPI YAML и Markdown</span></div>
+          <div class="flow-step"><strong>2. Проверка</strong><span>Spectral и Redocly CLI</span></div>
+          <div class="flow-step"><strong>3. Сборка</strong><span>Jekyll и GitHub Actions</span></div>
+          <div class="flow-step"><strong>4. Публикация</strong><span>GitHub Pages</span></div>
+        </div>
+      </section>
+
+      <section class="section" id="stack">
+        <div class="section-heading"><span class="section-index">05</span><h2>Инструменты и технологии</h2></div>
+        <div class="tech-groups">
+          <div class="tech-row"><strong>API contracts</strong><span>OpenAPI 3.1, YAML, WSDL, XML, JSON</span></div>
+          <div class="tech-row"><strong>API documentation</strong><span>Redoc, Markdown, HTML</span></div>
+          <div class="tech-row"><strong>Validation</strong><span>Spectral, Redocly CLI</span></div>
+          <div class="tech-row"><strong>API exploration</strong><span>Postman</span></div>
+          <div class="tech-row"><strong>Docs-as-Code</strong><span>Git, GitHub, GitHub Actions, Jekyll, GitHub Pages</span></div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>
+          <strong>Kate Motsar</strong><br>
+          API Documentation · Systems Analysis · Docs-as-Code
+        </div>
+        <nav class="footer-links" aria-label="Contact links">
+          <a href="https://www.linkedin.com/in/kate-motsar-b56974267/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/ekatmoz88-alt" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="mailto:ekatmoz88@gmail.com">Email</a>
+        </nav>
+      </footer>
+    </main>
   </div>
-</header>
-
-<!-- Рендеринг сетки проектов -->
-<main class="portfolio-container">
-  <h2 class="section-title">Разделы и технические кейсы</h2>
-  
-  <div class="portfolio-grid">
-    
-    <!-- Карточка 1: Orders API -->
-    <div class="portfolio-card">
-      <div>
-        <div class="card-header">
-          <span class="card-icon">📂</span>
-          <h3>Orders API (Redocly)</h3>
-        </div>
-        <p>Интерактивная REST API спецификация управления заказами. Развернута с использованием генератора Redocly для наглядного тестирования эндпоинтов.</p>
-      </div>
-      <a href="{{ '/openapi/'| relative_url }}" class="portfolio-btn">Открыть API Спецификацию →</a>
-      <p><a href="{{ '/quickstart/' | relative_url }}">Quickstart: пошаговое руководство по Orders API</a></p>
-    </div>
-
-    <!-- Карточка 2: UMMS SOAP Client -->
-    <div class="portfolio-card">
-      <div>
-        <div class="card-header">
-          <span class="card-icon">🔌</span>
-          <h3>UMMS SOAP Client</h3>
-        </div>
-        <p>Архитектурный кейс-стади взаимодействия стационарных (WPF) и мобильных приложений. Полный каталог методов, разбор структур данных и оптимизация логики поиска.</p>
-      </div>
-      <a href="{{ '/umms-enterprise-soap-client.html' | relative_url }}" class="portfolio-btn">Открыть Case Study →</a>
-    </div>
-
-    <!-- Карточка 3: Legacy SOAP API Review -->
-    <div class="portfolio-card">
-      <div>
-        <div class="card-header">
-          <span class="card-icon">🔍</span>
-          <h3>Legacy SOAP API Review</h3>
-        </div>
-        <p>Аналитический аудит интеграционных процессов устаревших систем. Техническое обоснование миграции, маппинг методов и переход на современные REST-архитектуры.</p>
-      </div>
-      <a href="{{ '/legacy-soap-api-review.html' | relative_url }}" class="portfolio-btn">Открыть Обзор →</a>
-    </div>
-
-  </div>
-</main>
-
-<!-- Рендеринг футера с контактами -->
-<footer class="portfolio-footer">
-  <div class="footer-links">
-  <a href="https://www.linkedin.com/in/kate-motsar-b56974267/" target="_blank" rel="noopener noreferrer" class="footer-link">🔗 LinkedIn</a>
-  <a href="https://github.com/ekatmoz88-alt" target="_blank" rel="noopener noreferrer" class="footer-link">🐙 GitHub</a>
-  <a href="mailto:ekatmoz88@gmail.com" class="footer-link">✉️ Email</a>
-</div>
-  <p class="footer-credits">© 2026 Ekaterina Motsar. Built with Jekyll & GitHub Pages (Docs-as-Code).</p>
-</footer>
+</body>
+</html>
