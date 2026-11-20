@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A retrospective review of legacy SOAP API documentation, including WSDL and XSD consistency, XML examples, data types, and documentation recommendations.">
+  <title>Legacy SOAP API Review | API Documentation Portfolio</title>
+  <style>
+    :root {
+      --navy: #172b4d;
+      --blue: #0747a6;
+      --text: #253858;
+      --muted: #5e6c84;
+      --bg: #f4f6f9;
+      --border: #dfe3e8;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+    }
+    .portfolio-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 24px;
+      padding: 16px 24px;
+      background: var(--navy);
+    }
+    .portfolio-nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .portfolio-nav a:hover { text-decoration: underline; }
+    .portfolio-nav .brand {
+      font-weight: 700;
+      margin-right: auto;
+    }
+    .hero {
+      padding: 52px 24px 44px;
+      color: var(--white);
+      background: var(--navy);
+      border-top: 1px solid #344563;
+    }
+    .hero-inner, main, footer {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #b3d4ff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(30px, 5vw, 44px);
+      line-height: 1.2;
+    }
+    .hero p {
+      max-width: 720px;
+      margin: 0;
+      color: #deebff;
+      font-size: 17px;
+    }
+    main { padding: 28px 20px 48px; }
+    .panel {
+      margin: 0 0 22px;
+      padding: 26px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    h2 {
+      margin: 0 0 14px;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.35;
+    }
+    h3 {
+      margin: 22px 0 8px;
+      color: var(--navy);
+      font-size: 18px;
+    }
+    p { margin: 0 0 14px; }
+    ul { padding-left: 22px; }
+    li { margin-bottom: 7px; }
+    .finding {
+      margin-top: 16px;
+      padding: 18px 20px;
+      background: #f8faff;
+      border-left: 4px solid var(--blue);
+      border-radius: 4px;
+    }
+    .finding h3 { margin-top: 0; }
+    .recommendation {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th {
+      color: var(--navy);
+      background: #f4f6f9;
+    }
+    code {
+      padding: 2px 5px;
+      background: #eef2f7;
+      border-radius: 4px;
+      font-family: Consolas, "Courier New", monospace;
+      overflow-wrap: anywhere;
+    }
+    a { color: var(--blue); }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .tag {
+      padding: 5px 10px;
+      color: var(--navy);
+      background: #e9f2ff;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+    .note {
+      margin-top: 18px;
+      padding: 16px;
+      color: #5e4b00;
+      background: #fff8db;
+      border: 1px solid #f5e6a8;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .page-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+    }
+    footer {
+      padding: 0 20px 30px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    @media (max-width: 600px) {
+      .portfolio-nav { padding: 14px 16px; gap: 12px 16px; }
+      .portfolio-nav .brand { width: 100%; }
+      .hero { padding: 36px 20px; }
+      main { padding: 20px 12px 32px; }
+      .panel { padding: 20px 16px; }
+      h2 { font-size: 21px; }
+      th, td { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="portfolio-nav" aria-label="Portfolio navigation">
+    <a class="brand" href="./">API Documentation Portfolio</a>
+    <a href="./#orders-api">Orders API</a>
+    <a href="./umms-enterprise-soap-client.html">UMMS SOAP Client</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Case Study · Retrospective Review</p>
+      <h1>Legacy SOAP API Documentation Review</h1>
+      <p>A critical evaluation of legacy SOAP API documentation practices, identifying gaps in WSDL/XSD consistency, XML examples, data-type definitions, and recommending improvements for clarity, completeness, and maintainability.</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="panel">
+      <h2>Overview</h2>
+      <p>This document presents a retrospective review of legacy SOAP API documentation. The review focuses on structural completeness, technical accuracy, and usability from a developer-consumer perspective. All findings are based on a redacted, anonymized sample and do not disclose confidential implementation details.</p>
+      <p><strong>Purpose:</strong> Demonstrate documentation-review methodology, identify common gaps in enterprise SOAP documentation, and propose actionable improvements.</p>
+    </div>
+
+    <div class="panel">
+      <h2>Review Scope</h2>
+      <table>
+        <tr><th>Area</th><th>Reviewed</th><th>Status in public sample</th></tr>
+        <tr><td>WSDL availability</td><td>Contract structure, endpoint definitions</td><td>Not included (confidential)</td></tr>
+        <tr><td>XSD / XML schemas</td><td>Element definitions, type constraints</td><td>Not included (confidential)</td></tr>
+        <tr><td>SOAP envelope examples</td><td>Request / response samples</td><td>Omitted; placeholders used</td></tr>
+        <tr><td>Data types</td><td>Primitive and complex types</td><td>Summarized conceptually</td></tr>
+        <tr><td>Error / fault definitions</td><td>SOAP faults, error codes</td><td>Not specified in this sample</td></tr>
+        <tr><td>Authentication</td><td>Security headers, tokens</td><td>Not included (confidential)</td></tr>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h2>Key Findings</h2>
+
+      <div class="finding">
+        <h3>1. Incomplete Interface Contract</h3>
+        <p>The original documentation referenced a SOAP service without providing the WSDL or XSD files. Without these, consumers cannot generate client stubs or validate message structure independently.</p>
+        <p class="recommendation"><strong>Recommendation:</strong> Always include the WSDL (or a redacted version) and link to XSD schemas. If confidentiality is required, provide a representative subset or anonymized equivalent.</p>
+      </div>
+
+      <div class="finding">
+        <h3>2. Missing or Inconsistent XML Examples</h3>
+        <p>Request and response XML samples were either absent or did not match the described method signatures. This forces developers to reverse-engineer message formats.</p>
+        <p class="recommendation"><strong>Recommendation:</strong> Provide at minimum one complete request/response pair per operation, annotated with field descriptions. Use syntax highlighting and clearly label namespaces.</p>
+      </div>
+
+      <div class="finding">
+        <h3>3. Undocumented Data Types and Constraints</h3>
+        <p>Field-level documentation listed field names but omitted data types, format rules, allowed values, and whether fields were required or optional.</p>
+        <p class="recommendation"><strong>Recommendation:</strong> Use a structured format (table or schema snippet) that specifies: type, required/optional, format, allowed values, default, and example.</p>
+      </div>
+
+      <div class="finding">
+        <h3>4. No Fault or Error Documentation</h3>
+        <p>The SOAP fault structure was not described. Developers cannot handle errors without knowing fault codes, reasons, and recovery hints.</p>
+        <p class="recommendation"><strong>Recommendation:</strong> Document the SOAP fault envelope structure, list all possible fault codes with meanings, and provide guidance on retry vs. abort decisions.</p>
+      </div>
+
+      <div class="finding">
+        <h3>5. Security and Authentication Gaps</h3>
+        <p>Authentication mechanism (WS-Security, API keys, certificates) was mentioned but not documented. Transport-level security (HTTPS) was assumed but not stated.</p>
+        <p class="recommendation"><strong>Recommendation:</strong> Explicitly state authentication method, required headers, token format, and TLS requirements. Include a sample authenticated request header.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Documentation Improvement Checklist</h2>
+      <ul>
+        <li>✅ Provide WSDL/XSD (or redacted representative samples)</li>
+        <li>✅ Include complete request/response XML examples per operation</li>
+        <li>✅ Document field-level details: type, required, format, constraints</li>
+        <li>✅ Define SOAP fault structure and all fault codes</li>
+        <li>✅ Specify authentication and transport security explicitly</li>
+        <li>✅ Add a quick-start or "getting started" section for new consumers</li>
+        <li>✅ Include versioning information and change log</li>
+        <li>✅ Provide a test/demo endpoint or sandbox reference (if available)</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2>Corrected Documentation Excerpt (Example)</h2>
+      <p>The table below demonstrates how a single operation should be documented with complete field-level detail:</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th><th>Example</th></tr>
+          <tr><td><code>personId</code></td><td>string (UUID)</td><td>Yes</td><td>Unique identifier of the person record</td><td><code>f47ac10b-58cc-4372-a567-0e02b2c3d479</code></td></tr>
+          <tr><td><code>includeHistory</code></td><td>boolean</td><td>No</td><td>If true, includes historical case records in the response</td><td><code>false</code></td></tr>
+          <tr><td><code>maxResults</code></td><td>integer</td><td>No</td><td>Maximum number of results to return (1–1000, default 50)</td><td><code>100</code></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Lessons for Technical Writers</h2>
+      <ul>
+        <li><strong>SOAP APIs require more upfront structure</strong> than REST — WSDL/XSD are non-negotiable references, not nice-to-have.</li>
+        <li><strong>Examples beat descriptions.</strong> A well-annotated XML sample is worth more than a paragraph of prose.</li>
+        <li><strong>Fault documentation is part of the API contract.</strong> Never omit it.</li>
+        <li><strong>Anonymization is not obfuscation.</strong> Redact confidential values but preserve structural fidelity so the documentation remains technically useful.</li>
+        <li><strong>Versioning matters.</strong> State which version of the API the documentation covers and link to a changelog.</li>
+      </ul>
+    </div>
+
+    <div class="note">
+      <strong>Portfolio note:</strong> This review is based on a redacted, anonymized sample of a legacy SOAP API. Service URLs, credentials, WSDL contents, and all production-identifying details have been removed. The findings and recommendations are generalizable to enterprise SOAP documentation projects.
+    </div>
+
+    <div class="tags">
+      <span class="tag">SOAP</span>
+      <span class="tag">Documentation Review</span>
+      <span class="tag">WSDL</span>
+      <span class="tag">XSD</span>
+      <span class="tag">Technical Writing</span>
+      <span class="tag">API Documentation</span>
+    </div>
+
+    <div class="panel" style="margin-top: 28px;">
+      <h2>Related Pages</h2>
+      <div class="page-links">
+        <a href="./">← Orders API</a>
+        <a href="./umms-enterprise-soap-client.html">UMMS SOAP Client →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>API Documentation Portfolio · Legacy SOAP API Review · <a href="./">Home</a></p>
+  </footer>
+</body>
+</html>
