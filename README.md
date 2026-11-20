@@ -17,7 +17,7 @@ This repository brings together API specifications, documentation examples, inte
 | [Orders API specification](openapi/openapi.yaml) | OpenAPI 3.1, REST endpoints, schemas, and examples |
 | [Orders API Quickstart](quickstart.md) | Authentication and request examples for the deployed API |
 | [Navigation API specification](openapi/navigation-api.yaml) | A second API contract used in validation workflows |
-| [Legacy SOAP API review](legacy-soap-api-review.html) | Analysis of legacy SOAP integration patterns and migration considerations |
+| [Legacy SOAP API review](legacy-soap-api-review.html) · [Detailed English review](legacy-soap-api-review.en.html) | Combined contract-quality audit, SOAP integration analysis and migration considerations |
 | [UMMS SOAP client case study](umms-enterprise-soap-client.html) | Structured documentation of SOAP client and integration concepts |
 | [Portfolio landing page](index.md) | Information architecture, layout, and project navigation |
 
