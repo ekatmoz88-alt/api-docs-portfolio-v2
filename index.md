@@ -223,6 +223,7 @@ permalink: /
         <a class="sub-link" href="{{ '/quickstart/' | relative_url }}">Orders API · Quickstart</a>
         <a class="sub-link" href="{{ '/umms-enterprise-soap-client.html' | relative_url }}">UMMS SOAP Client</a>
         <a class="sub-link" href="{{ '/legacy-soap-api-review' | relative_url }}">Legacy SOAP Review</a>
+        <a class="sub-link" href="{{ '/legacy-soap-api-review.en.html' | relative_url }}">Legacy SOAP Review · English</a>
       </nav>
     </aside>
 
