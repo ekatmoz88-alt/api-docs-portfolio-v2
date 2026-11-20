@@ -138,5 +138,36 @@ permalink: /legacy-soap-api-review
     </table>
 </div>
 
+
+<section class="main-container" aria-labelledby="detailed-review">
+  <h2 id="detailed-review">Подробная проверка полноты документации</h2>
+  <p>Публичный пример обезличен. Отсутствие WSDL/XSD или security headers в публикации не доказывает их отсутствия в исходной системе.</p>
+  <table><thead><tr><th>Область</th><th>Статус в публичном примере</th></tr></thead><tbody>
+  <tr><td>WSDL / endpoint definitions</td><td>Не включены по причинам конфиденциальности</td></tr>
+  <tr><td>XSD / XML schemas</td><td>Не включены; описаны концептуально</td></tr>
+  <tr><td>SOAP request / response</td><td>Операционные примеры опущены или заменены заглушками</td></tr>
+  <tr><td>Типы данных и ограничения</td><td>Суммированы концептуально</td></tr>
+  <tr><td>SOAP Fault / error codes</td><td>Не специфицированы в доступном примере</td></tr>
+  <tr><td>Authentication / TLS</td><td>Не включены в публичный пример</td></tr>
+  </tbody></table>
+  <h2>Ключевые выводы</h2>
+  <ol>
+    <li><strong>Неполный контракт:</strong> без WSDL/XSD потребитель не может независимо сгенерировать клиентские заглушки или проверить структуру сообщений.</li>
+    <li><strong>Недостаточные XML-примеры:</strong> нужны полные пары запрос/ответ для каждой операции с namespace и описанием полей.</li>
+    <li><strong>Недокументированные типы:</strong> для каждого поля нужны тип, обязательность, формат, ограничения, default и пример.</li>
+    <li><strong>Нет Fault-спецификации:</strong> следует определить коды, причины и правила retry/abort.</li>
+    <li><strong>Пробелы безопасности:</strong> необходимо явно описать аутентификацию, заголовки и требования TLS/HTTPS.</li>
+  </ol>
+  <h2>Иллюстративный пример структуры поля</h2>
+  <p>Пример ниже не является реальным контрактом исходной системы.</p>
+  <table><thead><tr><th>Поле</th><th>Тип</th><th>Required</th><th>Пример</th></tr></thead><tbody>
+  <tr><td><code>personId</code></td><td>string (UUID)</td><td>Yes</td><td>UUID placeholder</td></tr>
+  <tr><td><code>includeHistory</code></td><td>boolean</td><td>No</td><td>false</td></tr>
+  <tr><td><code>maxResults</code></td><td>integer, 1–1000; default 50</td><td>No</td><td>100</td></tr>
+  </tbody></table>
+  <h2>Контрольный список</h2>
+  <ul><li>WSDL/XSD или обезличенные схемы</li><li>Полные XML request/response-примеры</li><li>Типы, обязательность и ограничения полей</li><li>SOAP Fault и коды ошибок</li><li>Аутентификация и TLS</li><li>Quickstart, версия, changelog и sandbox при наличии</li></ul>
+  <p>Подробная объединённая версия: <a href="./legacy-soap-api-review.md">Markdown review</a>.</p>
+</section>
 </body>
 </html>
