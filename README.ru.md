@@ -21,7 +21,7 @@
 | [Спецификация Orders API](openapi/openapi.yaml) | OpenAPI 3.1, REST-эндпоинты, схемы и примеры |
 | [Quickstart для Orders API](quickstart.md) | Аутентификация и примеры запросов к развёрнутому API |
 | [Спецификация Navigation API](openapi/navigation-api.yaml) | Второй API-контракт, включённый в автоматические проверки |
-| [Анализ Legacy SOAP API](legacy-soap-api-review.html) | Анализ устаревших SOAP-интеграций и вариантов миграции |
+| [Анализ Legacy SOAP API](legacy-soap-api-review.html) · [English detailed review](legacy-soap-api-review.en.html) | Анализ устаревших SOAP-интеграций и вариантов миграции |
 | [Кейс SOAP-клиента UMMS](umms-enterprise-soap-client.html) | Структурированное описание SOAP-клиента и интеграционных концепций |
 | [Исходник главной страницы портфолио](index.md) | Информационная архитектура, визуальная структура и навигация |
 
