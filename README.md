@@ -20,6 +20,7 @@ This repository brings together API specifications, documentation examples, inte
 | [Legacy SOAP API review](legacy-soap-api-review.html) · [Detailed English review](legacy-soap-api-review.en.html) | Combined contract-quality audit, SOAP integration analysis and migration considerations |
 | [UMMS SOAP client case study](umms-enterprise-soap-client.html) | Structured documentation of SOAP client and integration concepts |
 | [Portfolio landing page](index.md) | Information architecture, layout, and project navigation |
+| [CI/CD architecture and execution evidence](docs/CI-CD.md) | GitHub Actions quality gates, Jekyll build, Pages deployment, and a recorded successful run |
 
 ## Skills and tools
 
@@ -32,7 +33,9 @@ This repository brings together API specifications, documentation examples, inte
 
 ## Documentation workflow
 
-The GitHub Actions workflow installs dependencies, runs dependency audit checks, validates the OpenAPI specifications with Spectral and Redocly, builds the Jekyll site, and deploys the Pages artifact from the main branch.
+A GitHub Actions workflow is configured to install dependencies, audit npm packages, validate both OpenAPI specifications with Spectral and Redocly, build the Jekyll site, and deploy GitHub Pages from the `main` branch. A successful execution of all configured jobs is recorded in [GitHub Actions Run #71](https://github.com/ekatmoz88-alt/api-docs-portfolio-v2/actions/runs/44823680824) (20 November 2026).
+
+The current workflow does not include automated unit, integration, or end-to-end API tests. See the [CI/CD architecture and execution evidence](docs/CI-CD.md) for scope and evidence boundaries.
 
 ## Deployed Orders API
 
